@@ -1,0 +1,149 @@
+0.9-1
+* bug-fix: when flip=TRUE and SNP.name not null, the gene map was being
+plotted over the heatmap. Thanks to Martin, Chia-Hsin Liu for reporting
+the bug
+
+0.9
+* Renumber version to prepare for release of a version 1.0
+
+0.3
+* Added arguments 'flip', 'text' to LDheatmap().
+* Added functions LDheatmap.plotGenes, plotGenes, LDheatmap.recombRate, 
+  recombRate, LDheatmap.addAssociation.
+* Added internal functions constructVP, drawLDheatmapGrob, moveTitles.
+
+0.2-9
+* data/datalist: Took care of the warning message related to undocumented data sets
+
+0.2-8
+* Missing links in LDheatmap.Rd were taken care of.
+* Replace grid.prompt() with devAskNewPage() to fix the Warning Message 
+given when the 'demo' is running.
+ 
+0.2-7
+* Change lower.tri(draw=T) to lower.tri(draw=TRUE) in LDheatmap.R.
+* Replace the deprecated grid.prompt() function with devAskNewPage() for 
+the Example in the LDheatmap fumction documentation (LDheatmap.Rd).
+
+0.2-6
+* Added "See LDheatmap vignette for details." to the Details section.
+
+0.2-5
+* 'datalist': "CEUData" and "CHBJPTData" added to fix the 
+Warning Message.
+  
+0.2-4
+* Added CITATION file to give information to the users how to cite the 
+  LDheatmap Code Snippet.
+* LDheatmap.Rd: added ``references" section. 
+* LDheatmap(): removed `recording' argument from the functions: 
+preDrawDetails.ldheatmap(), postDrawDetails.ldheatmap(), 
+preDrawDetails.symbols() and  postDrawDetails.symbols().
+
+0.2-3
+
+demo(LDheatmap)
+Revise the examples so that they correspond to the ones in the 
+documentation of LDheatmap() function.
+
+0.2-2
+
+LDheatmap(): 
+* Added argument 'pop' to control whether or not the heatmap viewport 
+  is popped after drawing. The default is FALSE.
+* Added argument 'vp.name' specifying the name of heatmap viewport.
+* Now when SNP.name is provided and add.map=FALSE, the genetic map is not
+  drawn but the SNP names provided are marked on the heatmap plot.
+* Added argument 'add.key' to allow user to switch off the color legend.
+* Default 'color' changed from 'heat.colors(20)' to 'grey.colors(2)'.
+
+LDheatmap.marks() and LDheatmap.highlight():
+* These functions now attempt detection of the viewport in which the target 
+  heat map was drawn and navigate to it automatically. 
+
+Data sets:
+* Added example data-set: "CHBJPTData" containing "CHBJPTSNP" and "CHBJPTDist".
+* Changed supplied data files names from 'LDheatmapData', 'HapMap.dat' and
+  'distance' to 'CEUData', 'CEUSNP' and 'CEUDist' respectively.
+
+Other:
+* Removed 'myRainbow.colors()'
+* Added internal functions preDrawDetails.ldheatmap, postDrawDetails.ldheatmap,
+  preDrawDetails.symbols and postDrawDetails.symbols to enable resizing of 
+  text when user resizes the window after drawing the heatmap.
+* Simplified example of drawing two heat maps on same graphic device.
+
+0.2-1
+ 
+* Fixed bug of defaulting to black grid lines in new R version 2.3.0
+
+0.2
+
+Re-write of the function to make use of grid graphics. 
+Grid graphics allows users to modify the heatmap and extend the function in
+ways that are not possible with traditional R graphics. For examples of how
+to modify the plot using tools from the grid package, see the examples in 
+the LDheatmap help file.
+
+Changes to function arguments:
+1. The function now allows gdat to be one of the following: 
+- a data frame of genotypes
+- an object of class LDheatmap
+- a matrix of pairwise LD measurements.
+The purpose of allowing gdat to be an object of class LDheatmap is to 
+enable recycling of the LD measures calculations, that can be time consuming for large data files, from previous calls.
+If gdat is of class LDheatmap, the function recycles pairwise LD 
+measurements from the original call and ignores the argument LDmeasure specified by the user in the second call.
+
+2. Arguments x.image.show, y.image.show no longer used.
+to control the size of the image, use the viewport command from the grid package.
+See the LDheatmap help file for examples.
+
+3. Changes to argument names: LDmeas is now LDmeasure, line.position is now
+geneMapLocation, x.length.position is now geneMapLabelX and
+y.length.position is now geneMapLabelY.
+
+4. New argument newpage controls whether the heatmap is to be drawn on a
+new page. Default is to draw on a new page.
+
+5. New argument name specifies the name of the top-level grid graphical object (grob) created by a call to the function LDheatmap. 
+See the examples for usage in the LDheatmap help file.
+
+Changes to function output:
+A list of class 'LDheatmap' is produced. The list consists of the following items:
+LDmatrix - A matrix of linkage disequilibrium measurements.
+LDheatmapGrob - A graphical object. This object is first drawn and than 
+returned by the LDheatmap function.
+heatmapVP - The Viewport in which the LDheatmap plot is drawn.
+genetic.distances - Vector of physical or genetic map distances.
+
+The LDheatmap plot output has been converted to grid graphics and is
+comprised of the following editable grid objects (grobs):
+"heatMap" - the color image of the heat map with its main title 
+"geneMap" - the genetic map drawn on a diagonal line against the heatmap
+"Key" - the color key legend
+For further information on how to customise these objects, see
+the package demo and the examples in the LDheatmap help file.
+
+New functions:
+1. LDheatmap.highlight - Highlight a genetic region in the LD heatmap.
+2. LDheatmap.marks - Plot a symbol in the centers of cells 
+representing the pairwise linkage disequilibria of specified pairs 
+of SNPs.
+
+
+0.1-5
+
+ * Changed title in DESCRIPTION file
+
+0.1-3
+
+ * Enable user to select his own color scheme or blueToRed color scheme
+
+0.1-2
+
+ * Fixed bug in number calculated for legend "Genetic Map Length:"
+
+0.1-1
+
+ * Changed DESCRIPTION file

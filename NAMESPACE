@@ -1,0 +1,4 @@
+import(grid)
+importFrom("grDevices", "grey.colors", "rainbow", "rgb")
+export(LDheatmap,LDheatmap.marks,LDheatmap.highlight,plotGenes,recombRate)
+exportPattern("LDheatmap.add")

@@ -1,0 +1,54 @@
+\name{recombRate}
+\alias{recombRate}
+\title{
+Produce recombination rate plot.
+}
+\description{
+Plot average rates of recombination from the deCODE genetic map for a specified genetic sequence.
+}
+\usage{
+recombRate(minRange, maxRange, chromosome, genome = "hg19", vp = viewport(x = 0, 
+y = 0.99, height = 0.04, just = c("left", "top")), view = "dense")
+}
+\arguments{
+  \item{minRange}{
+The sequence minimum range in base pairs.
+}
+  \item{maxRange}{
+The sequence maximum range in base pairs.
+}
+  \item{chromosome}{
+A character string identifying the chromosome.
+}
+  \item{genome}{
+The genome assembly to use. The default is hg19, the most recent human genome assembly on
+the UCSC genome browser.
+}
+  \item{vp}{
+A \code{viewport}.
+}
+  \item{view}{
+Display mode. Possible values are \code{"dense"} (the default), \code{"squish"}, 
+\code{"pack"} and \code{"full"}.
+}
+}
+\value{
+A \code{grob} representing recombination rates.
+}
+\references{
+\url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=recombRate}
+}
+\author{
+Sigal Blay <sblay@sfu.ca> and more
+}
+\examples{
+\dontrun{
+grid.newpage()
+recombRate(129000000, 140000000, "chr7", "hg18")
+grid.newpage()
+pushViewport(viewport(width=0.8, x=0.2, just="left"))
+recombRate(129000000, 140000000, "chr7", "hg18", view="full")
+popViewport()
+}
+}
+\keyword{ hplot }

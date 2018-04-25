@@ -1,0 +1,21 @@
+citHeader("To cite LDheatmap in publications use:")
+
+citEntry(entry="Article",
+         title = "LDheatmap: An R Function for Graphical Display of Pairwise 
+                  Linkage Disequilibria Between Single Nucleotide 
+                  Polymorphisms.",
+         author = personList(as.person("J.-H. Shin"),
+		         as.person("S. Blay"),
+		         as.person("B. McNeney"),
+		         as.person("J. Graham")),
+         journal= "J Stat Soft",
+         volume	= 16,
+         year	= 2006,
+         pages	="{Code Snippet 3}",
+         url	="http://stat.sfu.ca/statgen/research/ldheatmap.html",
+         textVersion =
+       paste("Shin J-H, Blay S, McNeney B and Graham J (2006).",
+        "LDheatmap: An R Function for Graphical Display of Pairwise Linkage 
+         Disequilibria Between Single Nucleotide Polymorphisms.",
+        "J Stat Soft, 16 Code Snippet 3")
+)

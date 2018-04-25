@@ -1,0 +1,65 @@
+\name{plotGenes}
+\alias{plotGenes}
+\title{
+Plot genes from a specified region of the human genome.
+}
+\description{
+Retrieves genes from the UCSC Genome Browser and generate the genes plot.
+}
+\usage{
+plotGenes(minRange, maxRange, chromosome, genome = "hg19", plot_lines_distance = 0.03,
+vp = viewport(x = 0, y = 0.99, just = c("left", "top")), splice_variants = TRUE, 
+non_coding = TRUE)
+}
+\arguments{
+  \item{minRange}{
+The sequence minimum range in base pairs.
+}
+  \item{maxRange}{
+The sequence maximum range in base pairs.
+}
+  \item{chromosome}{
+A character string identifying the chromosome.
+}
+  \item{genome}{
+The genome assembly to use. The default is hg19, the most recent human genome assembly on 
+the UCSC genome browser.
+}
+  \item{plot_lines_distance}{
+The distance between the lines of genes plotted.
+}
+  \item{vp}{
+A \code{viewport}.
+}
+  \item{splice_variants}{
+If \code{FALSE}, exclude gene splice variants.
+}
+  \item{non_coding}{     
+If \code{FALSE}, exclude non-coding genes.    
+}
+}
+\details{
+The genes are color coded as follows:
+Black -- feature has a corresponding entry in the Protein Data Bank (PDB)
+Dark blue -- transcript has been reviewed or validated by either the RefSeq, SwissProt or CCDS staff
+Medium blue -- other RefSeq transcripts
+Light blue -- non-RefSeq transcripts
+
+For assemblies older than hg18, all genes are plotted in grey.
+}
+\value{
+A \code{grob} of gene plots.
+}
+\references{
+\url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=knownGene}
+}
+\author{
+Sigal Blay <sblay@sfu.ca> and more
+}
+\examples{
+\dontrun{
+grid.newpage()
+plotGenes(149500000, 150000000, "chr7")
+}
+}
+\keyword{ hplot }

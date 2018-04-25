@@ -1,0 +1,455 @@
+\documentclass[codesnippet, shortnames]{jss}
+\usepackage{verbatim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% almost as usual
+\author{Ji-Hyung Shin\\Simon Fraser University \And Sigal Blay\\Simon Fraser University \And Brad McNeney\\Simon Fraser University \And Jinko Graham\\Simon Fraser University}
+\Plainauthor{Ji-Hyung Shin, Sigal Blay, Jinko Graham, Brad McNeney} %% comma-separated
+
+\title{LDheatmap: An \proglang{R} Function for Graphical Display of Pairwise Linkage 
+Disequilibria between Single Nucleotide Polymorphisms}
+%% for pretty printing and a nice hypersummary also set:
+\Plaintitle{LDheatmap: An R Function for Graphical Display of Pairwise Linkage 
+Disequilibria Between Single Nucleotide Polymorphisms}
+\Shorttitle{\pkg{LDheatmap}: Pairwise Linkage Disequilibria Heat Maps in \proglang{R}}
+%% an abstract and keywords 
+\Abstract{
+We describe the \proglang{R} function \code{LDheatmap()}
+which produces a graphical display,
+as a heat map, of pairwise linkage disequilibrium measurements between
+single nucleotide polymorphisms within a genomic region.  
+\code{LDheatmap()} uses the \pkg{grid} graphics system, an
+alternative to the traditional \proglang{R} graphics system.  The 
+features of the \code{LDheatmap()} function and 
+the use of tools from the \pkg{grid} package to modify 
+heat maps are illustrated by examples. 
+  }
+\Keywords{single nucleotide polymorphisms, linkage disequilibrium, \pkg{grid}
+graphics}
+\Keywords{single nucleotide polymorphisms, linkage disequilibrium, grid graphics}
+
+\Volume{16}
+\Issue{3}
+\Month{October}
+\Year{2006}
+\Submitdate{2006-05-15}
+\Acceptdate{2006-09-20}
+
+\Address{
+  Ji-Hyung Shin\\
+  Department of Statistics \& Actuarial Science\\
+  Simon Fraser University\\
+  8888 University Drive, \\
+  Burnaby, British Columbia, V5A 1S6\\
+  E-mail: \email{shin@sfu.ca}%\\
+%  URL: \url{http://www.ci.tuwien.ac.at/~zeileis/}
+}
+%% It is also possible to add a telephone and fax number
+%% before the e-mail in the following format:
+%% Telephone: +43/1/31336-5053
+%% Fax: +43/1/31336-734
+%% for those who use Sweave please include the following line (with % symbols):
+%% need no \usepackage{Sweave.sty}
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\grob}{\code{grob}}
+\begin{document}
+%\VignetteIndexEntry{LDheatmap}
+\DeclareGraphicsExtensions{.pdf, .ps, .jpeg}
+
+\section {Introduction}
+
+Single nucleotide polymorphisms (SNPs) are the most common form of genetic
+variation in the human genome.  Due to their abundance and ease of
+genotyping, SNPs have become popular markers for genetic association
+studies.  Although identifying as many SNPs as possible within a candidate
+gene is important in finding disease susceptibility alleles, typing them
+all can be expensive, and testing them for association with traits can lead to
+multiple-comparison issues.  Moreover, due to genetic linkage, nearby SNPs
+within candidate genes are often highly correlated.  Hence, it has become
+common practice to instead genotype only a subset of SNPs within a
+candidate gene.
+
+Understanding the patterns of association or linkage disequilibrium (LD)
+between SNPs can aid in selecting SNP subsets.  However, for a
+dense map of SNPs, it can be difficult to interpret results from
+tabular summaries of pairwise LD measurements since the number of
+measurements increases rapidly with the number of SNPs within a
+genomic region.  As a tool for interpretation of LD patterns, we
+developed an \proglang{R} \citep{R} function \code{LDheatmap()} which provides a
+graphical summary of pairwise LD measurements as a heat map.
+
+%%%%%%%%%%%%%%%%%%%%
+\section {LDheatmap(): Overview}
+
+The function \code{LDheatmap()} takes an input data set that provides
+information on pairwise LD between SNPs in a genomic
+region, plots color-coded values of the pairwise LD measurements,
+and returns an object of class \code{"LDheatmap"} containing a number of 
+components.
+
+The input data set can be a data frame containing SNP genotypes,
+a matrix of pairwise LD measurements, or an \code{LDheatmap} object
+returned by the function \code{LDheatmap()}. 
+SNP genotypes must be \code{genotype} objects created by the
+\code{genotype()} function from the \pkg{genetics} package
+\citep{WarnesLeisch05}. When genotypes are
+provided, LD measurements are computed using the function \code{LD()}
+from the \pkg{genetics} package.  The user can specify either
+the squared allelic correlation $r^2$ \citep{PritchardPrzeworski01} or
+Lewontin's $|D'|$ \citep{Lewontin64} as the measure of LD to be plotted. 
+Users who have pre-computed pairwise $r^2$ or $|D'|$ measures, or 
+who wish to plot some other measure of pairwise LD can provide
+a matrix of LD measurements instead of genotypes. 
+In fact, any square matrix with values
+between 0 and 1 inclusive above the diagonal
+can be displayed by \code{LDheatmap()}. 
+When \code{LDheatmap()} is passed an object of class \code{"LDheatmap"},
+the function uses the object's \code{LDmatrix} component. 
+\code{LDmatrix} is the matrix of LD measurements produced by or 
+passed to the previous function call used to create the 
+\code{LDheatmap} object.
+An optional diagonal line, drawn from the bottom left to the top right
+of the display, can be added to indicate
+physical or genetic map positions of the SNPs, along with 
+text reporting the total length of the genetic region in 
+either kilobases (kb; for physical distance) 
+or centi-Morgans (cM; for genetic distance).
+In the display of LD, SNPs appear along
+this diagonal line in the order specified by the user, as the
+horizontal and vertical coordinates increase.
+The ordering is achieved by adopting the conventions
+of the \code{image()} function, in which 
+horizontal coordinates of the display correspond to
+rows of the matrix and vertical coordinates
+correspond to columns, and vertical coordinates
+are indexed in increasing order from bottom to top
+(rather than top to bottom as in a matrix).
+
+\code{LDheatmap()} depends on the \pkg{grid} package; the graphics
+functions of \code{LDheatmap()} are written in the {\it grid graphics}
+system \citep{Murrell05} which provides more flexibility when manipulating a plot
+than the traditional graphics system. 
+Consequently, traditional graphics functions such as 
+\code{par()} do not have any effect on \code{LDheatmap()}.  
+The next section provides examples of the use of \code{LDheatmap()} and shows how
+heat maps can be modified using functions from the \pkg{grid} package.
+%%%%%%%%%%%%%%%%%%%%
+\section {Illustration}
+
+The \code{hapmapCEU} data set from the \pkg{LDheatmap} package will
+be used in the next examples.
+
+<<echo=FALSE, results=hide>>=
+options(width=60) #controls the number of characters on a line (to protect the margin area)
+@
+<<results=hide>>=
+library(LDheatmap)
+data("CEUData")
+@
+This will load the genetic data \code{CEUSNP} and associated
+distance vector \code{CEUDist} included in the package.  
+The \code{CEUSNP} data-set is a data frame of genotypes for 
+15 SNPs on chromosome 7, obtained from 
+60 Utah residents with northern and western European ancestry.  
+These data are from release 7 of the International 
+HapMap project \citep{HapMap05}; see the 
+\code{hapmapCEU} help file for a more complete description.  
+The \code{CEUDist} vector contains the
+physical map locations (base-pair positions) of the 15 SNPs.
+
+The following example shows a typical call to the \code{LDheatmap()}
+function.
+The heat map generated by this
+call is shown in Figure \ref{LD plot}.
+<<label=Original, fig=TRUE, results=hide, eps=FALSE, include=FALSE>>=
+MyHeatmap <- LDheatmap(CEUSNP, CEUDist, LDmeasure="r", 
+			  title="Pairwise LD in r^2", add.map=TRUE, 
+			  SNP.name=c("rs2283092", "rs6979287"), 
+			  color=grey.colors(20), name="myLDgrob", 
+			  add.key=TRUE)
+@
+\begin{figure}[ht]
+   \centering
+   \includegraphics[width=3in, height=3in, angle=0, scale=0.9]{LDheatmap-Original}
+ \caption{Heat map of pairwise LD measurements for the 15 SNPs in 
+\code{CEUSNP} produced by \code{LDheatmap()}.  }  
+   \label{LD plot}
+\end{figure}
+Each colored rectangle represents the squared correlation $r^2$ between 
+a pair of SNPs (specified by \code{LD.measure="r"}).  
+The vector \code{CEUDist} of physical map locations of the 15 SNPs 
+provides the information on their relative positions, 
+which are indicated on the diagonal line by line segments, 
+and the total length of the genetic region indicated by the 
+text \code{"Physical Length:8.9kb"} (all added by \code{add.map=TRUE}). 
+Two of the SNPs are labeled by \code{SNP.name = c("rs2283092", "rs6979287")}. 
+It is also possible to label selected SNPs without showing the 
+other genetic information by specifying  \code{add.map=FALSE}. 
+The default grey-scale color-scheme is specified by \code{color=grey.colors(20)}
+and is indicated by the `Color Key' on the bottom right corner of the plot (\code{add.key=TRUE}).  
+%{\color{red} ((Other color schemes can be specified color-generating functions such as \code{heat.colors()} (white-yellow-red) or \code{heatmap.rainbow()} (blue-to-red).}))
+
+When the function is called, a {\it \textbf{grid} graphical object} (\code{grob}) 
+named \code{LDheatmapGrob}, representing the heat map, is created
+and the graphical output is produced from this \code{grob}.  
+The \code{grob} is also one of the 
+components of the \code{LDheatmap} object returned by the \code{LDheatmap()} function.  
+In this example, the returned \code{LDheatmap} object is stored as \code{MyHeatmap}, 
+and its \code{LDheatmapGrob} component has name \code{"myLDgrob"}. 
+
+\code{LDheatmapGrob} is a \code{gTree} object \citep{Murrell06:modgrobs} and 
+has a hierarchical structure as shown in Figure \ref{gTree}. 
+The children of \code{LDheatmapGrob} represent the heat map 
+(\code{"heatMap"}), optional line parallel to the diagonal of the
+image indicating the physical or genetic map positions of the SNPs
+(\code{"geneMap"}), and color-scale (\code{"Key"}). 
+
+The children of \code{"heatMap"} represent the region of colored rectangles 
+(\code{"heatmap"}) and main title (\code{"title"}) of the heat map.  
+When \code{add.map=TRUE}, \code{"geneMap"} is created 
+with children representing the diagonal line (\code{"diagonal"}), 
+line segments (\code{"segments"}) and text reporting the total length 
+of the candidate region (\code{"title"}).  When the parameter \code{SNP.name}
+is specified to label one or more SNPs, as in our example, two 
+additional children are created,
+representing the labels (\code{"SNPnames"}) and the symbols plotted 
+at the tips of the corresponding line segments 
+(\code{"symbols"}). 
+When \code{add.map=FALSE} and \code{SNP.name} is specified, 
+only  \code{"SNPnames"} is created.   
+When \code{add.key=TRUE}, \code{"Key"} is created with children which represent the colored rectangles (\code{"colorKey"}), title (\code{"title"}), 
+numeric labels (\code{"labels"}), ticks (\code{"ticks"}) and box frame 
+(\code{"box"}) of the color legend.
+\begin{figure}[h]
+   \centering
+   \includegraphics[width=4.5in, height=4.5in, angle=0, scale=0.85]{gTree.pdf}
+   %\includegraphics[width=4in, height=4in, angle=0, scale=0.85]{Figures/PDF/grobTree1.pdf}
+   \caption{Hierarchical structure of \code{LDheatmapGrob}, the 
+\code{grob} created by \code{LDheatmap()} to produce an LD heat map. 
+}
+   \label{gTree}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+These \code{grob}s can be used to modify a heat map produced by 
+the \code{LDheatmap()}.  In the next section, we will show how to do this 
+by examples.  
+
+\section {Modifying a heat map} 
+%An LD heat map produced by \code{LDheatmap()} is ... of the \code{grob}s listed in Figure \ref{gTree}.  Therefore, modification on one of these \code{grob}s will result in a modification on the heat map.  
+Modifying an LD heat map produced by \code{LDheatmap()} can be done 
+{\em interactively} or {\em statically} using the functions
+\code{grid.edit()} or \code{editGrob()}, respectively \citep{Murrell06:modgrobs}.
+Interactive editing requires that a \code{grob} be drawn on the current
+device, such as the \code{grob} named \code{"myLDgrob"} on the current 
+display in our example. 
+Static editing requires that a \code{grob} be saved in the user's
+workspace, such as the \code{LDheatmapGrob} component of
+the \code{MyHeatmap} object saved in our example.
+Suppose we wish to modify the font sizes and colors of the main title, text 
+indicating the genetic region length and title of the color key.
+We can do so interactively with
+<<eval=FALSE>>=
+grid.edit(gPath("myLDgrob", "heatMap", "title"), gp=gpar(cex=1.25, col="blue"))
+grid.edit(gPath("myLDgrob", "geneMap", "title"), gp=gpar(cex=0.8, col="orange"))
+grid.edit(gPath("myLDgrob", "Key", "title"), gp=gpar(cex=1.25, col="red"))
+@
+or we can do so statically with
+<<>>=
+require(grid)
+LD.grob1 <- editGrob(MyHeatmap$LDheatmapGrob, gPath("heatMap", "title"), 
+		gp = gpar(cex=1.25, col="blue"))
+LD.grob2 <- editGrob(LD.grob1, gPath("geneMap","title"), 
+		gp = gpar(cex=0.8, col="orange"))
+LD.grob3 <- editGrob(LD.grob2, gPath("Key","title"), 
+		gp = gpar(cex=1.25, col="red"))
+@
+The final \code{grob}, \code{LD.grob3}, can be drawn with
+<<label=Modified, fig=TRUE, eps=FALSE, include=FALSE>>=
+grid.newpage() 
+grid.draw(LD.grob3) 
+@
+For more information on the functions \code{grid.edit()}, \code{editGrob()},
+\code{grid.newpage()} and \code{grid.draw()} from the \pkg{grid} package,
+see their respective help files or \cite{Murrell06:modgrobs}.
+Figure \ref{mod.figure} shows the resulting modified heat map.  
+\begin{figure}[ht]
+   \centering
+   \includegraphics[width=3in, height=3in, angle=0, scale=0.9]{LDheatmap-Modified.pdf}
+ \caption{Heat map with modified colors and font sizes for \code{"Pairwise LD in r\^{}2"} (main title), \code{"Physical Length:8.9kb"} (genetic length text) and \code{"Color Key"} (color-scale title).}  
+   \label{mod.figure}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section {Multiple heat maps on a single device}
+
+Displaying multiple heat maps on one graphical device may be useful for
+making comparisons.  However, as mentioned earlier, changing \code{par()} 
+settings does not affect \pkg{grid} graphics{\color{blue};} hence modifying 
+settings of \code{mfrow()} or \code{mfcol()} for arranging multiple plots in the
+traditional graphics system are not compatible with \code{LDheatmap()}.  
+In the \pkg{grid} graphics system, multiple regions on a device can be defined and 
+plotted by controlling {\it \textbf{grid} viewports} \citep{Murrell06:VP}.
+One possible way to display and arrange multiple heat maps produced by
+\code{LDheatmap()} is with a {\em layout} \citep{Murrell99}. %See bibtex entry:
+% @article{Murrell99,
+%    author = {Murrell, Paul R.},
+%    title = {Layouts: {A} Mechanism for Arranging Plots on a Page},
+%    year = {1999},
+%    journal = {Journal of Computational and Graphical Statistics},
+%    volume = {8},
+%    pages = {121--134},
+%    keywords = {Aspect ratio; Figure layout; Graphics}
+%  }
+Alternately, users may manually position heat maps. Either
+approach involves controlling {\em grid viewports} 
+and navigating the {\em viewport tree} managed 
+by \pkg{grid} \citep{Murrell06:VP}.
+In the following example two heat maps of different color scales
+(grey and white-to-red) are displayed side-by-side by manual positioning.
+<<eval=FALSE>>=
+VP1<-viewport(x=0, y=0, width=0.5, height=1, just=c("left","bottom"), 
+                name="vp1")
+pushViewport(VP1)
+LD1 <- LDheatmap(MyHeatmap, color=grey.colors(20), 
+   title="Pairwise LD in grey.colors(20)", SNP.name="rs6979572", 
+   name="ld1", newpage=FALSE)
+upViewport()
+VP2<-viewport(x=0.5, y=0, width=0.5, height=1, 
+               just=c("left","bottom"), name="vp2")
+pushViewport(VP2)
+LD2<-LDheatmap(MyHeatmap, color=heat.colors(20), 
+	title="Pairwise LD in heat.colors(20)", 
+        SNP.name="rs6979572", name="ld2", newpage=FALSE)
+upViewport()
+@
+The argument \code{newpage=FALSE} tells \code{LDheatmap()} not to
+erase previously defined viewports: in the first call to
+\code{LDheatmap()} do not erase viewport \code{VP1}, 
+and in the second function call do not erase \code{VP1} or
+\code{VP2}. 
+
+Our next example shows how to use the \code{grid.edit()} function
+to modify the \code{LDheatmapGrob}s 
+\code{"ld1"} and \code{"ld2"}, created in the previous example,
+so that white lines separate each pixel in the heat map displayed
+on the left and so that the color of the \code{"geneMap"} title along the
+diagonal is changed from black (the default) to blue in the 
+heat map displayed on the right. 
+<<eval=FALSE>>=
+grid.edit(gPath("ld1", "heatMap", "heatmap"), gp=gpar(col="white", lwd=2))
+grid.edit(gPath("ld2", "geneMap", "title"), gp=gpar(col="blue"))
+@
+Note that the \code{gPath}s in the two calls to \code{grid.edit()}
+name the top-level \code{grob}s \code{"ld1"}
+and \code{"ld2"}, respectively, 
+to specify which heat map is going be modified.  Figure
+\ref{multiple.plot} shows the two modified heat
+maps displayed together.
+<<label=multiple, fig=TRUE, echo=FALSE, eps=FALSE, include=FALSE>>=
+VP1<-viewport(x=0, y=0, width=0.5, height=1, just=c("left","bottom"), 
+                name="vp1")
+pushViewport(VP1)
+LD1 <- LDheatmap(MyHeatmap, color=grey.colors(20), 
+   title="Pairwise LD in grey.colors(20)", SNP.name="rs6979572", 
+   name="ld1", newpage=FALSE)
+upViewport()
+VP2<-viewport(x=0.5, y=0, width=0.5, height=1, 
+               just=c("left","bottom"), name="vp2")
+pushViewport(VP2)
+LD2<-LDheatmap(MyHeatmap, color=heat.colors(20), 
+	title="Pairwise LD in heat.colors(20)", 
+        SNP.name="rs6979572", name="ld2", newpage=FALSE)
+upViewport()
+grid.edit(gPath("ld1", "heatMap", "heatmap"), gp=gpar(col="white", lwd=2))
+grid.edit(gPath("ld2", "geneMap", "title"), gp=gpar(col="blue"))
+@
+\begin{figure}[hb]
+   \centering
+   \includegraphics[width=6in, height=6in, angle=0, 
+scale=0.9]{LDheatmap-multiple.pdf}
+ \caption{Modified heat maps displayed together.  The heat map on the left 
+uses a  `grey' (\code{grey.colors(20)}) color-scale.  The heat map on 
+the right uses a `white-to-red' (\code{heat.colors(20)}) color-scale. 
+White grid-lines were added to the heat map on the left and the  
+color of the text \code{"Physical Length:8.9kb"} was changed from black 
+to blue in the heat map on the right.}  
+   \label{multiple.plot}
+\end{figure}
+<<results=hide>>=
+data("CHBJPTData")
+pop<-factor(c(rep("chinese", 45), rep("japanese", 45)))
+@
+<<label=lattice, fig=TRUE, echo=FALSE, eps=FALSE, width=11, height=7.33, include=FALSE>>=
+library(lattice)
+print(xyplot(1:nrow(CHBJPTSNP)~1:nrow(CHBJPTSNP) | pop, type="n", 
+scales=list(draw=F),xlab="",ylab="", 
+panel=function(x,y,subscripts,...){
+	LDheatmap(CHBJPTSNP[subscripts,], CHBJPTDist, newpage=FALSE)}))
+@
+\begin{figure}[hb]
+   \centering
+   \includegraphics[width=6 in, height=4in, angle=0, 
+scale=0.9]{LDheatmap-lattice}
+ \caption{Lattice-like plot with LD heat maps in the panels.}  
+   \label{lattice.plot}
+\end{figure}
+
+Our final example shows how to produce a lattice-like plot with 
+LDheatmaps in the panels, which is useful for viewing 
+patterns of LD in different populations.  The command
+<<eval=FALSE>>=
+data("CHBJPTData")
+@
+loads the genotypes \code{CHBJPTSNP} and associated distance
+vector \code{CHBJPTDist}. The data frame \code{CHBJPTSNP} contains
+genotypes for 13 SNPs on chromosome 7, from 45 Chinese
+and 45 Japanese individuals.  The Chinese individuals
+were unrelated residents of the community at Beijing Normal University
+with at least 3 Han Chinese grandparents. The Japanese individuals
+were unrelated residents of the Tokyo metropolitan area
+with all grandparents from Japan.
+The data are from release 21 of the International HapMap project
+(The International HapMap Consortium 2005). 
+We first create a factor variable describing the population:
+<<eval=FALSE>>=
+pop<-factor(c(rep("chinese", 45), rep("japanese", 45)))
+@
+The population variable may then be used to stratify
+the heat maps as follows.
+<<eval=FALSE>>=
+library(lattice)
+xyplot(1:nrow(CHBJPTSNP)~1:nrow(CHBJPTSNP) | pop, type="n",
+scales=list(draw=FALSE), xlab="", ylab="", 
+panel=function(x,y,subscripts,...){
+ LDheatmap(CHBJPTSNP[subscripts,], CHBJPTDist, newpage=FALSE)})
+@
+The resulting heat maps are shown in Figure \ref{lattice.plot}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section {Further Notes}
+The package \pkg{LDheatmap} contains two 
+other functions written in the \pkg{grid} graphics system.
+\code{LDheatmap.highlight()} and \code{LDheatmap.marks()}
+can be used to highlight or mark with a symbol, 
+respectively, pairwise LD measures on 
+an LD heat map. For more details, see the
+documentation for the \pkg{LDheatmap} package.  
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\section {Acknowledgments}
+We would like to thank Nicholas Lewin-Koh for his suggestion to
+modify our original implementation of \code{LDheatmap()} to use 
+the \pkg{grid} graphics system, and for his work to
+develop the \code{LDheatmap.highlight()} and \code{LDheatmap.marks()} 
+functions in the \pkg{LDheatmap} package.
+We also would like to thank the anonymous reviewers for their helpful comments regarding the package and manuscript.
+This research was supported
+by Natural Sciences and Engineering Research Council of Canada grants
+227972-00 and 213124-03,
+by Juvenile Diabetes Research Foundation International grant 1-2001-873,
+by Canadian Institutes of Health Research grants 
+NPG-64869 and ATF-66667, and in part by
+the Mathematics of Information Technology and Complex Systems,
+Canadian National Centres of Excellence.
+JG is a Scholar of the BC Michael Smith Foundation for Health Research.
+
+\bibliography{LDheatmap}
+\end{document}
