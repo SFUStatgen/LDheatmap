@@ -1,3 +1,4 @@
+#GY - permission check
 #Load the package's data set
 data(CEUData)
 #Creates a data frame "CEUSNP" of genotype data and a vector "CEUDist"
