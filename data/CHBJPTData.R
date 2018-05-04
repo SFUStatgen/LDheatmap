@@ -2,12 +2,12 @@
 #unrelated Japanese from HapMap, Data Release #21/phaseII Jul06, base-pair 
 #range same as in original example data for LDheatmap from Utah CEPH families.
 
-ch.dat<-read.table("hapmapCHB.txt",header=TRUE) #rows are SNPs!
+ch.dat<-utils::read.table("hapmapCHB.txt",header=TRUE) #rows are SNPs!
 names(ch.dat) #to see which columns give the people for a SNP (row)
 snpnames.ch<-ch.dat[,"rsnum"] #names of snps
 ch.snps<-t(ch.dat[,12:56]) #snp data - rows index people, cols index SNPs
 
-jp.dat<-read.table("hapmapJPT.txt", header=TRUE)
+jp.dat<-utils::read.table("hapmapJPT.txt", header=TRUE)
 names(jp.dat) #to see which columns give the people for a SNP (row)
 snpnames.jp<-jp.dat[,"rsnum"] #names of snps
 jp.snps<-t(jp.dat[,12:56]) #snp data - rows index people, cols index SNPs
@@ -26,7 +26,7 @@ library(genetics)
 for(i in 1:41) {
  tem<-as.character(CHBJPTSNP[,i]) #Currently columns are factors
  tem[tem=="NN"]<-""
- CHBJPTSNP[,i]<-genotype(tem,sep="")
+ CHBJPTSNP[,i]<-genetics::genotype(tem,sep="")
 }
 
 #Remove any SNPs that are not sufficiently polymorphic in either 

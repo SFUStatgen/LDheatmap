@@ -1,4 +1,4 @@
-CEUData<-read.table("hapmapCEU.txt", header=TRUE)
+CEUData<-utils::read.table("hapmapCEU.txt", header=TRUE)
 CEUSNP <- CEUData[-1,]
 for (LDindex in 1:length(CEUSNP))
      CEUSNP[,LDindex] <- genetics::as.genotype(CEUSNP[,LDindex])

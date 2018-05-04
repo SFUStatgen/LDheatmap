@@ -2,9 +2,11 @@ Package: LDheatmap
 Version: 0.99-4
 Date: 2018-03-11
 Title: Graphical Display of Pairwise Linkage Disequilibria Between SNPs
-Author: Ji-Hyung Shin <shin@sfu.ca>, Sigal Blay <sblay@sfu.ca>,
-        Nicholas Lewin-Koh <nikko@hailmail.net>, Brad McNeney
-        <mcneney@sfu.ca>, Jinko Graham <jgraham@sfu.ca>
+Authors@R: c(person("Ji-Hyung","Shin",email="shin@sfu.ca", role="aut"),
+             person("Sigal","Blay", email="sblay@sfu.ca",role="aut"),
+             person("Nicholas","Lewin-Koh",email="nikko@hailmail.net", role="ctb"),
+             person("Brad","McNeney",email="mcneney@sfu.ca",role=c("aut","cre")),
+             person("Jinko","Graham",email="jgraham@sfu.ca",role="aut"))
 Maintainer: Brad McNeney <mcneney@sfu.ca>
 Depends: R (>= 2.14.0)
 Imports: grid, genetics, snpStats 
