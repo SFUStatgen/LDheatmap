@@ -1,3 +1,22 @@
+#' @name LDheatmap.addGrob
+#' @aliases LDheatmap.addGrob
+#' @title Add a graphical object to an LDheatmap plot
+#' @description Add a graphical object to an LDheatmap plot such that the x-axis corresponds
+#'to the physical map on the heatmap.
+#' @usage LDheatmap.addGrob(LDheatmap, grob, height = 0.2)
+#' @param LDheatmap An object of class LDheatmap.
+#' @param grob A graphical object of class\code{\link[grid]{grob}}.
+#' @param height The height of the viewport in which the grob will be placed.
+#' @return An object of class LDheatmap given as an argument, with the \code{grob}
+#'\code{LDheatmapGrob} modified to inclue the new child grob.
+#' @author Sigal Blay <sblay@sfu.ca>
+#' @seealso \code{\link{LDheatmap}}
+#' @examples % Add an empty rectangle frame
+#'data(GIMAP5.CEU) 
+#'ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
+#'llplusgrob<-LDheatmap.addGrob(ll, grid::rectGrob())
+#' @keywords hplot
+
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney
 
