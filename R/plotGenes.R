@@ -31,7 +31,6 @@
 #' @keywords hplot
 #' @export
 
-
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney
 
