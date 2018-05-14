@@ -1,3 +1,54 @@
+#' @name LDheatmap.highlight
+#' @aliases LDheatmap.highlight
+#' @title Highlight a genetic region in the linkage disequilibrium heat map
+#' @description The function \code{LDheatmap.highlight()} is used to highlight a
+#'specified genetic region in the linkage disequilibrium (LD)
+#'heat map drawn with the \code{\link{LDheatmap}()} function.
+#' @usage LDheatmap.highlight(LDheatmap, i, j, fill = "NA", col = "black", lwd = 1, lty = 1)
+#' @param LDheatmap An object of class \code{"LDheatmap"} returned
+#'by the function \code{LDheatmap()}.
+#' @param i A numeric value specifying the index of the first
+#'SNP to be in the highlighted region.
+#' @param j A numeric value specifying the index of the last SNP,
+#'which must be different from \code{i}, to be in the highlighted region.
+#' @param fill Color to fill the highlighted area with.
+#' @param col A character string specifying the color of the line
+#'segments defining the boundary of highlighted region; see
+#'\code{\link[graphics]{par}()} for possible values.
+#' @param lwd A \emph{positive} number specifying the width of the
+#'boundary segments.
+#' @param lty Either an integer or a character string specifying the
+#'line type of the boundary segments; see \code{\link[graphics]{par}()}
+#'for possible values.
+#' @return A data frame of the x and y coordinates of points defining the
+#'border of the highlighted area.
+#' @note The function \code{LDheatmap.highlight()} highlights the cells representing
+#'the pairwise LD for the SNPs located between \code{i}-th and \code{j}-th (inclusive)
+#'SNPs in the genomic region of interest.
+#'The order of indices has no effect on the plot.  For example,
+#'\code{LDheatmap.highlight(LDheatmap, i=2, j=4)} is the same as
+#'\code{LDheatmap.highlight(LDheatmap, i=4, j=2)}, which highlights
+#'the cells representing the pairwise LD for the second,
+#'third and fourth SNPs.
+#' @section Warning: By default, \code{LDheatmap.highlight()} finds the viewport to draw on from
+#'the \code{LDheatmap} object passed to it as an argument.
+#'However, if \code{LDheatmap()} was called with the option \code{pop=TRUE},
+#'the resulting \code{LDheatmap} object is not assigned a
+#'viewport. In this case, \code{LDheatmap.highlight()} assumes
+#'the user wishes to highlight in the current viewport.
+#'Therefore, if \code{LDheatmap()}
+#'has been called with the option \code{pop=TRUE},
+#'the user must navigate to the correct viewport
+#'before calling \code{LDheatmap.highlight()}.
+#' @author Nicholas Lewin-Koh
+#'<nikko@hailmail.net>,
+#'Ji-Hyung Shin <shin@sfu.ca>, Sigal Blay <sblay@sfu.ca>
+#' @examples data(CEUData)
+#'tt <- LDheatmap(CEUSNP, genetic.distances=CEUDist)
+#'LDheatmap.highlight(tt, 3, 8, col="blue", fill="green", lwd=3)
+#' @keywords aplot
+
+
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney
 
