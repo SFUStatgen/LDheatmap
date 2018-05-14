@@ -1,3 +1,33 @@
+#' @name LDheatmap.addScatterplot
+#' @aliases LDheatmap.addScatterplot
+#' @title Add a scatter plot to an LDheatmap object
+#' @description Add a scatter plot to an LDheatmap object.
+#'The x axis is the map of genetic distances of the SNPs.
+#' @usage LDheatmap.addScatterplot(LDheatmap, P, height = 0.2, ylab = NULL, ylim=NULL,
+#'type = "points")
+#' @param LDheatmap An object of class LDheatmap.
+#' @param P A vector with the values to be plotted as the y axis.
+#' @param height The height of the plot.
+#' @param ylab The y axis label.
+#' @param ylim The y axis limits.
+#' @param type Plot type. Possible values are \code{"points"} (the default), \code{"lines"} or \code{"both"}.
+#' @details The function creates an \code{"association"} \code{grob} and adds it to the \code{LDheatmap} object.
+#'Then it pushes a \code{viewport} and draws the \code{LDheatmapGrob} onto it.
+#' @return An object of class LDheatmap given as an argument, with the \code{grob}
+#'\code{LDheatmapGrob} modified to inclue the \code{"association"} child grob.
+#' @author Sigal Blay <sblay@sfu.ca> and more
+#' @seealso \code{\link{LDheatmap}}
+#' @examples # Load the package's data set
+#'data("CEUData")
+#'# Produce an LDheatmap object
+#'MyLDheatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist, flip = TRUE)
+#'# Generate an arbitrary vector of values to plot
+#'Yvalues <- seq(length = length(MyLDheatmap$genetic.distances), from = 0.01, to = 0.5)
+#'# Add scatter plot
+#'assoc <- LDheatmap.addScatterplot(MyLDheatmap, Yvalues)
+#' @keywords hplot
+
+
 # LDheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney
 
