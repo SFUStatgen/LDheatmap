@@ -1,3 +1,30 @@
+#' @name LDheatmap.addRecombRate
+#' @aliases LDheatmap.addRecombRate
+#' @title Add recombination rate plot to an LD heat map.
+#' @description Retrieve average rates of recombination from the deCODE genetic map from the UCSC 
+#'Genome Browser and add them to an LDheatmap object.
+#' @usage LDheatmap.addRecombRate(LDheatmap, chromosome, genome = NULL, recombRateLocation = 0.02,
+#'view = "dense")
+#' @param LDheatmap An object of class LDheatmap.
+#' @param chromosome A character string that identifies the chromosome.
+#' @param genome The genome assembly to use. The default is the most recent human genome assembly on the UCSC Genome Browser.
+#' @param recombRateLocation The plot distance from the LD heat map gene map.
+#' @param view Display mode. Possible values are \code{"dense"} (the default), \code{"squish"},
+#'\code{"pack"} and \code{"full"}.
+#' @return An object of class LDheatmap given as an argument, with the \code{grob}
+#'\code{LDheatmapGrob} modified to inclue the \code{"recombRate"} child grob.
+#' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=recombRate}
+#' @author Sigal Blay <sblay@sfu.ca>
+#' @seealso \code{\link{LDheatmap}}, \code{\link{recombRate}}
+#' @examples \dontrun{
+#'data(GIMAP5.CEU) 
+#'ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
+#'# Add recombination rate plot
+#'ll_recomb <- LDheatmap.addRecombRate(ll, chr="chr7", genome="hg18")
+#'}
+#' @keywords hplot
+
+
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney
 
