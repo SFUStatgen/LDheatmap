@@ -1,31 +1,35 @@
-#' @name recombRate
-#' @aliases recombRate
-#' @title Produce recombination rate plot.
-#' @description Plot average rates of recombination from the deCODE genetic map for a specified genetic sequence.
-#' @usage recombRate(minRange, maxRange, chromosome, genome = "hg19", vp = viewport(x = 0,
-#'y = 0.99, height = 0.04, just = c("left", "top")), view = "dense")
+#' @name plotGenes
+#' @aliases plotGenes
+#' @title Plot genes from a specified region of the human genome.
+#' @description Retrieves genes from the UCSC Genome Browser and generate the genes plot.
+#' @usage plotGenes(minRange, maxRange, chromosome, genome = "hg19", plot_lines_distance = 0.03,
+#'vp = viewport(x = 0, y = 0.99, just = c("left", "top")), splice_variants = TRUE,
+#'non_coding = TRUE)
 #' @param minRange The sequence minimum range in base pairs.
 #' @param maxRange The sequence maximum range in base pairs.
 #' @param chromosome A character string identifying the chromosome.
 #' @param genome The genome assembly to use. The default is hg19, the most recent human genome assembly on
 #'the UCSC genome browser.
+#' @param plot_lines_distance The distance between the lines of genes plotted.
 #' @param vp A \code{viewport}.
-#' @param view Display mode. Possible values are \code{"dense"} (the default), \code{"squish"},
-#'\code{"pack"} and \code{"full"}.
-#' @return A \code{grob} representing recombination rates.
-#' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=recombRate}
+#' @param splice_variants If \code{FALSE}, exclude gene splice variants.
+#' @param non_coding If \code{FALSE}, exclude non-coding genes.
+#' @details The genes are color coded as follows:
+#'Black -- feature has a corresponding entry in the Protein Data Bank (PDB)
+#'Dark blue -- transcript has been reviewed or validated by either the RefSeq, SwissProt or CCDS staff
+#'Medium blue -- other RefSeq transcripts
+#'Light blue -- non-RefSeq transcripts
+#'
+#'For assemblies older than hg18, all genes are plotted in grey.
+#' @return A \code{grob} of gene plots.
+#' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=knownGene}
 #' @author Sigal Blay <sblay@sfu.ca> and more
 #' @examples \dontrun{
 #'grid.newpage()
-#'recombRate(129000000, 140000000, "chr7", "hg18")
-#'grid.newpage()
-#'pushViewport(viewport(width=0.8, x=0.2, just="left"))
-#'recombRate(129000000, 140000000, "chr7", "hg18", view="full")
-#'popViewport()
+#'plotGenes(149500000, 150000000, "chr7")
 #'}
 #' @keywords hplot
 #' @export
-#'
 
 
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
