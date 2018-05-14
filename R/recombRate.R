@@ -1,3 +1,31 @@
+#' @name recombRate
+#' @aliases recombRate
+#' @title Produce recombination rate plot.
+#' @description Plot average rates of recombination from the deCODE genetic map for a specified genetic sequence.
+#' @usage recombRate(minRange, maxRange, chromosome, genome = "hg19", vp = viewport(x = 0,
+#'y = 0.99, height = 0.04, just = c("left", "top")), view = "dense")
+#' @param minRange The sequence minimum range in base pairs.
+#' @param maxRange The sequence maximum range in base pairs.
+#' @param chromosome A character string identifying the chromosome.
+#' @param genome The genome assembly to use. The default is hg19, the most recent human genome assembly on
+#'the UCSC genome browser.
+#' @param vp A \code{viewport}.
+#' @param view Display mode. Possible values are \code{"dense"} (the default), \code{"squish"},
+#'\code{"pack"} and \code{"full"}.
+#' @return A \code{grob} representing recombination rates.
+#' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=recombRate}
+#' @author Sigal Blay <sblay@sfu.ca> and more
+#' @examples \dontrun{
+#'grid.newpage()
+#'recombRate(129000000, 140000000, "chr7", "hg18")
+#'grid.newpage()
+#'pushViewport(viewport(width=0.8, x=0.2, just="left"))
+#'recombRate(129000000, 140000000, "chr7", "hg18", view="full")
+#'popViewport()
+#'}
+#' @keywords hplot
+#' @export
+
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney
 
