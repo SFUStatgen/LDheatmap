@@ -26,6 +26,6 @@
 #' @source International HapMap Project \url{www.hapmap.org}
 #' @references The International HapMap Consortium. A haplotype map of
 #'the human genome. Nature 437, 1299-1320. 2005.
-#'@example data(CEUData)
+#'@examples data(CEUData)
 #'@keywords datasets
 NULL
