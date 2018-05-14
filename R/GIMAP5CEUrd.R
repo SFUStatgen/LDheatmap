@@ -15,7 +15,7 @@
 #'[,2] \tab Assignment \tab character \tab same as dbSNPalleles\cr
 #'[,3] \tab Chromosome   \tab character \tab chromosome (chr7 for all)\cr
 #'[,4] \tab Position    \tab numeric \tab physical position\cr
-#'[,5] \tab Strand   \tab character \tab strand (all "+")
+#'[,5] \tab Strand   \tab character \tab strand (all "+")\cr
 #'}
 #' @details SNP genotypes from HapMap release 27
 #'for SNPs in a 10KB region spanning
