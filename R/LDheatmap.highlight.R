@@ -47,6 +47,7 @@
 #'tt <- LDheatmap(CEUSNP, genetic.distances=CEUDist)
 #'LDheatmap.highlight(tt, 3, 8, col="blue", fill="green", lwd=3)
 #' @keywords aplot
+#' @export
 
 
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
