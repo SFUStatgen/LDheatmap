@@ -1,5 +1,5 @@
-#' @name LDHeatmap.addGenes
-#' @aliases LDHeatmap.addGenes
+#' @name LDheatmap.addGenes
+#' @aliases LDheatmap.addGenes
 #' @title Add gene plot to an LDheatmap object.
 #' @description Retrieve genes from the UCSC Genome Browser, generate the genes plot and add it to
 #'an LDheatmap object.
@@ -32,7 +32,6 @@
 #'llplusgenes <- LDheatmap.addGenes(ll, chr="chr7", genome="hg18")
 #'}
 #' @keywords hplot
-#' @export
 
 
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
