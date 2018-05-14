@@ -1,3 +1,40 @@
+#' @name LDHeatmap.addGenes
+#' @aliases LDHeatmap.addGenes
+#' @title Add gene plot to an LDheatmap object.
+#' @description Retrieve genes from the UCSC Genome Browser, generate the genes plot and add it to
+#'an LDheatmap object.
+#' @usage LDheatmap.addGenes(LDheatmap, chromosome, genome = NULL, genesLocation = 0.02,
+#'splice_variants = TRUE, non_coding = TRUE)
+#' @param LDHeatmap An object of class LDheatmap.
+#' @param chromosome A character string that identifies the chromosome.
+#' @param genome The genome assembly to use. The default is the most recent human genome assembly on the UCSC genome browser.
+#' @param genesLocation The gene plot distance from the LD heat map gene map.
+#' @param splice_variants If \code{FALSE}, exclude gene splice variants.
+#' @param non_coding If \code{FALSE}, exclude non-coding genes.
+#' @details Note: The \code{LDheatmap} object should have a non-NULL \code{genetic.distances}
+#'component. Otherwise the gene map will not be placed correctly.
+#'The genes are color coded as follows:
+#'  black -- feature has a corresponding entry in the Protein Data Bank (PDB);
+#'dark blue -- transcript has been reviewed or validated by either the RefSeq, SwissProt or CCDS staff;
+#'medium blue -- other RefSeq transcripts; and
+#'light blue -- non-RefSeq transcripts.
+#'
+#'For assemblies older than hg18, all genes are plotted in grey.
+#' @return An object of class LDheatmap given as an argument, with the \code{grob}
+#'\code{LDheatmapGrob} modified to inclue the \code{"transcripts"} child grob.
+#' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=knownGene}
+#' @author Sigal Blay <sblay@sfu.ca>
+#' @seealso \code{\link{LDheatmap}}, \code{\link{plotGenes}}
+#' @examples \dontrun{
+#'data(GIMAP5.CEU)
+#'ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
+#'# Add gene plot
+#'llplusgenes <- LDheatmap.addGenes(ll, chr="chr7", genome="hg18")
+#'}
+#' @keywords hplot
+#' @export
+
+
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney
 
