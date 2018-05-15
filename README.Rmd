@@ -24,3 +24,13 @@ region considered. Users may also display the heatmap
 "flipped" below a horizontal line indicating the map
 positions of the SNPs. In this orientation, 
 tracks may be added above the genetic map.
+
+## Installation
+
+```{r,eval=FALSE}
+# Install the latest release version from CRAN with
+install.packages("LDheatmap")
+
+# Install the latest development version from GitHub with
+devtools::install_github("mcneney/LDheatmap")
+```
