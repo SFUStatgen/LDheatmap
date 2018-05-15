@@ -14,11 +14,11 @@
 #'[,2] \tab Assignment \tab character \tab same as dbSNPalleles\cr
 #'[,3] \tab Chromosome   \tab character \tab chromosome (chr7 for all)\cr
 #'[,4] \tab Position    \tab numeric \tab physical position\cr
-#'[,5] \tab Strand   \tab character \tab strand (all "+")
+#'[,5] \tab Strand   \tab character \tab strand (all "+")\cr
 #'}
 #'subject.support is a one-column data frame with:
 #'\tabular{rlll}{
-#'  [,1] \tab pop   \tab character \tab HapMap population of each subject
+#'  [,1] \tab pop   \tab character \tab HapMap population of each subject \cr
 #'}
 #'
 #' @details SNP genotypes from HapMap release 27
@@ -36,7 +36,7 @@
 #'    MEX \tab Mexican ancestry in Los Angeles, California \cr
 #'    MKK \tab Maasai in Kinyawa, Kenya \cr
 #'    TSI \tab Toscani in Italia \cr
-#'    YRI \tab Yoruba in Ibadan, Nigeria
+#'    YRI \tab Yoruba in Ibadan, Nigeria \cr
 #'  }
 #'Only those SNPs with minor allele frequency greater
 #'than 5\% in all populations were retained.
