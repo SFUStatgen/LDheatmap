@@ -1,5 +1,5 @@
-#' @name GIMAP5CEU
-#' @aliases GIMAP5CEU
+#' @name GIMAP5.CEU
+#' @aliases GIMAP5.CEU
 #' @docType data
 #' @title Example data set for LDheatmap
 #' @description SNP genotypes on HapMap founders from the CEU population
