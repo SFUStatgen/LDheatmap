@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Example of data set for LDHeatmap — CHBJPTData • LDheatmap</title>
+<title>Add recombination rate plot to an LD heat map. — LDheatmap.addRecombRate • LDheatmap</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,10 +28,10 @@
 
 
 
-<meta property="og:title" content="Example of data set for LDHeatmap — CHBJPTData" />
+<meta property="og:title" content="Add recombination rate plot to an LD heat map. — LDheatmap.addRecombRate" />
 
-<meta property="og:description" content="CHBJPTSNP:  Genotypes on 13 SNPs for 45 Chinese and 45 Japanese people
-CHBJPTDist: Physical map positions of the 13 SNPs" />
+<meta property="og:description" content="Retrieve average rates of recombination from the deCODE genetic map from the UCSC 
+Genome Browser and add them to an LDheatmap object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -90,72 +90,86 @@ CHBJPTDist: Physical map positions of the 13 SNPs" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Example of data set for LDHeatmap</h1>
+    <h1>Add recombination rate plot to an LD heat map.</h1>
     
-    <div class="hidden name"><code>CHBJPTData.Rd</code></div>
+    <div class="hidden name"><code>LDheatmap.addRecombRate.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>CHBJPTSNP:  Genotypes on 13 SNPs for 45 Chinese and 45 Japanese people
-CHBJPTDist: Physical map positions of the 13 SNPs</p>
+    <p>Retrieve average rates of recombination from the deCODE genetic map from the UCSC 
+Genome Browser and add them to an LDheatmap object.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>data</span>(<span class='no'>CHBJPTData</span>)</pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>CHBJPTSNP: A dataframe of SNP genotypes.
- Each row represents an individual.
- Each column represents a SNP.</p>
-<p>CHBJPTDist: a vector of integers, representing SNP physical map
- locations on the chromosome.</p>
+    <pre class="usage"><span class='fu'>LDheatmap.addRecombRate</span>(<span class='no'>LDheatmap</span>, <span class='no'>chromosome</span>, <span class='kw'>genome</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>recombRateLocation</span> <span class='kw'>=</span> <span class='fl'>0.02</span>,
+<span class='kw'>view</span> <span class='kw'>=</span> <span class='st'>"dense"</span>)</pre>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>International HapMap Project <a href='www.hapmap.org'>www.hapmap.org</a></p>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>LDheatmap</th>
+      <td><p>An object of class LDheatmap.</p></td>
+    </tr>
+    <tr>
+      <th>chromosome</th>
+      <td><p>A character string that identifies the chromosome.</p></td>
+    </tr>
+    <tr>
+      <th>genome</th>
+      <td><p>The genome assembly to use. The default is the most recent human genome assembly on the UCSC Genome Browser.</p></td>
+    </tr>
+    <tr>
+      <th>recombRateLocation</th>
+      <td><p>The plot distance from the LD heat map gene map.</p></td>
+    </tr>
+    <tr>
+      <th>view</th>
+      <td><p>Display mode. Possible values are <code>"dense"</code> (the default), <code>"squish"</code>,
+<code>"pack"</code> and <code>"full"</code>.</p></td>
+    </tr>
+    </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The data frame <code>CHBJPTSNP</code> contains genotypes for 13 SNPs on chromosome 7,
- from 45 Chinese and 45 Japanese individuals.
- The Chinese individuals were unrelated residents of the community at Beijing Normal
- University with at least 3 Han Chinese grandparents.
- The Japanese individuals were unrelated residents of the Tokyo metropolitan
- area with all grandparents from Japan. The data are from release 21 of the
- International HapMap project (The International HapMap Consortium 2005).</p>
+    <p>An object of class LDheatmap given as an argument, with the <code>grob</code>
+<code>LDheatmapGrob</code> modified to inclue the <code>"recombRate"</code> child grob.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>The International HapMap Consortium. A haplotype map of
-the human genome. Nature 437, 1299-1320. 2005.</p>
+    <p><a href='http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=recombRate'>http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=recombRate</a></p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='LDheatmap.html'>LDheatmap</a></code>, <code><a href='recombRate.html'>recombRate</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='fu'>data</span>(<span class='no'>CHBJPTData</span>)
-<span class='co'>#Now do our panel plot with LDheatmaps in the panels</span>
-<span class='fu'>library</span>(<span class='no'>lattice</span>)
-<span class='no'>pop</span><span class='kw'>&lt;-</span><span class='fu'>factor</span>(<span class='fu'>c</span>(<span class='fu'>rep</span>(<span class='st'>"chinese"</span>, <span class='fl'>45</span>), <span class='fu'>rep</span>(<span class='st'>"japanese"</span>, <span class='fl'>45</span>)))
-<span class='fu'><a href='http://www.rdocumentation.org/packages/lattice/topics/xyplot'>xyplot</a></span>(<span class='fl'>1</span>:<span class='fu'>nrow</span>(<span class='no'>CHBJPTSNP</span>) ~ <span class='fl'>1</span>:<span class='fu'>nrow</span>(<span class='no'>CHBJPTSNP</span>) <span class='kw'>|</span> <span class='no'>pop</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"n"</span>,
-      <span class='kw'>scales</span><span class='kw'>=</span><span class='fu'>list</span>(<span class='kw'>draw</span><span class='kw'>=</span><span class='fl'>FALSE</span>), <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>""</span>,
-      <span class='kw'>panel</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>subscripts</span>,<span class='no'>...</span>) {
-        <span class='fu'><a href='LDheatmap.html'>LDheatmap</a></span>(<span class='no'>CHBJPTSNP</span>[<span class='no'>subscripts</span>,], <span class='no'>CHBJPTDist</span>, <span class='kw'>newpage</span><span class='kw'>=</span><span class='fl'>FALSE</span>)})</div><div class='img'><img src='CHBJPTData-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>data</span>(<span class='no'>GIMAP5.CEU</span>)
+<span class='no'>ll</span><span class='kw'>&lt;-</span><span class='fu'><a href='LDheatmap.html'>LDheatmap</a></span>(<span class='no'>GIMAP5.CEU</span>$<span class='no'>snp.data</span>,<span class='no'>GIMAP5.CEU</span>$<span class='no'>snp.support</span>$<span class='no'>Position</span>,<span class='kw'>flip</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='co'># Add recombination rate plot</span>
+<span class='no'>ll_recomb</span> <span class='kw'>&lt;-</span> <span class='fu'>LDheatmap.addRecombRate</span>(<span class='no'>ll</span>, <span class='kw'>chr</span><span class='kw'>=</span><span class='st'>"chr7"</span>, <span class='kw'>genome</span><span class='kw'>=</span><span class='st'>"hg18"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-
-      <li><a href="#details">Details</a></li>
+      <li><a href="#value">Value</a></li>
 
       <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    
+Sigal Blay &lt;sblay@sfu.ca&gt;
 
   </div>
 </div>

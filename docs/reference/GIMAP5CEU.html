@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Example of data set for LDHeatmap — CHBJPTData • LDheatmap</title>
+<title>Example data set for LDheatmap — GIMAP5.CEU • LDheatmap</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,10 +28,10 @@
 
 
 
-<meta property="og:title" content="Example of data set for LDHeatmap — CHBJPTData" />
+<meta property="og:title" content="Example data set for LDheatmap — GIMAP5.CEU" />
 
-<meta property="og:description" content="CHBJPTSNP:  Genotypes on 13 SNPs for 45 Chinese and 45 Japanese people
-CHBJPTDist: Physical map positions of the 13 SNPs" />
+<meta property="og:description" content="SNP genotypes on HapMap founders from the CEU population
+for SNPs spanning the GIMAP5 gene." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -90,57 +90,65 @@ CHBJPTDist: Physical map positions of the 13 SNPs" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Example of data set for LDHeatmap</h1>
+    <h1>Example data set for LDheatmap</h1>
     
-    <div class="hidden name"><code>CHBJPTData.Rd</code></div>
+    <div class="hidden name"><code>GIMAP5CEU.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>CHBJPTSNP:  Genotypes on 13 SNPs for 45 Chinese and 45 Japanese people
-CHBJPTDist: Physical map positions of the 13 SNPs</p>
+    <p>SNP genotypes on HapMap founders from the CEU population
+for SNPs spanning the GIMAP5 gene.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>data</span>(<span class='no'>CHBJPTData</span>)</pre>
+    <pre class="usage"><span class='fu'>data</span>(<span class='no'>GIMAP5.CEU</span>)</pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>CHBJPTSNP: A dataframe of SNP genotypes.
- Each row represents an individual.
- Each column represents a SNP.</p>
-<p>CHBJPTDist: a vector of integers, representing SNP physical map
- locations on the chromosome.</p>
+    <p>GIMAP5.CEU is a list with two elements: snp.data and snp.support.
+snp.data is a <code>snp.matrix</code>
+object containing the SNP genotypes. Rows correspond to 
+subjects and columns correspond to  SNPs.
+snp.support is a data frame with the following columns:</p><table class='table'>
+<tr><td>[,1]</td><td>dbSNPalleles</td><td>character</td><td>alleles at each SNP</td></tr>
+<tr><td>[,2]</td><td>Assignment</td><td>character</td><td>same as dbSNPalleles</td></tr>
+<tr><td>[,3]</td><td>Chromosome</td><td>character</td><td>chromosome (chr7 for all)</td></tr>
+<tr><td>[,4]</td><td>Position</td><td>numeric</td><td>physical position</td></tr>
+</table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>SNP genotypes from HapMap release 27 
+for SNPs in a 10KB region spanning
+the GIMAP5 gene. Data are on founders from the CEU population, 
+described as Utah residents with Northern and Western European ancestry 
+from the CEPH collection.
+Only those SNPs with minor allele frequency greater
+  than 5% in all populations were retained.
+The base positions are from NCBI build 36
+(UCSC genome hg18).</p>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>International HapMap Project <a href='www.hapmap.org'>www.hapmap.org</a></p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The data frame <code>CHBJPTSNP</code> contains genotypes for 13 SNPs on chromosome 7,
- from 45 Chinese and 45 Japanese individuals.
- The Chinese individuals were unrelated residents of the community at Beijing Normal
- University with at least 3 Han Chinese grandparents.
- The Japanese individuals were unrelated residents of the Tokyo metropolitan
- area with all grandparents from Japan. The data are from release 21 of the
- International HapMap project (The International HapMap Consortium 2005).</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>The International HapMap Consortium. A haplotype map of
 the human genome. Nature 437, 1299-1320. 2005.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='GIMAP5.html'>GIMAP5</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='fu'>data</span>(<span class='no'>CHBJPTData</span>)
-<span class='co'>#Now do our panel plot with LDheatmaps in the panels</span>
-<span class='fu'>library</span>(<span class='no'>lattice</span>)
-<span class='no'>pop</span><span class='kw'>&lt;-</span><span class='fu'>factor</span>(<span class='fu'>c</span>(<span class='fu'>rep</span>(<span class='st'>"chinese"</span>, <span class='fl'>45</span>), <span class='fu'>rep</span>(<span class='st'>"japanese"</span>, <span class='fl'>45</span>)))
-<span class='fu'><a href='http://www.rdocumentation.org/packages/lattice/topics/xyplot'>xyplot</a></span>(<span class='fl'>1</span>:<span class='fu'>nrow</span>(<span class='no'>CHBJPTSNP</span>) ~ <span class='fl'>1</span>:<span class='fu'>nrow</span>(<span class='no'>CHBJPTSNP</span>) <span class='kw'>|</span> <span class='no'>pop</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"n"</span>,
-      <span class='kw'>scales</span><span class='kw'>=</span><span class='fu'>list</span>(<span class='kw'>draw</span><span class='kw'>=</span><span class='fl'>FALSE</span>), <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>""</span>,
-      <span class='kw'>panel</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>subscripts</span>,<span class='no'>...</span>) {
-        <span class='fu'><a href='LDheatmap.html'>LDheatmap</a></span>(<span class='no'>CHBJPTSNP</span>[<span class='no'>subscripts</span>,], <span class='no'>CHBJPTDist</span>, <span class='kw'>newpage</span><span class='kw'>=</span><span class='fl'>FALSE</span>)})</div><div class='img'><img src='CHBJPTData-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>require</span>(<span class='no'>snpStats</span>) <span class='co'># for the SnpMatrix data structure</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: snpStats</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: survival</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: Matrix</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘Matrix’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:tidyr’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    expand</span></div><div class='input'><span class='fu'>data</span>(<span class='no'>GIMAP5.CEU</span>)
+<span class='fu'><a href='LDheatmap.html'>LDheatmap</a></span>(<span class='no'>GIMAP5.CEU</span>$<span class='no'>snp.data</span>,<span class='no'>GIMAP5.CEU</span>$<span class='no'>snp.support</span>$<span class='no'>Position</span>)</div><div class='img'><img src='GIMAP5CEU-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -148,11 +156,13 @@ the human genome. Nature 437, 1299-1320. 2005.</p>
       
       <li><a href="#format">Format</a></li>
 
-      <li><a href="#source">Source</a></li>
-
       <li><a href="#details">Details</a></li>
 
+      <li><a href="#source">Source</a></li>
+
       <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
