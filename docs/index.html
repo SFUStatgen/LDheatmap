@@ -21,7 +21,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -58,14 +58,19 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
-    Produces a graphical display, as a heat map, of measures
-        of pairwise linkage disequilibria between SNPs. Users may
-        optionally include the physical locations or genetic map
-        distances of each SNP on the plot.
+  <div class="col-md-9 contents">
+    
+
+    
+    
+<div id="ldheatmap" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ldheatmap" class="anchor"></a>LDheatmap</h2>
+<p><code><a href="reference/LDheatmap.html">LDheatmap()</a></code> is used to produce a graphical display, as a heat map, of pairwise linkage disequilibrium (LD) measurements for SNPs. The heat map is a false color image in the upper-left diagonal of a square plot. A line parallel to the diagonal of the image indicating the physical or genetic map positions of the SNPs may be added, along with text reporting the total length of the genomic region considered. Users may also display the heatmap “flipped” below a horizontal line indicating the map positions of the SNPs. In this orientation, tracks may be added above the genetic map.</p>
+</div>
   </div>
 
-  <div class="col-md-3" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -98,7 +103,8 @@
 </ul>
 </div>
 
-  </div>
+      </div>
+
 </div>
 
 

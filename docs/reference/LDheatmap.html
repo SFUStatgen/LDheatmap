@@ -361,7 +361,8 @@ of <code>par()</code>.</p>
 
         <span class='co'>#### Modify the plot by using 'grid.edit' function ####</span>
 <span class='co'>#Draw a heat map where the SNPs "rs2283092" and "rs6979287" are labelled.</span>
-<span class='fu'>require</span>(<span class='no'>grid</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: grid</span></div><div class='input'><span class='fu'>LDheatmap</span>(<span class='no'>MyHeatmap</span>, <span class='kw'>SNP.name</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"rs2283092"</span>, <span class='st'>"rs6979287"</span>))</div><div class='img'><img src='LDheatmap-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>require</span>(<span class='no'>grid</span>)
+<span class='fu'>LDheatmap</span>(<span class='no'>MyHeatmap</span>, <span class='kw'>SNP.name</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"rs2283092"</span>, <span class='st'>"rs6979287"</span>))</div><div class='img'><img src='LDheatmap-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#Find the names of the top-level graphical objects (grobs) on the current display</span>
 <span class='fu'><a href='http://www.rdocumentation.org/packages/grid/topics/getNames'>getNames</a></span>()</div><div class='output co'>#&gt; [1] "ldheatmap"</div><div class='input'><span class='co'>#[1] "ldheatmap"</span>
 
