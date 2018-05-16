@@ -18,7 +18,7 @@ snp.support is a data frame with the following columns:
 }
 subject.support is a one-column data frame with:
 \tabular{rlll}{
- [,1] \tab pop   \tab character \tab HapMap population of each subject\cr
+ [,1] \tab pop   \tab character \tab HapMap population of each subject \cr
 }}
 \source{
 International HapMap Project \url{www.hapmap.org}
