@@ -32,6 +32,7 @@
 #'llplusgenes <- LDheatmap.addGenes(ll, chr="chr7", genome="hg18")
 #'}
 #' @keywords hplot
+#' @export
 
 
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs

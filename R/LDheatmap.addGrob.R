@@ -16,6 +16,7 @@
 #'ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 #'llplusgrob<-LDheatmap.addGrob(ll, grid::rectGrob())
 #' @keywords hplot
+#' @export
 
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney

@@ -26,6 +26,7 @@
 #'# Add scatter plot
 #'assoc <- LDheatmap.addScatterplot(MyLDheatmap, Yvalues)
 #' @keywords hplot
+#' @export
 
 
 # LDheatmap - Plots measures of pairwise linkage disequilibria for SNPs
