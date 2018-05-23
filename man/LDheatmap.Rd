@@ -11,7 +11,7 @@ SNP.name=NULL, color=NULL, newpage=TRUE,
 name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE))
 }
 \arguments{
-\item{gdat}{SNP data: a data frame of genotype objects, a \code{snp.matrix} object, a square matrix of
+\item{gdat}{SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
 pairwise linkage disequilibrium measurements or an object of
 class \code{"LDheatmap"} (the returned object of this function).}
 
@@ -115,7 +115,7 @@ The input object \code{gdat} can be a data frame of \code{genotype} objects
                                                                               data structure from the \pkg{snpStats} package), or
 any square matrix with values between 0 and 1
 inclusive.
-LD computation is much faster for \code{snp.matrix} objects than for
+LD computation is much faster for \code{SnpMatrix} objects than for
 \code{genotype} objects.
 In the case of a matrix of LD values between 0 and 1,
 the values above the diagonal will be plotted.
@@ -156,7 +156,7 @@ display multiple heat maps on one plot without the use
 of \code{par()}.
 }
 \examples{
-# Pass LDheatmap a snp.matrix object
+# Pass LDheatmap a SnpMatrix object
 set.seed(1)
 #make an example matrix of genotypes, coded as 0, 1 2 copies of an index allele
 gdat<-matrix(rbinom(n=500,size=2,prob=.5),ncol=5)
