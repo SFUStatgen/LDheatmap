@@ -109,10 +109,6 @@ an LDheatmap object.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>LDheatmap</th>
-      <td><p>An object of class LDheatmap.</p></td>
-    </tr>
-    <tr>
       <th>chromosome</th>
       <td><p>A character string that identifies the chromosome.</p></td>
     </tr>
@@ -132,23 +128,27 @@ an LDheatmap object.</p>
       <th>non_coding</th>
       <td><p>If <code>FALSE</code>, exclude non-coding genes.</p></td>
     </tr>
+    <tr>
+      <th>LDHeatmap</th>
+      <td><p>An object of class LDheatmap.</p></td>
+    </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Note: The <code>LDheatmap</code> object should have a non-NULL <code>genetic.distances</code>
-component. Otherwise the gene map will not be placed correctly. 
-The genes are color coded as follows: 
-black -- feature has a corresponding entry in the Protein Data Bank (PDB);
-dark blue -- transcript has been reviewed or validated by either the RefSeq, SwissProt or CCDS staff;
-medium blue -- other RefSeq transcripts; and
-light blue -- non-RefSeq transcripts.</p>
-<p>For assemblies older than hg18, all genes are plotted in grey.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class LDheatmap given as an argument, with the <code>grob</code>
 <code>LDheatmapGrob</code> modified to inclue the <code>"transcripts"</code> child grob.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Note: The <code>LDheatmap</code> object should have a non-NULL <code>genetic.distances</code>
+component. Otherwise the gene map will not be placed correctly.
+The genes are color coded as follows:
+ black -- feature has a corresponding entry in the Protein Data Bank (PDB);
+dark blue -- transcript has been reviewed or validated by either the RefSeq, SwissProt or CCDS staff;
+medium blue -- other RefSeq transcripts; and
+light blue -- non-RefSeq transcripts.</p>
+<p>For assemblies older than hg18, all genes are plotted in grey.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -172,9 +172,9 @@ light blue -- non-RefSeq transcripts.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
 
@@ -185,7 +185,7 @@ light blue -- non-RefSeq transcripts.</p>
 
     <h2>Author</h2>
     
-Sigal Blay &lt;sblay@sfu.ca&gt; 
+Sigal Blay &lt;sblay@sfu.ca&gt;
 
   </div>
 </div>
