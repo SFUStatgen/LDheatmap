@@ -34,3 +34,9 @@ install.packages("LDheatmap")
 # Install the latest development version from GitHub with
 devtools::install_github("mcneney/LDheatmap")
 ```
+
+
+## Homepage
+
+https://mcneney.github.io/LDheatmap/index.html
+
