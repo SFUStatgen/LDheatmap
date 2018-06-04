@@ -73,8 +73,11 @@
 #'@param title A character string for the main title of the plot.
 #'Default is \dQuote{Pairwise LD}.
 #'
-#'@param add.map If \code{TRUE} (default) the color legend is drawn.
-#'
+#'@param add.map If \code{TRUE} (default) a diagonal line indicating
+#'the physical or genetic map positions of the SNPs will be added to 
+#'the plot, along with text indicating the total length of the 
+#'genetic region.
+#'@param add.key If \code{TRUE} (default) the color legend is drawn.
 #'@param geneMapLocation A numeric value specifying the position of the line
 #'parallel to the diagonal of the matrix; the larger the value, the
 #'farther it lies from the matrix diagonal. Ignored when \code{add.map=FALSE}.
