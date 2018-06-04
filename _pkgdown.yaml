@@ -1,0 +1,23 @@
+title: LDheatmap
+url: https://github.com/mcneney/LDheatmap
+template:
+  params:
+    bootswatch: flatly
+navbar:
+  left:
+    - icon: fa-home
+      href: index.html
+    - text: "Reference"
+      icon: fas fa-paperclip
+      href: reference/index.html
+  right:
+    - text: "Articles"
+      icon: fas fa-book
+      menu:
+      -  text: Journal
+         href: https://cran.r-project.org/web/packages/LDheatmap/vignettes/LDheatmap.pdf
+      -  text: Example of Adding Tracks   
+         href: https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf
+    - icon: fa-github fa-lg
+      text: "github"
+      href: https://github.com/mcneney/LDheatmap/
