@@ -1,0 +1,89 @@
+---
+title: "Drawing LDheatmap from data in VCF format"
+author: "Gloria Yang"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Drawing LDheatmap from data in VCF format}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+#Introduction
+VCF (Variant Call Format) is a text file format. It contains meta-information lines, a header line, and then data lines each containing information about a position in the genome. There is an example how to do draw LDheatmap from data in VCF format
+
+#Getting started
+`snp_in_vcf.vcf` is a vcf datafile contains common SNPs (SNPs with frequency 5% or more in the world-wide population) in the MLLT3 gene. We are going to draw the LDheatmap based on European desent and Asian descent. 
+```{r}
+#read in the vcf data file
+require(vcfR)
+snp <- read.vcfR("snp_in_vcf.vcf")
+
+```
+
+`1KG_sample_info.csv` is the data file which contain the information about the sample population and corresponding super population code 
+```{r}
+#super population for EUR & EAS
+#Get the corresponding population code for EUR & EAS
+sample_info <- read.csv("1KG_sample_info.csv")
+eur <- sample_info[sample_info$Population %in% c("CEU","TSI","FIN","GBR","IBS"),-c(2,4)]
+eas <- sample_info[sample_info$Population %in% c("CHB","JPT","CHS","CDX","KHV"),-c(2,4)]
+
+#all column value from EUR/EAS and first FORMAT column
+eur_gt <- snp@gt[,colnames(snp@gt) %in% eur[,1]]
+eas_gt <- snp@gt[,colnames(snp@gt) %in% eas[,1]]
+
+eur_snpMat <- t(eur_gt)
+eas_snpMat <- t(eas_gt)
+
+```
+
+Convert the matrix of genotypes to a numeric matrix in which genotypes are  coded as 0, 1 or 2 copies of the minor allele. 
+```{r}
+#define a function to convert the value into 0,1,2
+convertToNumeric <- function(x){
+gdat <- matrix(NA,nrow = nrow(x), ncol = ncol(x))
+for (m in 1:nrow(x)){
+    for (n in 1:ncol(x)){
+      a <-as.numeric(unlist(strsplit(x[m,n], "|"))[1]) 
+      
+      b <- as.numeric(unlist(strsplit(x[m,n], "|"))[3])
+      gdat[m,n] <- a+b
+    }
+}
+rownames(gdat) <- rownames(x)
+colnames(gdat) <- colnames(x)
+      return(gdat)
+}
+
+
+#convert to snpMatrix - EUR
+gdat_eur <- convertToNumeric(eur_snpMat)
+
+#load the snp_id_dist.csv, which contains the SNPs id and distance
+info <- read.csv("snp_id_dist.csv")
+snpNames <- info$id
+colnames(gdat_eur) <- snpNames
+
+require(snpStats)
+library(LDheatmap)
+gdat_eur<-as(gdat_eur,"SnpMatrix")
+LDheatmap(gdat_eur,info$filt_snpDist,title='Europeans',add.map=FALSE)
+
+#convert to snpMatrix - EAS
+gdat_eas <- convertToNumeric(eas_snpMat)
+colnames(gdat_eas) <- snpNames
+gdat_eas<-as(gdat_eas,"SnpMatrix")
+LDheatmap(gdat_eas,info$filt_snpDist,title='Asians',add.map=FALSE)
+
+```
+
+
+
