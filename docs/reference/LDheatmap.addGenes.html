@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -67,17 +67,44 @@ an LDheatmap object." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa fas fa-paperclip"></span>
+     
+    Reference
+  </a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/LDheatmap.pdf">Journal</a>
+    </li>
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf">Example of Adding Tracks</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/mcneney/LDheatmap/">
+    <span class="fa fa-github fa-lg"></span>
+     
+    github
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -109,10 +136,6 @@ an LDheatmap object.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>LDheatmap</th>
-      <td><p>An object of class LDheatmap.</p></td>
-    </tr>
-    <tr>
       <th>chromosome</th>
       <td><p>A character string that identifies the chromosome.</p></td>
     </tr>
@@ -132,23 +155,27 @@ an LDheatmap object.</p>
       <th>non_coding</th>
       <td><p>If <code>FALSE</code>, exclude non-coding genes.</p></td>
     </tr>
+    <tr>
+      <th>LDHeatmap</th>
+      <td><p>An object of class LDheatmap.</p></td>
+    </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Note: The <code>LDheatmap</code> object should have a non-NULL <code>genetic.distances</code>
-component. Otherwise the gene map will not be placed correctly. 
-The genes are color coded as follows: 
-black -- feature has a corresponding entry in the Protein Data Bank (PDB);
-dark blue -- transcript has been reviewed or validated by either the RefSeq, SwissProt or CCDS staff;
-medium blue -- other RefSeq transcripts; and
-light blue -- non-RefSeq transcripts.</p>
-<p>For assemblies older than hg18, all genes are plotted in grey.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class LDheatmap given as an argument, with the <code>grob</code>
 <code>LDheatmapGrob</code> modified to inclue the <code>"transcripts"</code> child grob.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Note: The <code>LDheatmap</code> object should have a non-NULL <code>genetic.distances</code>
+component. Otherwise the gene map will not be placed correctly.
+The genes are color coded as follows:
+ black -- feature has a corresponding entry in the Protein Data Bank (PDB);
+dark blue -- transcript has been reviewed or validated by either the RefSeq, SwissProt or CCDS staff;
+medium blue -- other RefSeq transcripts; and
+light blue -- non-RefSeq transcripts.</p>
+<p>For assemblies older than hg18, all genes are plotted in grey.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -172,9 +199,9 @@ light blue -- non-RefSeq transcripts.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
 
@@ -185,7 +212,7 @@ light blue -- non-RefSeq transcripts.</p>
 
     <h2>Author</h2>
     
-Sigal Blay &lt;sblay@sfu.ca&gt; 
+Sigal Blay &lt;sblay@sfu.ca&gt;
 
   </div>
 </div>

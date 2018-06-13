@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -67,17 +67,44 @@ CEUDist: Physical map positions of the 15 SNPs in CEUSNP" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa fas fa-paperclip"></span>
+     
+    Reference
+  </a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/LDheatmap.pdf">Journal</a>
+    </li>
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf">Example of Adding Tracks</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/mcneney/LDheatmap/">
+    <span class="fa fa-github fa-lg"></span>
+     
+    github
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -102,30 +129,29 @@ CEUDist: Physical map positions of the 15 SNPs in CEUSNP" />
     
     </div>
 
-    <pre class="usage"><span class='fu'>data</span>(<span class='no'>CEUData</span>)</pre>
+    <pre class="usage"><span class='fu'>data</span>(<span class='no'>CEUdata</span>)</pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>CEUSNP: A dataframe of SNP genotypes.
-  Each row represents an individual.
-  Each column represents a SNP.</p>
-<p>CEUDist: A vector of integers, representing SNP physical map
-  locations on the chromosome.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Data on SNPs with minor allele frequency greater
-  than 5% from a 9kb region of chromosome 7 (base positions 126273659
-  through 126282556 from release 7 of the International HapMap Project).
-  Genotypes from 30 parent-offspring trios (both
-  parents, one offspring) were obtained.
-  The 30 trios are taken from the so-called CEPH families, a set of
-  multi-generational families from Utah with ancestry from northern and
-  western Europe. From this set of 90 people, 60 parents were extracted.</p>
+Each row represents an individual.
+Each column represents a SNP.</p>
+<p>CEUDist: A vector of integers, representing SNP physical map locations on the chromosome.</p>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>International HapMap Project <a href='www.hapmap.org'>www.hapmap.org</a></p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Data on SNPs with minor allele frequency greater
+than 5% from a 9kb region of chromosome 7 (base positions 126273659
+                                           through 126282556 from release 7 of the International HapMap Project).
+Genotypes from 30 parent-offspring trios (both
+                                         parents, one offspring) were obtained.
+The 30 trios are taken from the so-called CEPH families, a set of
+multi-generational families from Utah with ancestry from northern and
+western Europe. From this set of 90 people, 60 parents were extracted.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -134,7 +160,7 @@ the human genome. Nature 437, 1299-1320. 2005.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='fu'>data</span>(<span class='no'>CEUData</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>CEUData</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -142,9 +168,9 @@ the human genome. Nature 437, 1299-1320. 2005.</p>
       
       <li><a href="#format">Format</a></li>
 
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#source">Source</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
       

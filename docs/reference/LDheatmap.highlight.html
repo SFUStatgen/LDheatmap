@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -31,8 +31,8 @@
 <meta property="og:title" content="Highlight a genetic region in the linkage disequilibrium heat map — LDheatmap.highlight" />
 
 <meta property="og:description" content="The function LDheatmap.highlight() is used to highlight a
-   specified genetic region in the linkage disequilibrium (LD)
-   heat map drawn with the LDheatmap() function." />
+specified genetic region in the linkage disequilibrium (LD)
+heat map drawn with the LDheatmap() function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -68,17 +68,44 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa fas fa-paperclip"></span>
+     
+    Reference
+  </a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/LDheatmap.pdf">Journal</a>
+    </li>
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf">Example of Adding Tracks</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/mcneney/LDheatmap/">
+    <span class="fa fa-github fa-lg"></span>
+     
+    github
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -99,8 +126,8 @@
     <div class="ref-description">
     
     <p>The function <code>LDheatmap.highlight()</code> is used to highlight a
-   specified genetic region in the linkage disequilibrium (LD)
-   heat map drawn with the <code><a href='LDheatmap.html'>LDheatmap</a>()</code> function.</p>
+specified genetic region in the linkage disequilibrium (LD)
+heat map drawn with the <code><a href='LDheatmap.html'>LDheatmap</a>()</code> function.</p>
     
     </div>
 
@@ -117,12 +144,12 @@ by the function <code><a href='LDheatmap.html'>LDheatmap()</a></code>.</p></td>
     <tr>
       <th>i</th>
       <td><p>A numeric value specifying the index of the first
-            SNP to be in the highlighted region.</p></td>
+SNP to be in the highlighted region.</p></td>
     </tr>
     <tr>
       <th>j</th>
       <td><p>A numeric value specifying the index of the last SNP,
-    which must be different from <code>i</code>, to be in the highlighted region.</p></td>
+which must be different from <code>i</code>, to be in the highlighted region.</p></td>
     </tr>
     <tr>
       <th>fill</th>
@@ -131,19 +158,19 @@ by the function <code><a href='LDheatmap.html'>LDheatmap()</a></code>.</p></td>
     <tr>
       <th>col</th>
       <td><p>A character string specifying the color of the line
-    segments defining the boundary of highlighted region; see
-    <code><a href='http://www.rdocumentation.org/packages/graphics/topics/par'>par</a>()</code> for possible values.</p></td>
+segments defining the boundary of highlighted region; see
+<code><a href='http://www.rdocumentation.org/packages/graphics/topics/par'>par</a>()</code> for possible values.</p></td>
     </tr>
     <tr>
       <th>lwd</th>
       <td><p>A <em>positive</em> number specifying the width of the
-     boundary segments.</p></td>
+boundary segments.</p></td>
     </tr>
     <tr>
       <th>lty</th>
       <td><p>Either an integer or a character string specifying the
-     line type of the boundary segments; see <code><a href='http://www.rdocumentation.org/packages/graphics/topics/par'>par</a>()</code>
-     for possible values.</p></td>
+line type of the boundary segments; see <code><a href='http://www.rdocumentation.org/packages/graphics/topics/par'>par</a>()</code>
+for possible values.</p></td>
     </tr>
     </table>
     
@@ -155,20 +182,20 @@ border of the highlighted area.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The function <code>LDheatmap.highlight()</code> highlights the cells representing
-	the pairwise LD for the SNPs located between <code>i</code>-th and <code>j</code>-th (inclusive)
-	SNPs in the genomic region of interest.
-	The order of indices has no effect on the plot.  For example,
-	<code>LDheatmap.highlight(LDheatmap, i=2, j=4)</code> is the same as
-	<code>LDheatmap.highlight(LDheatmap, i=4, j=2)</code>, which highlights
-	the cells representing the pairwise LD for the second,
-	third and fourth SNPs.</p>
+the pairwise LD for the SNPs located between <code>i</code>-th and <code>j</code>-th (inclusive)
+SNPs in the genomic region of interest.
+The order of indices has no effect on the plot.  For example,
+<code>LDheatmap.highlight(LDheatmap, i=2, j=4)</code> is the same as
+<code>LDheatmap.highlight(LDheatmap, i=4, j=2)</code>, which highlights
+the cells representing the pairwise LD for the second,
+third and fourth SNPs.</p>
     
     <h2 class="hasAnchor" id="warning"><a class="anchor" href="#warning"></a>Warning</h2>
 
     <p>By default, <code>LDheatmap.highlight()</code> finds the viewport to draw on from
 the <code>LDheatmap</code> object passed to it as an argument.
 However, if <code><a href='LDheatmap.html'>LDheatmap()</a></code> was called with the option <code>pop=TRUE</code>,
-the resulting <code>LDheatmap</code> object is not assigned a 
+the resulting <code>LDheatmap</code> object is not assigned a
 viewport. In this case, <code>LDheatmap.highlight()</code> assumes
 the user wishes to highlight in the current viewport.
 Therefore, if <code><a href='LDheatmap.html'>LDheatmap()</a></code>
@@ -196,9 +223,11 @@ before calling <code>LDheatmap.highlight()</code>.</p>
     </ul>
 
     <h2>Author</h2>
-     Nicholas Lewin-Koh
+    
+Nicholas Lewin-Koh
 &lt;nikko@hailmail.net&gt;,
-Ji-Hyung Shin &lt;shin@sfu.ca&gt;, Sigal Blay &lt;sblay@sfu.ca&gt; 
+Ji-Hyung Shin &lt;shin@sfu.ca&gt;, Sigal Blay &lt;sblay@sfu.ca&gt;
+
   </div>
 </div>
 

@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,7 +30,7 @@
 
 <meta property="og:title" content="Add a scatter plot to an LDheatmap object — LDheatmap.addScatterplot" />
 
-<meta property="og:description" content="Add a scatter plot to an LDheatmap object. 
+<meta property="og:description" content="Add a scatter plot to an LDheatmap object.
 The x axis is the map of genetic distances of the SNPs." />
 <meta name="twitter:card" content="summary" />
 
@@ -67,17 +67,44 @@ The x axis is the map of genetic distances of the SNPs." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa fas fa-paperclip"></span>
+     
+    Reference
+  </a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/LDheatmap.pdf">Journal</a>
+    </li>
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf">Example of Adding Tracks</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/mcneney/LDheatmap/">
+    <span class="fa fa-github fa-lg"></span>
+     
+    github
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -97,7 +124,7 @@ The x axis is the map of genetic distances of the SNPs." />
 
     <div class="ref-description">
     
-    <p>Add a scatter plot to an LDheatmap object. 
+    <p>Add a scatter plot to an LDheatmap object.
 The x axis is the map of genetic distances of the SNPs.</p>
     
     </div>
@@ -134,15 +161,15 @@ The x axis is the map of genetic distances of the SNPs.</p>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An object of class LDheatmap given as an argument, with the <code>grob</code>
+<code>LDheatmapGrob</code> modified to inclue the <code>"association"</code> child grob.</p>
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The function creates an <code>"association"</code> <code>grob</code> and adds it to the <code>LDheatmap</code> object.
 Then it pushes a <code>viewport</code> and draws the <code>LDheatmapGrob</code> onto it.</p>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>An object of class LDheatmap given as an argument, with the <code>grob</code> 
-<code>LDheatmapGrob</code> modified to inclue the <code>"association"</code> child grob.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -163,9 +190,9 @@ Then it pushes a <code>viewport</code> and draws the <code>LDheatmapGrob</code> 
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

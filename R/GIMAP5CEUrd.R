@@ -6,7 +6,7 @@
 #'for SNPs spanning the GIMAP5 gene.
 #' @usage data(GIMAP5.CEU)
 #' @format GIMAP5.CEU is a list with two elements: snp.data and snp.support.
-#'snp.data is a \code{snp.matrix}
+#'snp.data is a \code{SnpMatrix}
 #'object containing the SNP genotypes. Rows correspond to
 #'subjects and columns correspond to  SNPs.
 #'snp.support is a data frame with the following columns:

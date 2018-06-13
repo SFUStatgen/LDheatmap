@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -31,8 +31,8 @@
 <meta property="og:title" content="Plots a symbol in the centers of cells of the heat map image — LDheatmap.marks" />
 
 <meta property="og:description" content="The function LDheatmap.marks() is used to plot
-  a symbol in the centers of cells representing the
-  pairwise linkage disequilibria of specified pairs of SNPs." />
+a symbol in the centers of cells representing the
+pairwise linkage disequilibria of specified pairs of SNPs." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -68,17 +68,44 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa fas fa-paperclip"></span>
+     
+    Reference
+  </a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/LDheatmap.pdf">Journal</a>
+    </li>
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf">Example of Adding Tracks</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/mcneney/LDheatmap/">
+    <span class="fa fa-github fa-lg"></span>
+     
+    github
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -99,8 +126,8 @@
     <div class="ref-description">
     
     <p>The function <code>LDheatmap.marks()</code> is used to plot
-  a symbol in the centers of cells representing the
-  pairwise linkage disequilibria of specified pairs of SNPs.</p>
+a symbol in the centers of cells representing the
+pairwise linkage disequilibria of specified pairs of SNPs.</p>
     
     </div>
 
@@ -112,7 +139,7 @@
     <tr>
       <th>LDheatmap</th>
       <td><p>An object of class <code>"LDheatmap"</code>
-     returned by the function <code><a href='LDheatmap.html'>LDheatmap</a>()</code>.</p></td>
+returned by the function <code><a href='LDheatmap.html'>LDheatmap</a>()</code>.</p></td>
     </tr>
     <tr>
       <th>i</th>
@@ -125,8 +152,8 @@
     <tr>
       <th>pch</th>
       <td><p>Either an integer value or a single character specifying
-     the symbol to be plotted. See <code><a href='http://www.rdocumentation.org/packages/graphics/topics/points'>points</a>()</code>
-     for possible values and their corresponding symbols.</p></td>
+the symbol to be plotted. See <code><a href='http://www.rdocumentation.org/packages/graphics/topics/points'>points</a>()</code>
+for possible values and their corresponding symbols.</p></td>
     </tr>
     <tr>
       <th>gp</th>
@@ -135,42 +162,43 @@
     <tr>
       <th>...</th>
       <td><p>Graphical parameter settings to be passed on to the <code><a href='http://www.rdocumentation.org/packages/grid/topics/gpar'>gpar</a>()</code>
-	function.</p></td>
+function.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p></p>
+    
+
 <dt> x </dt><dd><p>The vector of x coordinate(s) of the plotted symbol(s).</p></dd>
-  <dt> y </dt><dd><p>The vector of y coordinate(s) of the plotted symbol(s).</p></dd>
+<dt> y </dt><dd><p>The vector of y coordinate(s) of the plotted symbol(s).</p></dd>
 
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The lengths of the vectors <code>i</code> and <code>j</code> must be the same and
-   greater than or equal to 1.
-   If the lengths are greater than 1, the function plots the specified
-   symbol in the centers of the (i\(\mbox{\textasciicircum}\)k,
-   j\(\mbox{\textasciicircum}\)k)-th cells (for k=1,...K; K =
-   length of the vectors <code>i</code> and <code>j</code>), where
-   i\(\mbox{\textasciicircum}\)k and
-   j\(\mbox{\textasciicircum}\)k are
-   the k-th elements of vectors <code>i</code> and <code>j</code>, respectively.
-   For example, if <code>i=c(1,2)</code> and <code>j=c(3,5)</code>, <code><a href='LDheatmap.html'>LDheatmap()</a></code>
-   plots a symbol in the centers of the cells representing pairwise
-   linkage disequilibria between the first and third SNPs and between the
-   second and fifth SNPs in the genome of interest.  Note that the order
-   of the sets of indices does not matter; for example,
-   <code>LDheatmap.marks(LDheatmap, i=c(1,2), j=c(3,5))</code> is equivalent
-   to <code>LDheatmap.marks(LDheatmap, i=c(3,5), j=c(1,2))</code>.</p>
+greater than or equal to 1.
+If the lengths are greater than 1, the function plots the specified
+symbol in the centers of the (i\(\mbox{\textasciicircum}\)k,
+                             j\(\mbox{\textasciicircum}\)k)-th cells (for k=1,...K; K =
+                                                                             length of the vectors <code>i</code> and <code>j</code>), where
+i\(\mbox{\textasciicircum}\)k and
+j\(\mbox{\textasciicircum}\)k are
+the k-th elements of vectors <code>i</code> and <code>j</code>, respectively.
+For example, if <code>i=c(1,2)</code> and <code>j=c(3,5)</code>, <code><a href='LDheatmap.html'>LDheatmap()</a></code>
+plots a symbol in the centers of the cells representing pairwise
+linkage disequilibria between the first and third SNPs and between the
+second and fifth SNPs in the genome of interest.  Note that the order
+of the sets of indices does not matter; for example,
+<code>LDheatmap.marks(LDheatmap, i=c(1,2), j=c(3,5))</code> is equivalent
+to <code>LDheatmap.marks(LDheatmap, i=c(3,5), j=c(1,2))</code>.</p>
     
     <h2 class="hasAnchor" id="warning"><a class="anchor" href="#warning"></a>Warning</h2>
 
     <p>By default, <code>LDheatmap.marks()</code> finds the viewport to draw on from
 the <code>LDheatmap</code> object passed to it as an argument.
 However, if <code><a href='LDheatmap.html'>LDheatmap()</a></code> was called with the option <code>pop=TRUE</code>,
-the resulting <code>LDheatmap</code> object is not assigned a 
+the resulting <code>LDheatmap</code> object is not assigned a
 viewport. In this case, <code>LDheatmap.marks()</code> assumes
 the user wishes to highlight in the current viewport.
 Therefore, if <code><a href='LDheatmap.html'>LDheatmap()</a></code>
@@ -200,7 +228,8 @@ before calling <code>LDheatmap.marks()</code>.</p>
     <h2>Author</h2>
     
 Nicholas Lewin-Koh &lt;nikko@hailmail.net&gt;, Ji-Hyung Shin &lt;shin@sfu.ca&gt;,
-Sigal Blay &lt;sblay@sfu.ca&gt; 
+Sigal Blay &lt;sblay@sfu.ca&gt;
+
   </div>
 </div>
 

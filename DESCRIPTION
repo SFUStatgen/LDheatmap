@@ -19,3 +19,4 @@ License: GPL-3
 URL: http://stat.sfu.ca/statgen/research/ldheatmap.html
 Repository: CRAN
 Date/Publication: 2010-01-11 19:57:39
+RoxygenNote: 6.0.1

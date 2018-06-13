@@ -6,13 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Example data set for LDheatmap — GIMAP5 • LDheatmap</title>
+<title>Example data set for LDHeatmap — GIMAP5 • LDheatmap</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -28,7 +28,7 @@
 
 
 
-<meta property="og:title" content="Example data set for LDheatmap — GIMAP5" />
+<meta property="og:title" content="Example data set for LDHeatmap — GIMAP5" />
 
 <meta property="og:description" content="SNP genotypes on HapMap founders for SNPs spanning the GIMAP5 gene." />
 <meta name="twitter:card" content="summary" />
@@ -66,17 +66,44 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa fas fa-paperclip"></span>
+     
+    Reference
+  </a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/LDheatmap.pdf">Journal</a>
+    </li>
+    <li>
+      <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf">Example of Adding Tracks</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/mcneney/LDheatmap/">
+    <span class="fa fa-github fa-lg"></span>
+     
+    github
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -89,7 +116,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Example data set for LDheatmap</h1>
+    <h1>Example data set for LDHeatmap</h1>
     
     <div class="hidden name"><code>GIMAP5.Rd</code></div>
     </div>
@@ -105,8 +132,8 @@
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>GIMAP5 is a list with three elements: snp.data, snp.support and
-subject.support. snp.data is a <code>snp.matrix</code>
-object containing the SNP genotypes. Rows correspond to 
+subject.support. snp.data is a <code>SnpMatrix</code>
+object containing the SNP genotypes. Rows correspond to
 subjects and columns correspond to  SNPs.
 snp.support is a data frame with the following columns:</p><table class='table'>
 <tr><td>[,1]</td><td>dbSNPalleles</td><td>character</td><td>alleles at each SNP</td></tr>
@@ -119,9 +146,13 @@ snp.support is a data frame with the following columns:</p><table class='table'>
 <tr><td>[,1]</td><td>pop</td><td>character</td><td>HapMap population of each subject</td></tr>
 </table>
     
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>International HapMap Project <a href='www.hapmap.org'>www.hapmap.org</a></p>
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>SNP genotypes from HapMap release 27 
+    <p>SNP genotypes from HapMap release 27
 for SNPs in a 10KB region spanning
 the GIMAP5 gene. Data are on founders from each of the 11 HapMap
 phase III populations:</p><table class='table'>
@@ -138,13 +169,9 @@ phase III populations:</p><table class='table'>
 <tr><td>YRI</td><td>Yoruba in Ibadan, Nigeria</td></tr>
 </table>
 <p>Only those SNPs with minor allele frequency greater
-  than 5% in all populations were retained.
+than 5% in all populations were retained.
 The base positions are from NCBI build 36
 (UCSC genome hg18).</p>
-    
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>International HapMap Project <a href='www.hapmap.org'>www.hapmap.org</a></p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -153,7 +180,7 @@ the human genome. Nature 437, 1299-1320. 2005.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='GIMAP5CEU.html'>GIMAP5.CEU</a></code></p></div>
+    <div class='dont-index'><p><code><a href='GIMAP5.CEU.html'>GIMAP5.CEU</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -163,9 +190,9 @@ the human genome. Nature 437, 1299-1320. 2005.</p>
 <span class='no'>pop</span><span class='kw'>&lt;-</span><span class='no'>GIMAP5</span>$<span class='no'>subject.support</span>$<span class='no'>pop</span>
 <span class='no'>n</span><span class='kw'>&lt;-</span><span class='fu'>nrow</span>(<span class='no'>GIMAP5</span>$<span class='no'>snp.data</span>)
 <span class='fu'><a href='http://www.rdocumentation.org/packages/lattice/topics/xyplot'>xyplot</a></span>(<span class='fl'>1</span>:<span class='no'>n</span> ~ <span class='fl'>1</span>:<span class='no'>n</span> <span class='kw'>|</span> <span class='no'>pop</span>, <span class='kw'>type</span><span class='kw'>=</span><span class='st'>"n"</span>, <span class='kw'>scales</span><span class='kw'>=</span><span class='fu'>list</span>(<span class='kw'>draw</span><span class='kw'>=</span><span class='fl'>FALSE</span>), <span class='kw'>xlab</span><span class='kw'>=</span><span class='st'>""</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>""</span>,
-<span class='kw'>panel</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>subscripts</span>,<span class='no'>...</span>) {
-<span class='fu'><a href='LDheatmap.html'>LDheatmap</a></span>(<span class='no'>GIMAP5</span>$<span class='no'>snp.data</span>[<span class='no'>subscripts</span>,],<span class='no'>GIMAP5</span>$<span class='no'>snp.support</span>$<span class='no'>Position</span>,
-<span class='kw'>newpage</span><span class='kw'>=</span><span class='fl'>FALSE</span>)})</div><div class='img'><img src='GIMAP5-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>rm</span>(<span class='no'>pop</span>,<span class='no'>n</span>)</div></pre>
+      <span class='kw'>panel</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>subscripts</span>,<span class='no'>...</span>) {
+        <span class='fu'><a href='LDheatmap.html'>LDheatmap</a></span>(<span class='no'>GIMAP5</span>$<span class='no'>snp.data</span>[<span class='no'>subscripts</span>,],<span class='no'>GIMAP5</span>$<span class='no'>snp.support</span>$<span class='no'>Position</span>,
+                  <span class='kw'>newpage</span><span class='kw'>=</span><span class='fl'>FALSE</span>)})</div><div class='img'><img src='GIMAP5-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>rm</span>(<span class='no'>pop</span>,<span class='no'>n</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -173,9 +200,9 @@ the human genome. Nature 437, 1299-1320. 2005.</p>
       
       <li><a href="#format">Format</a></li>
 
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#source">Source</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
 
