@@ -337,8 +337,8 @@
 #'@keywords hplot
 #' @export
 
-"LDheatmap"<-
-   function (gdat, genetic.distances=NULL, 
+#"LDheatmap"<-
+testFN <-   function (gdat, genetic.distances=NULL, 
              distances="physical", LDmeasure="r", title="Pairwise LD",
              add.map=TRUE, add.key=TRUE, geneMapLocation=0.15, 
              geneMapLabelX=NULL, geneMapLabelY=NULL, 
@@ -455,17 +455,39 @@
   mybreak <- 0:length(color)/length(color)
 
   imgLDmatrix <- LDmatrix
+  
+  ## Minor modification ##
+  print("The following is imgLDmatrix")
+  print(imgLDmatrix)
+  globalImgLDmatrix <<- 1 - imgLDmatrix
+  ## Minor modification ##
+  
   # if (flip) imgLDmatrix <-t(imgLDmatrix[,dim(LDmatrix)[2]:1])[,dim(LDmatrix)[2]:1]
   byrow<-ifelse(flip,FALSE,TRUE) #FALSE if flip=TRUE
 
   colcut <- as.character(cut(1-imgLDmatrix,mybreak,labels=as.character(color), include.lowest=TRUE))
+  
+  ## Minor modification ##
+  print("This is colcut")
+  print(colcut)
+  globalColcut <<- colcut
+  ## Minor modification ##
+  
   if(is.numeric(color)) colcut <- as.integer(colcut)
   ImageRect<-makeImageRect(dim(LDmatrix)[1],dim(LDmatrix)[2],colcut, name="heatmap",byrow)
+  
+  ## Minor modification ##
+  globalRect <<- ImageRect
+  ## Minor modification ##
+  
   ImageText <- NULL
   if (text) ImageText<-makeImageText(dim(LDmatrix)[1],dim(LDmatrix)[2], round(imgLDmatrix, digits = 2), name="heatmaptext")
   title <- textGrob(title, 0.5, 1.05, gp=gpar(cex=1.0), name="title")
   if (flip) {
      ImageRect <- editGrob(ImageRect, vp=flipVP)
+     ## Minor modification ##
+     globalRotatedRect <<- ImageRect
+     ## Minor modification ##
      if (text)
         ImageText <- editGrob(ImageText, vp=flipVP, rot=45, just="left")
   }
@@ -483,6 +505,11 @@
                      geneMapLabelY=geneMapLabelY,
                      distances=distances, vp=geneMapVP, 
                      SNP.name=SNP.name, ind=ind, flip=flip)
+  
+  # Minor Modification #
+  globalGenemap <<- geneMap
+  # Minor Modification # 
+  
   #____________________________________________________________________________#
   ## Draw the Color Key
   if(add.key) Key <- LDheatmapLegend.add(color, LDmeasure, heatmapVP)

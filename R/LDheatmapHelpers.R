@@ -70,14 +70,14 @@ LDheatmapMap.add <- function(nsnps, add.map, genetic.distances,
     max.dist <- max(genetic.distances)
     total.dist <- max.dist - min.dist
     
-    if(flip) geneMapLocation<- (-geneMapLocation)
+    if(flip) geneMapLocation<- (-geneMapLocation) # geneMapLocation gets flipped, reflects the gene bar
     
     # Drawing the diagonal line 
     seq.x <- c(0.5*geneMapLocation + 1/(nsnps*2),
                1+0.5*geneMapLocation - 1/(nsnps*2))
     seq.y <- c(-0.5*geneMapLocation + 1/(nsnps*2),
                1-0.5*geneMapLocation - 1/(nsnps*2))
-    diagonal<-linesGrob(seq.x, seq.y, gp=gpar(lty=1), name="diagonal", vp=vp)
+    diagonal<-linesGrob(seq.x, seq.y, gp=gpar(lty=1), name="diagonal", vp=vp) # we draw the line with linesGrob, based on geneMapLocation seq
     
     ## Adding line segments to the plot: (point1 <-> point2) 
     ## point1: relative position of a SNP on the scaled line
@@ -115,8 +115,8 @@ LDheatmapMap.add <- function(nsnps, add.map, genetic.distances,
       SNPnames <- textGrob(paste(" ", SNP.name), just="left", rot=-45,
                            regionx[ind], regiony[ind], gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
       if (flip) {
-        lenght_SNP_name <- max(nchar(SNP.name))
-        long_SNP_name <- paste(rep(8,lenght_SNP_name), collapse="")
+        length_SNP_name <- max(nchar(SNP.name)) 
+        long_SNP_name <- paste(rep(8,length_SNP_name), collapse="")
         name_gap <- convertWidth(grobWidth(textGrob(long_SNP_name)), "npc",valueOnly=TRUE)/sqrt(2)
         diagonal<-linesGrob(seq.x, seq.y, gp=gpar(lty=1), name="diagonal", vp=vp)
         #diagonal<-linesGrob(seq.x+name_gap, seq.y-name_gap, gp=gpar(lty=1), name="diagonal", vp=vp)
