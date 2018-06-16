@@ -13,7 +13,7 @@ library(grid)
 library(snpStats)
 
 data(GIMAP5.CEU)
-ll<-testFN(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
+ll<-LDTest(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 
 dim(GIMAP5.CEU$snp.data)[2] # Number of rows
 colcutMatrixByCol <- matrix(globalColcut, ncol = 23, byrow = FALSE)

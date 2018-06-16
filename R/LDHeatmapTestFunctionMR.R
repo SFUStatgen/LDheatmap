@@ -118,6 +118,83 @@ LDTest <- function(gdat, genetic.distances=NULL,
                         name=vp.name)
   flipVP <- viewport(width = unit(.8, "snpc"), height= unit(.8, "snpc"), y=0.6, angle=-45, name="flipVP")
   
+  # Colour selection scaling
+  if(color[1]=="blueToRed") color = rainbow(20, start=4/6, end=0, s=.7)[20:1]
+  if(newpage)grid.newpage()
+  mybreak <- 0:length(color)/length(color)
+  
+  imgLDmatrix <- LDmatrix
+  
+  # Bug testing
+  globalImgLDmatrix <<- 1 - imgLDmatrix
+  #
+  
+  # Flip or not, determines way data is read into the display
+  byrow<-ifelse(flip,FALSE,TRUE) #FALSE if flip=TRUE
+  
+  colcut <- as.character(cut(1-imgLDmatrix,mybreak,labels=as.character(color), include.lowest=TRUE))
+  
+  # Bug testing
+  globalColcut <<- colcut
+  #
+  
+  # Determines if colour is done as an integer or as a colour code, updates accordingly
+  if(is.numeric(color)) colcut <- as.integer(colcut)
+  ImageRect<-makeImageRect(dim(LDmatrix)[1],dim(LDmatrix)[2],colcut, name="heatmap",byrow)
+  
+  # Bug testing
+  globalRect <<- ImageRect
+  #
+  
+  # Controls text placement
+  ImageText <- NULL
+  if (text) ImageText<-makeImageText(dim(LDmatrix)[1],dim(LDmatrix)[2], round(imgLDmatrix, digits = 2), name="heatmaptext")
+  title <- textGrob(title, 0.5, 1.05, gp=gpar(cex=1.0), name="title")
+  if (flip) {
+    ImageRect <- editGrob(ImageRect, vp=flipVP)
+    ## Minor modification ##
+    globalRotatedRect <<- ImageRect
+    ## Minor modification ##
+    if (text)
+      ImageText <- editGrob(ImageText, vp=flipVP, rot=45, just="left")
+  }
+  
+  # Updates heatmap in the gTree
+  heatMap <- gTree(children=gList(ImageRect, ImageText, title), name="heatMap")
+  
+  # Draw a diagonal line indicating the physical or genetic map positions of the SNPs
+  nsnps <- ncol(LDmatrix)
+  step <- 1/(nsnps-1)
+  ind <- match(SNP.name, row.names(LDmatrix), nomatch=0)
+  geneMapVP <- NULL
+  if (flip) geneMapVP <- flipVP
+  geneMap <- LDheatmapMap.add (nsnps, genetic.distances=genetic.distances,
+                               geneMapLocation=geneMapLocation,add.map,  
+                               geneMapLabelX=geneMapLabelX,
+                               geneMapLabelY=geneMapLabelY,
+                               distances=distances, vp=geneMapVP, 
+                               SNP.name=SNP.name, ind=ind, flip=flip)
+  
+  # Bug testing
+  globalGenemap <<- geneMap
+  #
+  
+  # Draw the Color Key
+  if(add.key) Key <- LDheatmapLegend.add(color, LDmeasure, heatmapVP)
+  else Key <- NULL
+  
+  # Assemble the heatmap, genetic map and color key into a grob and draw it
+  LDheatmapGrob<-gTree(children=gList(heatMap, geneMap, Key),
+                       vp=heatmapVP, name=name, cl="ldheatmap")
+  grid.draw(LDheatmapGrob)
+  if(pop){
+    downViewport(heatmapVP$name)
+    popViewport()} #pop the heat map viewport
+  
+  ldheatmap <- list(LDmatrix=LDmatrix, LDheatmapGrob=LDheatmapGrob, heatmapVP=heatmapVP, flipVP=geneMapVP,                
+                    genetic.distances=genetic.distances, distances=distances, color=color)
+  class(ldheatmap) <- "LDheatmap"
+  invisible(ldheatmap)
 }
 
 
@@ -126,7 +203,10 @@ testNorm <- viewport(width = unit(.8, "snpc"), height = unit(.8, "snpc"),
 testFlip <- viewport(width = unit(.8, "snpc"), height= unit(.8, "snpc"), y=0.57, angle=-45, name="flipVP") # y = 0.57 is measurement of triangle side with hypoteneuse 0.8
 testFlipExtra <- viewport(width = unit(1.13, "snpc"), height = unit(.43, "snpc"), y = 0.91) # This extra VP might be the key to the added sections
 
-testNorm
+library(LDheatmap)
+data(GIMAP5.CEU)
+ll<-LDTest(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
+
 grid.newpage()
 pushViewport(testNorm)
 #grid.rect(gp = gpar())
