@@ -198,33 +198,43 @@ LDTest <- function(gdat, genetic.distances=NULL,
 }
 
 
+######### MAIN ###########
+# Library and base object
+library(LDheatmap)
+data(GIMAP5.CEU)
+ll <- LDTest(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
+
+# Viewports to explore, note the extra viewport that is not normally used in LDheatmap
 testNorm <- viewport(width = unit(.8, "snpc"), height = unit(.8, "snpc"),
                      name="Normal")
 testFlip <- viewport(width = unit(.8, "snpc"), height= unit(.8, "snpc"), y=0.57, angle=-45, name="flipVP") # y = 0.57 is measurement of triangle side with hypoteneuse 0.8
 testFlipExtra <- viewport(width = unit(1.13, "snpc"), height = unit(.43, "snpc"), y = 0.91) # This extra VP might be the key to the added sections
+legendVP <- viewport(x = 0.9, y = 0.1, height=.50, width=.4, just=c("right","bottom"), name="keyVP")
 
-library(LDheatmap)
-data(GIMAP5.CEU)
-ll<-LDTest(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
+########### FOR THE FLIPPED IMAGE ############### 
+# Need to properly scale the Key in the bottom right
 
+# Organization of viewports, with layers
 grid.newpage()
-pushViewport(testNorm)
-#grid.rect(gp = gpar())
-grid.draw(ll$LDheatmapGrob$children$heatMap)
-pushViewport(testFlip)
-#grid.rect(gp = gpar())
+pushViewport(testNorm) # Layer 1, default viewport, same as used in LDheatmap function
+  #grid.rect(gp = gpar())
+  grid.draw(ll$LDheatmapGrob$children$heatMap) # Added to layer 1, is the heatmap as created by LDheatmap. Means it will be rotated as desired (or not)
+
+pushViewport(testFlip) # Layer 2, viewport fits the rotated heatmap closely and can be used for desired modifications
+  #grid.rect(gp = gpar())
+
+upViewport() # Return to Layer 1 to reorient and draw genemap. Could also be done during the testNorm viewport step earlier
+  grid.draw(ll$LDheatmapGrob$children$geneMap) # Adds Genemap
+  
+pushViewport(legendVP)
+  grid.draw(ll$LDheatmapGrob$children$Key) # Draws the key just off the bottom right of the viewport window created
+  #grid.rect(gp = gpar())
+    
 upViewport()
-grid.draw(globalGenemap)
 pushViewport(testFlipExtra)
-#grid.rect(gp = gpar())
+  #grid.rect(gp = gpar())
 
-tg <- textGrob("sample text")
-rg <- rectGrob(width=1.1*grobWidth(tg),
-                 height=1.3*grobHeight(tg))
-boxedText <- gTree(children=gList(tg, rg))
-
-label <- textGrob("A\nPlot\nLabel ",
-                  x=0, just="left")
+# Test plot just to verify what can be added above, need to work on ways to split this window based on number of calls
 x <- seq(0.1, 0.9, length=50)
 y <- runif(50, 0.1, 0.9)
 gplot <-
@@ -237,3 +247,16 @@ gplot <-
     vp=viewport(width=unit(1, "npc") - unit(5, "mm"),
                 height=unit(1, "npc") - unit(5, "mm")))
 grid.draw(gplot)
+
+
+######## FOR THE NON-FLIPPED IMAGE ############
+# Works by default, can duplicate using the same approach outlined above
+llNoFlip <- LDTest(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=FALSE)
+
+grid.newpage()
+pushViewport(testNorm) # Layer 1, default viewport, same as used in LDheatmap function
+  #grid.rect(gp = gpar())
+  grid.draw(llNoFlip$LDheatmapGrob$children$heatMap)
+  grid.draw(llNoFlip$LDheatmapGrob$children$geneMap)
+  grid.draw(llNoFlip$LDheatmapGrob$children$Key)
+  
