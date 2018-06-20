@@ -18,6 +18,8 @@ navbar:
          href: https://cran.r-project.org/web/packages/LDheatmap/vignettes/LDheatmap.pdf
       -  text: Example of Adding Tracks   
          href: https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf
+      -  text: Drawing LDheatmap from data in VCF format
+         href: articles/vcfOnLDheatmap.html
     - icon: fa-github fa-lg
       text: "github"
       href: https://github.com/mcneney/LDheatmap/
