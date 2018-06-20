@@ -5,11 +5,14 @@ date: '2018-05-14'
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE
+)
 ```
 
-## LDheatmap
+## LDheatmap <img src="man/figures/logo.png" align="right" />
 
 `LDheatmap()` is used to produce a graphical display,
 as a heat map, of pairwise linkage disequilibrium (LD) 
