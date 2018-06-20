@@ -201,7 +201,9 @@ LDTest <- function(gdat, genetic.distances=NULL,
 ######### MAIN ###########
 # Library and base object
 library(LDheatmap)
+library(grid)
 data(GIMAP5.CEU)
+# If error "could not find makeImageRect", run the LDheatmapHelpers.R script
 ll <- LDTest(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 
 # Viewports to explore, note the extra viewport that is not normally used in LDheatmap
@@ -209,7 +211,8 @@ testNorm <- viewport(width = unit(.8, "snpc"), height = unit(.8, "snpc"),
                      name="Normal")
 testFlip <- viewport(width = unit(.8, "snpc"), height= unit(.8, "snpc"), y=0.57, angle=-45, name="flipVP") # y = 0.57 is measurement of triangle side with hypoteneuse 0.8
 testFlipExtra <- viewport(width = unit(1.13, "snpc"), height = unit(.43, "snpc"), y = 0.91) # This extra VP might be the key to the added sections
-legendVP <- viewport(x = 0.9, y = 0.1, height=.50, width=.4, just=c("right","bottom"), name="keyVP")
+legendVP <- viewport(x = 0.9, y = 0.1, height=.60, width=.6, just=c("right","bottom"), name="keyVP")
+titleVP <- viewport(x = 0, y = 0, height =.10, width=.1, just=c("left", "bottom"), name="titleVP")
 
 ########### FOR THE FLIPPED IMAGE ############### 
 # Need to properly scale the Key in the bottom right
@@ -224,12 +227,21 @@ pushViewport(testFlip) # Layer 2, viewport fits the rotated heatmap closely and 
   #grid.rect(gp = gpar())
 
 upViewport() # Return to Layer 1 to reorient and draw genemap. Could also be done during the testNorm viewport step earlier
+  # If we are adding stuff above the flipped heatmap, we will likely need to relocate the title for the genemap
+  ll$LDheatmapGrob$children$geneMap$children$title$x <- unit(0.35, "snpc")
+  ll$LDheatmapGrob$children$geneMap$children$title$y <- unit(0.71, "snpc")
   grid.draw(ll$LDheatmapGrob$children$geneMap) # Adds Genemap
   
 pushViewport(legendVP)
   grid.draw(ll$LDheatmapGrob$children$Key) # Draws the key just off the bottom right of the viewport window created
   #grid.rect(gp = gpar())
-    
+
+# Probably not necessary or could be done better: relocates the title in the situation we have a flipped heatmap
+upViewport()
+pushViewport(titleVP)
+  grid.draw(ll$LDheatmapGrob$children$heatMap$children$title)
+##
+
 upViewport()
 pushViewport(testFlipExtra)
   #grid.rect(gp = gpar())
