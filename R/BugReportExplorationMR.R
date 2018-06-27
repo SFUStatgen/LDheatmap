@@ -8,25 +8,8 @@ library(snpStats)
 library(rtracklayer)
 library(grid)
 
-# Bug report testing
-require('LDheatmap')
 
- # taken from examples LDheatmap\demo\LDheatmap.R, works correctly
-data(CEUData)
-MyHeatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
-                          color = grey.colors(20))
-LDheatmap(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"))
-childNames(grid.get("geneMap"))
-
-
- #BUG: With flip=TRUE it does not work anymore
-  MyHeatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
-                            color = grey.colors(20), flip=FALSE)
- LDheatmap(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"))
- childNames(grid.get("geneMap"))
-
-
-
+########################### Sample Code from Vignette ##########################
 data(GIMAP5.CEU)
 load(system.file("extdata/addTracks.RData",package="LDheatmap"))
 
@@ -53,17 +36,44 @@ llGenesRecombScatter <- LDheatmap.addScatterplot(llGenesRecomb,-log10(atests),
 require("ggplot2")
 posn <- GIMAP5.CEU$snp.support$Position
 manhattan2<-ggplotGrob(
-     {
-      qplot(posn,-log10(atests),xlab="", xlim=range(posn),asp=1/10)
-      last_plot() + theme(axis.text.x=element_blank(),
-                           axis.title.y = element_text(size = rel(0.75)))
-     }
-   )
+  {
+    qplot(posn,-log10(atests),xlab="", xlim=range(posn),asp=1/10)
+    last_plot() + theme(axis.text.x=element_blank(),
+                        axis.title.y = element_text(size = rel(0.75)))
+  }
+)
 llQplot<-LDheatmap.addGrob(ll,manhattan2,height=.7)
 
 llImage<-LDheatmap.addGrob(ll,rasterGrob(GIMAP5ideo))
+####################################################################
+
+########################## UNRESOLVED ##############################
+# Bug report: "Symbols" are gone when LDheatmap is generated with flip = TRUE
+require('LDheatmap')
+
+ # taken from examples LDheatmap\demo\LDheatmap.R, works correctly
+data(CEUData)
+MyHeatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
+                          color = grey.colors(20))
+LDheatmap(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"))
+childNames(grid.get("geneMap"))
 
 
+ #BUG: With flip=TRUE it does not work anymore
+  MyHeatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
+                            color = grey.colors(20), flip=FALSE)
+ LDheatmap(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"))
+ childNames(grid.get("geneMap"))
+##################################################################
+
+####################### UNRESOLVED ###########################
+# Bug report: Cannot change the heatmap position away from snp names and segment. 
+ # Other questions: Is there a way to add bp positions? (i.e. beginning and end positions at the segment bar)
+ # When using grid.edit(gPath("LDheatmap", "heatMap", "heatmap"), gp = gpar(col = "gray90", lwd = 1)) with a colour other than white,
+ # the whole square shows up. How can this be done only on the "heatmap" side of the plot?
+##############################################################
+
+############################### RESOLVED ####################################
 # Bug report: highlight function needs to be mirrored when used with flip = TRUE #
 # Sample of highlight on normal heatmap
 library(mvtnorm)
@@ -73,9 +83,16 @@ LDheatmap.highlight(tt, 3, 8, col="blue", fill="green", lwd=3)
 
 # Sample of highlight on flipped heatmap
 ttFlip <- LDheatmap(CEUSNP, genetic.distances = CEUDist, flip = TRUE)
-LDheatmap.highlight(ttFlip, 6, 9, col = "blue", fill = "green", lwd = 3, flipOutline = TRUE)
+LDheatmap.highlight(ttFlip, 6, 9, col = "blue", fill = "green", lwd = 3)
 
-################# Other bug, multi scatterplot #########################
+# Solution: Add flipOutline parameter such that if a user encounters a flip problem they can change the flipOutline param value to reverse
+LDheatmap.highlight(ttFlip, 6, 9, col = "blue", fill = "green", lwd = 3, flipOutline = TRUE)
+#############################################################################
+
+
+
+################### UNRESOLVED ####################################
+# Bur report: Using 1 or 2 scatterplots above the heatmap work but the third one causes problems, doesnt display appropriately
 library(LDheatmap)
 library(viridis)
 data(GIMAP5.CEU)
