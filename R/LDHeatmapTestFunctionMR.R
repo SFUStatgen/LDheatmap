@@ -202,6 +202,11 @@ LDTest <- function(gdat, genetic.distances=NULL,
 # Library and base object
 library(LDheatmap)
 library(grid)
+source("https://bioconductor.org/biocLite.R")
+biocLite("rtracklayer")
+library(rtracklayer)
+library(snpStats)
+
 data(GIMAP5.CEU)
 # If error "could not find makeImageRect", run the LDheatmapHelpers.R script
 ll <- LDTest(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
@@ -260,7 +265,80 @@ gplot <-
                 height=unit(1, "npc") - unit(5, "mm")))
 grid.draw(gplot)
 
+# Working with the rTrackLayer component
+llgenesTest <- LDheatmap.addGenes(ll, chr="chr7", genome="hg18")
 
+grid.newpage()
+pushViewport(testNorm)
+grid.rect(gp = gpar())
+grid.draw(llgenesTest$LDheatmapGrob$children$transcripts)
+
+grid.newpage()
+pushViewport(testFlipExtra)
+grid.rect(gp = gpar())
+grid.draw(llgenesTest$LDheatmapGrob$children$transcripts)
+
+# Lower y testflipextra
+lowerTestFlipExtra <- viewport(width = unit(1.13, "snpc"), height = unit(0.43, "snpc"), y = 0.75)
+
+grid.newpage()
+pushViewport(lowerTestFlipExtra)
+grid.rect(gp = gpar())
+grid.draw(llgenesTest$LDheatmapGrob$children$transcripts)
+
+# Reduced size testFlipExtra
+#testFlipExtra <- viewport(width = unit(1.13, "snpc"), height = unit(.43, "snpc"), y = 0.91) # This extra VP might be the key to the added sections
+perc  <- 0.25 # perc stands for percentage of window
+smallTestFlipExtra <- viewport(width = unit(1.13, "snpc"), height = unit(.43*perc, "snpc"), y = 0.91 - 0.43*(1 - perc)/2)
+
+grid.newpage()
+pushViewport(smallTestFlipExtra)
+grid.rect(gp = gpar())
+grid.draw(llgenesTest$LDheatmapGrob$children$transcripts)
+
+# Other testing with viewports that dont use unit: Makes no difference compared to previous unit(, "snpc") work
+otherTestFlipExtra <- viewport(width = 1.13, height = 0.43, y = 0.5)
+
+# Trying to modify the vp's internally: looking not very likely to work
+testObj <- llgenesTest$LDheatmapGrob$children$transcripts
+testObj$children$gene_plot_title$vp <- testFlipExtra
+testObj$children$uc010lpu.1$vp <- testFlipExtra
+testObj$children$uc003whr.1$vp <- testFlipExtra
+
+grid.newpage()
+pushViewport(testNorm)
+grid.rect(gp = gpar())
+pushViewport(testFlipExtra)
+grid.rect(gp = gpar())
+grid.draw(testObj)
+upViewport()
+grid.draw(testObj)
+pushViewport(otherTestFlipExtra)
+grid.rect(gp = gpar())
+grid.draw(testObj)
+
+
+# Attempting to modify the grob, not working too well
+test2 <- editGrob(testObj, vp = otherTestFlipExtra)
+test3 <- editGrob(testObj$children$uc010lpu.1, vp = otherTestFlipExtra)
+test4 <- editGrob(testObj$children$uc003whr.1, vp = otherTestFlipExtra)
+grid.newpage()
+pushViewport(otherTestFlipExtra)
+grid.rect(gp = gpar())
+grid.draw(test2)
+grid.draw(test3)
+grid.draw(test4)
+
+######### Expand this approach ###############
+# It appears the images work best when displayed in unit(0.8, "snpc") square windows, experiment with moving the windows based on the number
+# of tracks added. Something along the lines of a global counter that updates everytime a track is added (unique function call)
+globalTrack <<- 0 # Might need to be added to the LDheatmap function instead as the extra functions all go through helpers
+# In function calls, globalTrack <<- globalTrack + 1 
+globalTrackTest <- LDheatmap.addGenes(ll, chr="chr7", genome="hg18")
+if(exists("globalTrack")){
+  globalTrack <<- globalTrack + 1
+} 
+# else create globalTrack
 ######## FOR THE NON-FLIPPED IMAGE ############
 # Works by default, can duplicate using the same approach outlined above
 llNoFlip <- LDTest(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=FALSE)

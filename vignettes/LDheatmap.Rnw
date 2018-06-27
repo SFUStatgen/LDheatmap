@@ -54,6 +54,7 @@ graphics}
 %% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\grob}{\code{grob}}
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 %\VignetteIndexEntry{LDheatmap}
 \DeclareGraphicsExtensions{.pdf, .ps, .jpeg}
 
