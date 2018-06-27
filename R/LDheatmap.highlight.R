@@ -76,7 +76,7 @@
 
 
 #_______________________Highlight a region in the heatmap____________________________##
-LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, lty=1){
+LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, lty=1, flipOutline=F){
 
   requireNamespace("grid")
   # Highlights the perimeter of selected cells in the heatmap as a block
@@ -127,6 +127,13 @@ LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, 
   if(!is.na(a[1]))   seekViewport(heatmap.vp)
   else               pushViewport(LDheatmap$heatmapVP)
   if (!is.null(LDheatmap$flipVP)) pushViewport(LDheatmap$flipVP)
+  # Added section #
+  if(flipOutline == T){
+    tempy <- pgon$y
+    tempx <- pgon$x
+    pgon$y <- tempx
+    pgon$x <- tempy
+  }
   highlight <- polygonGrob(x=pgon$x, y=pgon$y, 
      gp=gpar(col=col, fill=fill, lwd=lwd, lty=lty), name="highlight")
   grid.draw(highlight)
