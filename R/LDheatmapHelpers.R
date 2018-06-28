@@ -122,13 +122,19 @@ LDheatmapMap.add <- function(nsnps, add.map, genetic.distances,
         #diagonal<-linesGrob(seq.x+name_gap, seq.y-name_gap, gp=gpar(lty=1), name="diagonal", vp=vp)
         segments <- segmentsGrob(snp, snp, regionx, regiony, name="segments", vp=vp)
         #segments <- segmentsGrob(snp+name_gap, snp-name_gap, regionx+name_gap, regiony-name_gap, name="segments", vp=vp)
+        
+        ############################################
+        # Bug: symbols was set to NULL here for some reason
         symbols <- NULL
+        symbols <- pointsGrob(snp[ind], snp[ind], pch="*",
+                              gp=gpar(cex=1.25, bg="blue", col="blue"), name="symbols", vp=vp)
+        ############################################
         SNPnames <- textGrob(SNP.name, just="left", rot=-45,
                              regionx[ind]-name_gap, regiony[ind]+name_gap, gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
         # snp[ind], snp[ind], gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
         title <- editGrob(title, y=unit(geneMapLabelY+name_gap, "npc"))
       }
-      geneMap <- gTree(children=gList(diagonal, segments, title, symbols, SNPnames),name="geneMap")
+        geneMap <- gTree(children=gList(diagonal, segments, title, symbols, SNPnames),name="geneMap")
     }} # if(add.map) end
   
   else if (!add.map && !is.null(SNP.name) && (any(ind!=0))){

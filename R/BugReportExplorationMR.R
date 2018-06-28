@@ -1,6 +1,7 @@
 library(LDheatmap)
 
 source("https://bioconductor.org/biocLite.R")
+biocLite()
 biocLite("snpStats")
 biocLite("rtracklayer")
 
@@ -14,6 +15,7 @@ data(GIMAP5.CEU)
 load(system.file("extdata/addTracks.RData",package="LDheatmap"))
 
 ll <-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
+# addGenes sometimes throws "Error: Bad Request" when called with the same parameters as addRecombRate, even though it grabs the requested values
 llGenes <- LDheatmap.addGenes(ll, chr="chr7", genome="hg18")
 
 grid.newpage()
@@ -47,8 +49,10 @@ llQplot<-LDheatmap.addGrob(ll,manhattan2,height=.7)
 llImage<-LDheatmap.addGrob(ll,rasterGrob(GIMAP5ideo))
 ####################################################################
 
-########################## UNRESOLVED ##############################
+########################## RESOLVED ##############################
 # Bug report: "Symbols" are gone when LDheatmap is generated with flip = TRUE
+# Fix: LDheatmapMap.add() had a code section only if(flip) that set symbols <- NULL. 
+    # Resolved by using same assignment as was used in the non-flipped case
 require('LDheatmap')
 
  # taken from examples LDheatmap\demo\LDheatmap.R, works correctly
@@ -60,10 +64,21 @@ childNames(grid.get("geneMap"))
 
 
  #BUG: With flip=TRUE it does not work anymore
-  MyHeatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
-                            color = grey.colors(20), flip=FALSE)
+  MyHeatmap <- LDTest(CEUSNP, genetic.distances = CEUDist,
+                            color = grey.colors(20), flip=TRUE)
+  MyHeatmapTest <- LDTest(CEUSNP, genetic.distances = CEUDist,
+                          color = grey.colors(20), flip=FALSE)
+  
+# Previous code  
  LDheatmap(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"))
- childNames(grid.get("geneMap"))
+ childNames(grid.get("geneMap")) # No symbols
+ LDheatmap(MyHeatmapTest, SNP.name = c("rs2283092", "rs6979287"))
+ childNames(grid.get("geneMap")) # Symbols available only in the non-flipped case
+# New code
+ LDTest(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"))
+ childNames(grid.get("geneMap")) # Symbols available
+ LDTest(MyHeatmapTest, SNP.name = c("rs2283092", "rs6979287"))
+ childNames(grid.get("geneMap")) # Symbols available
 ##################################################################
 
 ####################### UNRESOLVED ###########################
