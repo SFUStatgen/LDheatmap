@@ -19,14 +19,22 @@ makeImageRect <- function(nrow, ncol, cols, name, byrow=TRUE) {
            name=name)
 }
 
-makeImageText <- function(nrow, ncol, cols, name) {
+makeImageText <- function(nrow, ncol, cols, name, flip = FALSE) {
   cols <- as.character(cols)
   cols[is.na(cols)] <- ""
   cols <- paste("   ", cols)
   xx <- (1:ncol)/ncol   
   yy <- (1:nrow)/nrow
-  right <- rep(xx, nrow)
-  top <- rep(yy, each=ncol)
+  
+  # Need to fill cells in different order, as was done to generate image
+  if(flip){
+    right <- rep(xx, each = nrow)
+    top <- rep(yy, ncol)
+  }
+  else{
+    right <- rep(xx, nrow)
+    top <- rep(yy, each=ncol)
+  }
   textGrob(cols, x=right, y=top, 
            gp=gpar(cex=0.3),
            just=c("right", "top"), 

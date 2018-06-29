@@ -107,7 +107,16 @@ LDheatmap.highlight(ttFlip, 6, 9, col = "blue", fill = "green", lwd = 3, flipOut
 
 
 ################### UNRESOLVED ####################################
-# Bur report: Using 1 or 2 scatterplots above the heatmap work but the third one causes problems, doesnt display appropriately
+# Bug report: Text issue where the text does not follow the heatmap during flip
+# Fix: Added flip parameter to makeImageText() such that the data could be added to the graph in the appropriate order. Adjusted the call
+    # of makeImageText() in LDheatmap() to accommodate for the added parameter.
+llText <- LDTest(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE, text = TRUE)
+
+###################################################################
+
+
+################### UNRESOLVED ####################################
+# Bug report: Using 1 or 2 scatterplots above the heatmap work but the third one causes problems, doesnt display appropriately
 library(LDheatmap)
 library(viridis)
 data(GIMAP5.CEU)
