@@ -106,7 +106,7 @@ LDheatmap.highlight(ttFlip, 6, 9, col = "blue", fill = "green", lwd = 3, flipOut
 
 
 
-################### UNRESOLVED ####################################
+################### RESOLVED ####################################
 # Bug report: Text issue where the text does not follow the heatmap during flip
 # Fix: Added flip parameter to makeImageText() such that the data could be added to the graph in the appropriate order. Adjusted the call
     # of makeImageText() in LDheatmap() to accommodate for the added parameter.
