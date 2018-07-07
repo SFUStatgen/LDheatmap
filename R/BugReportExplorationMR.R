@@ -16,6 +16,7 @@ load(system.file("extdata/addTracks.RData",package="LDheatmap"))
 
 ll <-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 # addGenes sometimes throws "Error: Bad Request" when called with the same parameters as addRecombRate, even though it grabs the requested values
+# Just run grid.draw(llGenes$LDheatmapGrob) after to get the desired chart. Only necessary on my laptop for some reason
 llGenes <- LDheatmap.addGenes(ll, chr="chr7", genome="hg18")
 
 grid.newpage()
@@ -75,7 +76,8 @@ childNames(grid.get("geneMap"))
  LDheatmap(MyHeatmapTest, SNP.name = c("rs2283092", "rs6979287"))
  childNames(grid.get("geneMap")) # Symbols available only in the non-flipped case
 # New code
- LDTest(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"))
+ LDTest(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"), text = FALSE)
+ 
  childNames(grid.get("geneMap")) # Symbols available
  LDTest(MyHeatmapTest, SNP.name = c("rs2283092", "rs6979287"))
  childNames(grid.get("geneMap")) # Symbols available
@@ -86,6 +88,38 @@ childNames(grid.get("geneMap"))
  # Other questions: Is there a way to add bp positions? (i.e. beginning and end positions at the segment bar)
  # When using grid.edit(gPath("LDheatmap", "heatMap", "heatmap"), gp = gpar(col = "gray90", lwd = 1)) with a colour other than white,
  # the whole square shows up. How can this be done only on the "heatmap" side of the plot?
+testMap <- LDTest(CEUSNP, genetic.distances = CEUDist,
+                               color = grey.colors(20), flip = TRUE)
+LDTest(testMap, SNP.name = c("rs2283092", "rs6979287"))
+grid.edit(gPath("ldheatmap", "geneMap","SNPnames"), gp = gpar(cex=1.5))
+new.grob <- editGrob(testMap$LDheatmapGrob, gPath("geneMap", "segments"),
+                     gp=gpar(col="orange"))
+moveGenemap <- editGrob(testMap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.55, "snpc"), y = unit(0.45, "snpc")))
+# We can control how far from the heatmap the geneMap is by fixing the vp above with x = unit(0.5, "snpc") and the y value 
+# as something larger than 0.49
+grid.newpage()
+grid.draw(moveGenemap)
+
+LDTest.moveGenemap <- function(LDheatmap, distance = "close"){
+  if(is.null(LDheatmap$flipVP)){
+    print("Not Flipped")
+    if(distance == "close") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.52, "snpc"), y = unit(0.48, "snpc")))
+    if(distance == "medium") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.56, "snpc"), y = unit(0.44, "snpc")))
+    if(distance == "far") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.60, "snpc"), y = unit(0.4, "snpc")))
+  }
+  else{
+    print("Flipped")
+    if(distance == "close") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.5, "snpc"), y = unit(0.52, "snpc")))
+    if(distance == "medium") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.5, "snpc"), y = unit(0.56, "snpc")))
+    if(distance == "far") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.5, "snpc"), y = unit(0.6, "snpc")))
+  }
+  LDheatmap$LDheatmapGrob <- temp
+  return(LDheatmap)
+}
+
+movedGenemap <- LDTest.moveGenemap(testMap, distance = "medium")
+grid.newpage()
+grid.draw(movedGenemap$LDheatmapGrob)
 ##############################################################
 
 ############################### RESOLVED ####################################
