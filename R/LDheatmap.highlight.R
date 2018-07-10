@@ -76,21 +76,46 @@
 
 
 #_______________________Highlight a region in the heatmap____________________________##
-LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, lty=1, flipOutline=F){
+LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, lty=1, flipOutline=F, crissCross = F){
 
+  
   requireNamespace("grid")
   # Highlights the perimeter of selected cells in the heatmap as a block
   backbone <- function(i,j,nSNP){
-     x <- c(i-1,i-1,j-1)/nSNP
-     y <- c(i,j,j)/nSNP
-     cbind(x,y)
+    x <- c(i-1,i-1,j-1)/nSNP
+    y <- c(i,j,j)/nSNP
+    cbind(x,y)
   }
   backboneFlip <- function(i,j,nSNP){
-     x <- c(i,j,j)/nSNP
-     y <- c(i-1,i-1,j-1)/nSNP
-     cbind(x,y)
+    x <- c(i,j,j)/nSNP
+    y <- c(i-1,i-1,j-1)/nSNP
+    cbind(x,y)
   }
-
+  
+  # # # #
+  rectVert <- function(i, j , nSNP){
+    rectangles <- data.frame()
+    for( k in i:(j-1)){
+      x <- c(k, k, k + 1, k + 1) / nSNP
+      y <- c(k, j, k, j) / nSNP
+      coords <- cbind(x, y)
+      rectangles <- rbind(rectangles, coords)
+    }
+    return(rectangles)
+  }
+  
+  rectHorizontal <- function(i, j ,nSNP){
+    rectangles <- data.frame()
+    for(m in i:(j-1)){
+      x <- c(i-1, m , i-1, m) / nSNP
+      y <- c(m+1, m+1, m+2, m+2) / nSNP
+      coords <- cbind(x, y)
+      rectangles <- rbind(rectangles, coords)
+    }
+    return(rectangles)
+  }
+  # # # #
+  
   zigzag <- function(i,j,nSNP){
     c1 <- j-i
     nvert <- (2*c1)-1
@@ -105,21 +130,31 @@ LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, 
     x <- c(rep((j-1):(j-(c1-1)),each=2),j-c1)
     cbind(x,y)/nSNP 
   }
-                       
+  
   nSNP <- dim(LDheatmap$LDmatrix)[1]
   if(length(i)>1 | length (j) > 1) stop("i and j must be scalar indices")
   if((i<1 | i>nSNP) |(j<1 | j>nSNP) )
     stop(paste("index out of bounds, i and j must be in (1,",nSNP,")",sep=""))
   if(i==j) stop("i cannot be equal to j")
   if(i>j){
-     h<-i
-     i <- j
-     j <- h
+    h<-i
+    i <- j
+    j <- h
   }
   pgon <- data.frame(rbind(backbone(i,j,nSNP), zigzag(i,j,nSNP)))
   if(!is.null(LDheatmap$flipVP)) pgon <- data.frame(rbind(backboneFlip(i,j,nSNP), zigzagFlip(i,j,nSNP)))
   ## Square or almost square interior Blocks
   names(pgon) <- c("x","y")
+  
+  
+  # # # # For the grid highlight case
+  vertRectangles <- rectVert(i, j, nSNP = dim(LDheatmap$LDmatrix)[1]) 
+  horizonRectangles <- rectHorizontal(i, j, nSNP = dim(LDheatmap$LDmatrix)[1])
+  names(vertRectangles) <- c("x", "y")
+  names(horizonRectangles) <- c("x", "y")
+  # # # #
+  
+  
   heatmap.vp <- LDheatmap$heatmapVP$name
   #If heatmap.vp is on the grid display list, i.e., it is included in the 
   #returned value of current.vpTree(), a[1]=1 else a[1]=NA:
@@ -127,6 +162,7 @@ LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, 
   if(!is.na(a[1]))   seekViewport(heatmap.vp)
   else               pushViewport(LDheatmap$heatmapVP)
   if (!is.null(LDheatmap$flipVP)) pushViewport(LDheatmap$flipVP)
+  
   # Added section #
   if(flipOutline == T){
     tempy <- pgon$y
@@ -135,7 +171,56 @@ LDheatmap.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, 
     pgon$x <- tempy
   }
   highlight <- polygonGrob(x=pgon$x, y=pgon$y, 
-     gp=gpar(col=col, fill=fill, lwd=lwd, lty=lty), name="highlight")
+                           gp=gpar(col=col, fill=fill, lwd=lwd, lty=lty), name="highlight")
+  
+  # # # #
+  if(crissCross == TRUE){
+    
+    for(i in 1:(dim(vertRectangles)[1]/4)){
+      width <- vertRectangles$x[(i-1)*4 + 3] - vertRectangles$x[(i-1)*4 + 1]
+      height <- vertRectangles$y[(i-1)*4 + 1] - vertRectangles$y[(i-1)*4 + 2]
+      if(is.null(LDheatmap$flipVP)){
+        oneRect <- rectGrob(x = vertRectangles$x[(i-1)*4+1] - width/2, y = vertRectangles$y[(i-1)*4+1] - height/2, 
+                            width = width,
+                            height= height,
+                            gp=gpar(col=col, fill=fill, lwd=lwd, lty=lty), name="rect")
+      }
+      else{
+        # Flip is swapping of x-y coordinates, therefore reverse assignment of width and height
+        width <- vertRectangles$y[(i-1)*4 + 1] - vertRectangles$y[(i-1)*4 + 2]
+        height <- vertRectangles$x[(i-1)*4 + 3] - vertRectangles$x[(i-1)*4 + 1]
+        oneRect <- rectGrob(x = vertRectangles$y[(i-1)*4+1] - width/2, y = vertRectangles$x[(i-1)*4+1] - height/2,
+                            width = width,
+                            height= height,
+                            gp=gpar(col=col, fill=fill, lwd=lwd, lty=lty), name="rect")
+      }
+      
+      grid.draw(oneRect)
+    }
+    for(j in 1:(dim(horizonRectangles)[1]/4)){
+      width <- horizonRectangles$x[(j-1)*4 + 2] - horizonRectangles$x[(j-1)*4 + 1]
+      height<- horizonRectangles$y[(j-1)*4 + 3] - horizonRectangles$y[(j-1)*4 + 1]
+      if(is.null(LDheatmap$flipVP)){
+        oneRect <- rectGrob(x = horizonRectangles$x[(j-1)*4 + 2] - width/2, y = horizonRectangles$y[(j-1)*4 + 1] - height/2,
+                            width = width,
+                            height = height,
+                            gp=gpar(col=col, fill=fill, lwd=lwd, lty=lty), name="rect")
+      }
+      else{
+        # Flip is swapping of x-y coordinates, therefore reverse assignment of width and height
+        width <- horizonRectangles$y[(j-1)*4 + 3] - horizonRectangles$y[(j-1)*4 + 1]
+        height<- horizonRectangles$x[(j-1)*4 + 2] - horizonRectangles$x[(j-1)*4 + 1]
+        oneRect <- rectGrob(x = horizonRectangles$y[(j-1)*4 + 1] - width/2, y = horizonRectangles$x[(j-1)*4 + 2] - height/2,
+                            width = width,
+                            height = height,
+                            gp=gpar(col=col, fill=fill, lwd=lwd, lty=lty), name="rect")
+      }
+      grid.draw(oneRect)
+    }
+  }
+  # # # #
+  
+  
   grid.draw(highlight)
   if(!is.na(a[1]))  upViewport(0)  #back to the root viewport
   else              popViewport() 

@@ -150,6 +150,7 @@ LDTest <- function(gdat, genetic.distances=NULL,
   ImageText <- NULL
   if (text) ImageText<-makeImageText(dim(LDmatrix)[1],dim(LDmatrix)[2], round(imgLDmatrix, digits = 2), name="heatmaptext")
   title <- textGrob(title, 0.5, 1.05, gp=gpar(cex=1.0), name="title")
+
   if (flip) {
     ImageRect <- editGrob(ImageRect, vp=flipVP)
     ## Minor modification ##
@@ -158,6 +159,7 @@ LDTest <- function(gdat, genetic.distances=NULL,
     if (text)
       # Added flip = TRUE parameter to better utilize makeImageText() in the flipped case
       ImageText <- makeImageText(dim(LDmatrix)[1],dim(LDmatrix)[2], round(imgLDmatrix, digits = 2), name="heatmaptext", flip = TRUE)
+      textVal <<- ImageText
       ImageText <- editGrob(ImageText, vp=flipVP, rot=0, just=c("right", "top"))
   }
   
