@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This document will discuss the bugs experienced by users of the LDheatmap package, the code to replicate the bugs, and the implemented solutions. The aim is to provide a concise walk through of the process and to highlight any need for further changes.
 
-```{r}
+```{r, echo=FALSE,results='hide',fig.keep='all', message = FALSE, warning = FALSE}
 # To install bioconductor libraries
 #source("https://bioconductor.org/biocLite.R")
 #biocLite()
@@ -23,6 +23,8 @@ require(snpStats)
 require(rtracklayer)
 require(grid)
 require(viridis)
+require(ggplot2)
+library(mvtnorm)
 
 # Other files that have modified code
 if(!exists("LDTest", mode="function")) source("LDHeatmapTestFunctionMR.R")
@@ -32,7 +34,7 @@ if(!exists("LDheatmapMapNew.add", mode="function")) source("LDheatmapHelpers.R")
 
 The following is the sample code provided in the Vignette, found here: https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf
 
-```{r}
+```{r, echo=FALSE,results='hide',fig.keep='all'}
 data(GIMAP5.CEU)
 load(system.file("extdata/addTracks.RData",package="LDheatmap"))
 
@@ -60,8 +62,9 @@ atests["rs6598"]<-1e-5
 #                                                  ylab="-log10(p-values)")
 # 
 # Adds Manhatten plot above our graph using qplot function in ggplot
-require("ggplot2")
+
 posn <- GIMAP5.CEU$snp.support$Position
+#require(ggplot2)
 manhattan2<-ggplotGrob(
   {
     qplot(posn,-log10(atests),xlab="", xlim=range(posn),asp=1/10)
@@ -91,7 +94,7 @@ Example of the bug:
 # Bug report: "Symbols" are gone when LDheatmap is generated with flip = TRUE
 # Fix: LDheatmapMap.add() had a code section only if(flip) that set symbols <- NULL. 
     # Resolved by using same assignment as was used in the non-flipped case
-require('LDheatmap')
+#require('LDheatmap')
 
  # taken from examples LDheatmap\demo\LDheatmap.R, works correctly
 data(CEUData)
@@ -184,7 +187,7 @@ placeholder2 <- function(nsnps, add.map, genetic.distances,
 ```
 
 The corrected function is used in the revised LDheatmap function, currently named LDtest(). Demonstration of this improvement follows.
-Still to do: Correct the text placement on the flipped image.
+Still to do: Correct the text placement on the flipped image. Functional at the moment but could be better.
 
 
 ```{r}
@@ -371,10 +374,12 @@ LDTest.highlight <- function(LDheatmap, i, j, fill="NA", col="black", lwd=1, lty
 grid.newpage()
 
 data(CEUData)
+# Normal highlight() functionality
 MyHeatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
                        color = grey.colors(20), flip = TRUE)
 onlyOutline <- LDTest.highlight(MyHeatmap, 1, 15, col = "blue", fill = NA, lwd =3, flipOutline = FALSE, crissCross = FALSE)
 
+# Extended highlight() functionality to wrap all cells
 MyHeatmap2 <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
                        color = grey.colors(20), flip = TRUE)
 allCellsOutline <- LDTest.highlight(MyHeatmap2, 1, 15, col = "blue", fill = NA, lwd =3, flipOutline = FALSE, crissCross = TRUE)
@@ -387,20 +392,18 @@ someCellsOutline <- LDTest.highlight(MyHeatmap2, 3, 6, col = "blue", fill = NA, 
 
 The highlighting of each cell is controlled by the crissCross parameter. A TRUE value dictates the outlining of each cell while a FALSE value dictates only the highlighting of the outer cells, the default behaviour of LDheatmap.highlight().
 
-Bug Report 2.5: User requested the ability to control geneMap distance from heatmap. No image or reproducibility as to the idea was provided. As such, a generic function was created with the intention of providing the desired feature.
+Bug Report 2.5: User requested the ability to control geneMap distance from heatmap. No image or reproducibility of the idea was provided. As such, a generic function was created with the intention of providing the desired feature.
 
-```{r}
+```{r, echo=FALSE,results='hide',fig.keep='all'}
 if(!exists("LDTest", mode="function")) source("LDHeatmapTestFunctionMR.R")
 if(!exists("LDheatmapMapNew.add", mode="function")) source("LDheatmapHelpers.R")
 LDTest.moveGenemap <- function(LDheatmap, distance = "close"){
   if(is.null(LDheatmap$flipVP)){
-    print("Not Flipped")
     if(distance == "close") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.52, "snpc"), y = unit(0.48, "snpc")))
     if(distance == "medium") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.56, "snpc"), y = unit(0.44, "snpc")))
     if(distance == "far") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.60, "snpc"), y = unit(0.4, "snpc")))
   }
   else{
-    print("Flipped")
     if(distance == "close") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.5, "snpc"), y = unit(0.52, "snpc")))
     if(distance == "medium") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.5, "snpc"), y = unit(0.56, "snpc")))
     if(distance == "far") temp <- editGrob(LDheatmap$LDheatmapGrob, gPath("geneMap"), vp = viewport(x = unit(0.5, "snpc"), y = unit(0.6, "snpc")))
@@ -436,7 +439,7 @@ In testing the bug report, I was unable to duplicate the same problem the user h
 # Sample of highlight on normal heatmap
 if(!exists("LDTest", mode="function")) source("LDHeatmapTestFunctionMR.R")
 if(!exists("LDheatmapMapNew.add", mode="function")) source("LDheatmapHelpers.R")
-library(mvtnorm)
+#library(mvtnorm)
 data(CEUData)
 tt <- LDheatmap(CEUSNP, genetic.distances=CEUDist)
 LDTest.highlight(tt, 3, 8, col="blue", fill="green", lwd=3)
