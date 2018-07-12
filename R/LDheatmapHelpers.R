@@ -66,7 +66,7 @@ LDheatmapLegend.add <- function(color, LDmeasure, vp){
   key
 }
 
-LDheatmapMap.add <- function(nsnps, add.map, genetic.distances, 
+LDheatmapMapNew.add <- function(nsnps, add.map, genetic.distances, 
                              geneMapLocation=0.15,
                              geneMapLabelX=NULL, geneMapLabelY=NULL,
                              distances="physical", vp=NULL, 
@@ -118,10 +118,7 @@ LDheatmapMap.add <- function(nsnps, add.map, genetic.distances,
     
     ## Labelling some SNPs 
     if (!is.null(SNP.name) && (any(ind!=0))){
-      symbols <- pointsGrob(snp[ind], snp[ind], pch="*",
-                            gp=gpar(cex=1.25, bg="blue", col="blue"), name="symbols", vp=vp)
-      SNPnames <- textGrob(paste(" ", SNP.name), just="left", rot=-45,
-                           regionx[ind], regiony[ind], gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
+
       if (flip) {
         length_SNP_name <- max(nchar(SNP.name)) 
         long_SNP_name <- paste(rep(8,length_SNP_name), collapse="")
@@ -133,19 +130,26 @@ LDheatmapMap.add <- function(nsnps, add.map, genetic.distances,
         
         ############################################
         # Bug: symbols was set to NULL here for some reason
-        symbols <- NULL
         symbols <- pointsGrob(snp[ind], snp[ind], pch="*",
                               gp=gpar(cex=1.25, bg="blue", col="blue"), name="symbols", vp=vp)
         ############################################
+        # Figure out exact necessary coefficient for regionx and regiony with name_gap
         SNPnames <- textGrob(SNP.name, just="left", rot=-45,
-                             regionx[ind]-name_gap, regiony[ind]+name_gap, gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
+                             regionx[ind]-sqrt(2)*name_gap, regiony[ind]+sqrt(2)*name_gap, gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
         # snp[ind], snp[ind], gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
         title <- editGrob(title, y=unit(geneMapLabelY+name_gap, "npc"))
+        }
+      else{
+        symbols <- pointsGrob(snp[ind], snp[ind], pch="*",
+                              gp=gpar(cex=1.25, bg="blue", col="blue"), name="symbols", vp=vp)
+        SNPnames <- textGrob(paste(" ", SNP.name), just="left", rot=-45,
+                             regionx[ind], regiony[ind], gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
       }
         geneMap <- gTree(children=gList(diagonal, segments, title, symbols, SNPnames),name="geneMap")
     }} # if(add.map) end
   
   else if (!add.map && !is.null(SNP.name) && (any(ind!=0))){
+    print("cornercase")
     geneMap <- textGrob(paste(" ", SNP.name), just="left", rot=-45,
                         snp[ind], snp[ind], gp=gpar(cex=0.6, col="blue"),
                         name="SNPnames")
