@@ -192,8 +192,8 @@ Still to do: Correct the text placement on the flipped image. Functional at the 
 
 ```{r}
 # New code
-#if(!exists("LDTest", mode="function")) source("LDHeatmapTestFunctionMR.R")
-#if(!exists("LDheatmapMapNew.add", mode="function")) source("LDheatmapHelpers.R")
+if(!exists("LDTest", mode="function")) source("LDHeatmapTestFunctionMR.R")
+if(!exists("LDheatmapMapNew.add", mode="function")) source("LDheatmapHelpers.R")
 data(CEUData)
  # Flipped
  MyHeatmap <- LDTest(CEUSNP, genetic.distances = CEUDist,
@@ -387,7 +387,12 @@ allCellsOutline <- LDTest.highlight(MyHeatmap2, 1, 15, col = "blue", fill = NA, 
 # Now only some of the cells
 MyHeatmap3 <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
                        color = grey.colors(20), flip = TRUE)
-someCellsOutline <- LDTest.highlight(MyHeatmap2, 3, 6, col = "blue", fill = NA, lwd =3, flipOutline = FALSE, crissCross = TRUE)
+someCellsOutline <- LDTest.highlight(MyHeatmap3, 3, 6, col = "blue", fill = NA, lwd =3, flipOutline = FALSE, crissCross = TRUE)
+
+# Verify that it works for non-flipped
+MyHeatmap4 <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
+                       color = grey.colors(20), flip = FALSE)
+someCellsOutlineNF <- LDTest.highlight(MyHeatmap4, 3, 6, col = "blue", fill = NA, lwd =3, flipOutline = FALSE, crissCross = TRUE)
 ```
 
 The highlighting of each cell is controlled by the crissCross parameter. A TRUE value dictates the outlining of each cell while a FALSE value dictates only the highlighting of the outer cells, the default behaviour of LDheatmap.highlight().

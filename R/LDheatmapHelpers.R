@@ -118,7 +118,6 @@ LDheatmapMapNew.add <- function(nsnps, add.map, genetic.distances,
     
     ## Labelling some SNPs 
     if (!is.null(SNP.name) && (any(ind!=0))){
-
       if (flip) {
         length_SNP_name <- max(nchar(SNP.name)) 
         long_SNP_name <- paste(rep(8,length_SNP_name), collapse="")
@@ -135,7 +134,8 @@ LDheatmapMapNew.add <- function(nsnps, add.map, genetic.distances,
         ############################################
         # Figure out exact necessary coefficient for regionx and regiony with name_gap
         SNPnames <- textGrob(SNP.name, just="left", rot=-45,
-                             regionx[ind]-sqrt(2)*name_gap, regiony[ind]+sqrt(2)*name_gap, gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
+                             regionx[ind]-sqrt(2+0.5)*name_gap, regiony[ind]+sqrt(2+0.5)*name_gap, gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
+        # Think of better reason to use the +0.5
         # snp[ind], snp[ind], gp=gpar(cex=0.6, col="blue"), name="SNPnames", vp=vp)
         title <- editGrob(title, y=unit(geneMapLabelY+name_gap, "npc"))
         }
@@ -149,7 +149,6 @@ LDheatmapMapNew.add <- function(nsnps, add.map, genetic.distances,
     }} # if(add.map) end
   
   else if (!add.map && !is.null(SNP.name) && (any(ind!=0))){
-    print("cornercase")
     geneMap <- textGrob(paste(" ", SNP.name), just="left", rot=-45,
                         snp[ind], snp[ind], gp=gpar(cex=0.6, col="blue"),
                         name="SNPnames")
