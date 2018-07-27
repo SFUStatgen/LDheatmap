@@ -485,7 +485,7 @@
     if (text){
       # Added flip = TRUE parameter to better utilize makeImageText() in the flipped case
       ImageText <- makeImageText(dim(LDmatrix)[1],dim(LDmatrix)[2], round(imgLDmatrix, digits = 2), name="heatmaptext", flip = TRUE)
-      textVal <<- ImageText
+      textVal <- ImageText
       ImageText <- editGrob(ImageText, vp=flipVP, rot=0, just=c("right", "top"))
     }
   }
