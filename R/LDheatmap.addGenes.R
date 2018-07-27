@@ -5,7 +5,7 @@
 #'an LDheatmap object.
 #' @usage LDheatmap.addGenes(LDheatmap, chromosome, genome = NULL, genesLocation = 0.02,
 #'splice_variants = TRUE, non_coding = TRUE)
-#' @param LDHeatmap An object of class LDheatmap.
+#' @param LDheatmap An object of class LDheatmap.
 #' @param chromosome A character string that identifies the chromosome.
 #' @param genome The genome assembly to use. The default is the most recent human genome assembly on the UCSC genome browser.
 #' @param genesLocation The gene plot distance from the LD heat map gene map.
@@ -25,7 +25,7 @@
 #' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=knownGene}
 #' @author Sigal Blay <sblay@sfu.ca>
 #' @seealso \code{\link{LDheatmap}}, \code{\link{plotGenes}}
-#' @examples \dontrun{
+#' @example \dontrun{
 #'data(GIMAP5.CEU)
 #'ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 #'# Add gene plot
