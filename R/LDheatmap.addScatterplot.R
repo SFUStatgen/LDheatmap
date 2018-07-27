@@ -42,7 +42,7 @@
 #'vp <- constructVP(LDheatmap$LDheatmapGrob, 0.23, flip)
 #'......
 #'return(LDheatmap)
-#'}
+#'}}
 #'environment(LDheatmap.addScatterplot_test3) <- asNamespace('LDheatmap')
 #' 
 #' @keywords hplot
