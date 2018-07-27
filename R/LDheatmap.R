@@ -36,7 +36,7 @@
 #' LDmeasure="r", title="Pairwise LD", add.map=TRUE, add.key=TRUE,
 #' geneMapLocation=0.15, geneMapLabelX=NULL, geneMapLabelY=NULL,
 #' SNP.name=NULL, color=NULL, newpage=TRUE,
-#' name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE))
+#' name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 #'
 #' @param gdat SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
 #' pairwise linkage disequilibrium measurements or an object of
