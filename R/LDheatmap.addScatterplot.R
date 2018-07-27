@@ -16,10 +16,10 @@
 #' @return An object of class LDheatmap given as an argument, with the \code{grob}
 #'\code{LDheatmapGrob} modified to inclue the \code{"association"} child grob.
 #' @note The function can display at most two scatter plots in the default setting. To add three or more scatter plots 
-#'in the same viewport, the user can change the input value \code{"location"} from function \code{constructVP} which is the 
-#'function inside the \code{LDheatmap.addScatterplot}. The default \code{"location"} value is 0.03, for adding the third scatter
-#'plot, user needs to set the \code{"location"} to 0.23, where 0.2 units is the height of the scatter plot. For the fourth scatter
-#'plot, set the \code{"location"} to 0.43 etc. 
+#'in the same viewport, the user can change the input value \code{"location"} from function \code{constructVP} which is 
+#'the function inside the \code{LDheatmap.addScatterplot}. The default \code{"location"} value is 0.03, for adding the 
+#'third scatter plot, user needs to set the \code{"location"} to 0.23, where 0.2 units is the height of the scatter plot.
+#'For the fourth scatter plot, set the \code{"location"} to 0.43 etc. 
 #'See Examples for usage.
 #' @author Sigal Blay <sblay@sfu.ca> and more
 #' @seealso \code{\link{LDheatmap}}
@@ -33,7 +33,8 @@
 #'assoc <- LDheatmap.addScatterplot(MyLDheatmap, Yvalues)
 #'######## Adding three or more scatter plots ########
 #'# Redefine LDheatmap.addScatterplot() to display the third scatter plot
-#'LDheatmap.addScatterplot_test3 <- function(LDheatmap, P, height=0.2, ylab=NULL, ylim=NULL, type="points",color,pch) {
+#'LDheatmap.addScatterplot_test3 <- function(LDheatmap, P, height=0.2, ylab=NULL, 
+#'ylim=NULL, type="points",color,pch) {
 #'if (dim(LDheatmap$LDmatrix)[1] != length(P)) {
 #'print("Length of vector not equal number of SNPs in LDheatmap")
 #'return()
