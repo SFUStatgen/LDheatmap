@@ -4,7 +4,7 @@
 #' @description The function \code{LDheatmap.highlight()} is used to highlight a
 #'specified genetic region in the linkage disequilibrium (LD)
 #'heat map drawn with the \code{\link{LDheatmap}()} function.
-#' @usage LDheatmap.highlight(LDheatmap, i, j, fill = "NA", col = "black", lwd = 1, lty = 1)
+#' @usage LDheatmap.highlight(LDheatmap, i, j, fill = "NA", col = "black", lwd = 1, lty = 1,flipOutline=F, crissCross = F)
 #' @param LDheatmap An object of class \code{"LDheatmap"} returned
 #'by the function \code{LDheatmap()}.
 #' @param i A numeric value specifying the index of the first
@@ -20,6 +20,8 @@
 #' @param lty Either an integer or a character string specifying the
 #'line type of the boundary segments; see \code{\link[graphics]{par}()}
 #'for possible values.
+#' @param flipOutline Need more info
+#' @param crissCross Need more info
 #' @return A data frame of the x and y coordinates of points defining the
 #'border of the highlighted area.
 #' @note The function \code{LDheatmap.highlight()} highlights the cells representing
