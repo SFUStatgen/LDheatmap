@@ -20,8 +20,11 @@
 #' @param lty Either an integer or a character string specifying the
 #'line type of the boundary segments; see \code{\link[graphics]{par}()}
 #'for possible values.
-#' @param flipOutline Need more info
-#' @param crissCross Need more info
+#' @param flipOutline A Boolean variable that flips the outlined section 
+#'over the diagonal of the heatmap.
+#' @param crissCross A Boolean variable that controls whether a contiguous 
+#'selection of SNPs are outlined only on their polygonal boundary or at 
+#'individual SNP levels.
 #' @return A data frame of the x and y coordinates of points defining the
 #'border of the highlighted area.
 #' @note The function \code{LDheatmap.highlight()} highlights the cells representing
