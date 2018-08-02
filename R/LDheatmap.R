@@ -348,6 +348,9 @@
              newpage=TRUE, name="ldheatmap", vp.name=NULL,
              pop=FALSE, flip=NULL, text=FALSE)
 {
+  
+  requireNamespace("grid")
+  
   #_______________________Color Key__________________________________________##
   # Draw the Color Key
   if (is.null(color)) {
