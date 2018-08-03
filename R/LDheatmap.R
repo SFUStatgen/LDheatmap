@@ -206,7 +206,7 @@
 #'# adding genomic annotation tracks to a flipped heatmap see
 #'# vignette("addTracks")
 
-#'#flippedHeatmap<-LDheatmap(MyHeatmap,flip=TRUE)
+#'# flippedHeatmap<-LDheatmap(MyHeatmap,flip=TRUE)
 
 #'# Prompt the user before starting a new page of graphics output
 #'# and save the original prompt settings in old.prompt.
