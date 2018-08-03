@@ -26,32 +26,32 @@
 #' @aliases LDheatmap
 #' @title This function produces a pairwise LD plot.
 #' @description \code{LDheatmap()} is used to produce a graphical display, as a heat map,
-#' of pairwise linkage disequilibrium (LD) measurements for SNPs.
-#' The heat map is a false color image in the upper-left diagonal of a square plot.
-#' Optionally, a line parallel to the diagonal of the image indicating
-#' the physical or genetic map positions of the SNPs may be added, along
-#' with text reporting the total length of the genomic region considered.
+#'of pairwise linkage disequilibrium (LD) measurements for SNPs.
+#'The heat map is a false color image in the upper-left diagonal of a square plot.
+#'Optionally, a line parallel to the diagonal of the image indicating
+#'the physical or genetic map positions of the SNPs may be added, along
+#'with text reporting the total length of the genomic region considered.
 #'
 #' @usage LDheatmap(gdat, genetic.distances=NULL, distances="physical",
-#' LDmeasure="r", title="Pairwise LD", add.map=TRUE, add.key=TRUE,
-#' geneMapLocation=0.15, geneMapLabelX=NULL, geneMapLabelY=NULL,
-#' SNP.name=NULL, color=NULL, newpage=TRUE,
-#' name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
+#'LDmeasure="r", title="Pairwise LD", add.map=TRUE, add.key=TRUE,
+#'geneMapLocation=0.15, geneMapLabelX=NULL, geneMapLabelY=NULL,
+#'SNP.name=NULL, color=NULL, newpage=TRUE,
+#'name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 #'
 #' @param gdat SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
-#' pairwise linkage disequilibrium measurements or an object of
-#' class \code{"LDheatmap"} (the returned object of this function).
+#'pairwise linkage disequilibrium measurements or an object of
+#'class \code{"LDheatmap"} (the returned object of this function).
 #'
 #' @param genetic.distances A numeric vector of map locations of the SNPs,
-#' in the same order as SNPs listed in \code{gdat},
-#' in terms of genetic or physical distances.
-#' Physical distances should be in bases, genetic distances should be in
-#' centiMorgans (cM).
-#'  When \code{gdat} is \emph{not} an object of class \code{LDheatmap}, the
-#'  default is a vector that represents equi-spaced markers, 1kb (1000 bases)
-#'  apart. When \code{gdat} \emph{is} an object of class \code{LDheatmap},
-#'  the \code{genetic.distances} argument is taken to be the
-#'  \code{genetic.distances} list item of \code{gdat}.
+#'in the same order as SNPs listed in \code{gdat},
+#'in terms of genetic or physical distances.
+#'Physical distances should be in bases, genetic distances should be in
+#'centiMorgans (cM).
+#' When \code{gdat} is \emph{not} an object of class \code{LDheatmap}, the
+#'default is a vector that represents equi-spaced markers, 1kb (1000 bases)
+#'apart. When \code{gdat} \emph{is} an object of class \code{LDheatmap},
+#'the \code{genetic.distances} argument is taken to be the
+#'\code{genetic.distances} list item of \code{gdat}.
 #'
 #'@param distances A character string to specify whether the provided map locations
 #'are in physical or genetic distances.
@@ -141,10 +141,10 @@
 #' \item{LDheatmapGrob}{ A grid graphical object (grob) representing the produced heat map. }
 #' \item{heatmapVP}{ The viewport in which the heat map is drawn. See \link[grid:viewport]{viewport}.}
 #' \item{genetic.distances}{The vector of the supplied physical or
-#' genetic map locations, or the vector of equispaced marker distances
-#' when no distance vector is supplied.}
+#'genetic map locations, or the vector of equispaced marker distances
+#'when no distance vector is supplied.}
 #' \item{distances}{ A character string specifying whether the provided map
-#' distances are physical or genetic. }
+#'distances are physical or genetic. }
 #' \item{color}{ The range of colors used for drawing the heat map. }
 #' The \code{grob} \code{LDheatmapGrob} has three \code{grob}s as its children (components).
 #'They are listed below along with their own children and respectively represent
