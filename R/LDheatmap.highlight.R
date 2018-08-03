@@ -50,7 +50,7 @@
 #'Ji-Hyung Shin <shin@sfu.ca>, Sigal Blay <sblay@sfu.ca>
 #' @examples data(CEUData)
 #'tt <- LDheatmap(CEUSNP, genetic.distances=CEUDist)
-#'LDheatmap.highlight(tt, 3, 8, col="blue", fill="green", lwd=3)
+#'LDheatmap.highlight(tt, 3, 8, col="blue", fill="green", lwd=3, flipOutline=F, crissCross=F)
 #' @keywords aplot
 #' @export
 
