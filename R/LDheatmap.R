@@ -206,14 +206,14 @@
 #'# adding genomic annotation tracks to a flipped heatmap see
 #'# vignette("addTracks")
 
-#'flippedHeatmap<-LDheatmap(MyHeatmap,flip=TRUE)
+#'#flippedHeatmap<-LDheatmap(MyHeatmap,flip=TRUE)
 
 #'# Prompt the user before starting a new page of graphics output
 #'# and save the original prompt settings in old.prompt.
 #'old.prompt <- devAskNewPage(ask = TRUE)
 
 #'# Highlight a certain LD block of interest:
-#'LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", fill = "grey" )
+#'LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", fill = "grey",flipOutline=F, crissCross=F)
 #'# Plot a symbol in the center of the pixel which represents LD between
 #'# the fourth and seventh SNPs:
 #'LDheatmap.marks(MyHeatmap,  4,  7,  gp=grid::gpar(cex=2),  pch = "*")
