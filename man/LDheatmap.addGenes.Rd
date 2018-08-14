@@ -8,6 +8,8 @@ LDheatmap.addGenes(LDheatmap, chromosome, genome = NULL, genesLocation = 0.02,
 splice_variants = TRUE, non_coding = TRUE)
 }
 \arguments{
+\item{LDheatmap}{An object of class LDheatmap.}
+
 \item{chromosome}{A character string that identifies the chromosome.}
 
 \item{genome}{The genome assembly to use. The default is the most recent human genome assembly on the UCSC genome browser.}
@@ -17,8 +19,6 @@ splice_variants = TRUE, non_coding = TRUE)
 \item{splice_variants}{If \code{FALSE}, exclude gene splice variants.}
 
 \item{non_coding}{If \code{FALSE}, exclude non-coding genes.}
-
-\item{LDHeatmap}{An object of class LDheatmap.}
 }
 \value{
 An object of class LDheatmap given as an argument, with the \code{grob}

@@ -32,6 +32,14 @@ The x axis is the map of genetic distances of the SNPs.
 The function creates an \code{"association"} \code{grob} and adds it to the \code{LDheatmap} object.
 Then it pushes a \code{viewport} and draws the \code{LDheatmapGrob} onto it.
 }
+\note{
+The function can display at most two scatter plots in the default setting. To add three or more scatter plots 
+in the same viewport, the user can change the input value \code{"location"} from function \code{constructVP} which is 
+the function inside the \code{LDheatmap.addScatterplot}. The default \code{"location"} value is 0.03, for adding the 
+third scatter plot, user needs to set the \code{"location"} to 0.23, where 0.2 units is the height of the scatter plot.
+For the fourth scatter plot, set the \code{"location"} to 0.43 etc. 
+See Examples for usage.
+}
 \examples{
 # Load the package's data set
 data("CEUData")
@@ -41,6 +49,21 @@ MyLDheatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist, flip = TRUE)
 Yvalues <- seq(length = length(MyLDheatmap$genetic.distances), from = 0.01, to = 0.5)
 # Add scatter plot
 assoc <- LDheatmap.addScatterplot(MyLDheatmap, Yvalues)
+######## Adding three or more scatter plots ########
+# Redefine LDheatmap.addScatterplot() to display the third scatter plot
+LDheatmap.addScatterplot_test3 <- function(LDheatmap, P, height=0.2, ylab=NULL, 
+ylim=NULL, type="points",color,pch) {
+if (dim(LDheatmap$LDmatrix)[1] != length(P)) {
+print("Length of vector not equal number of SNPs in LDheatmap")
+return()
+
+flip <- !is.null(LDheatmap$flipVP)
+vp <- constructVP(LDheatmap$LDheatmapGrob, 0.23, flip)
+......
+return(LDheatmap)
+}}
+environment(LDheatmap.addScatterplot_test3) <- asNamespace('LDheatmap')
+
 }
 \seealso{
 \code{\link{LDheatmap}}

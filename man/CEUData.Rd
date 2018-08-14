@@ -16,7 +16,7 @@ CEUDist: A vector of integers, representing SNP physical map locations on the ch
 International HapMap Project \url{www.hapmap.org}
 }
 \usage{
-data(CEUdata)
+data(CEUData)
 }
 \description{
 CEUSNP:  Genotypes on 15 SNPs for 60 people

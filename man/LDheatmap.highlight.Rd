@@ -4,7 +4,7 @@
 \alias{LDheatmap.highlight}
 \title{Highlight a genetic region in the linkage disequilibrium heat map}
 \usage{
-LDheatmap.highlight(LDheatmap, i, j, fill = "NA", col = "black", lwd = 1, lty = 1)
+LDheatmap.highlight(LDheatmap, i, j, fill = "NA", col = "black", lwd = 1, lty = 1,flipOutline=FALSE, crissCross = FALSE)
 }
 \arguments{
 \item{LDheatmap}{An object of class \code{"LDheatmap"} returned
@@ -28,6 +28,13 @@ boundary segments.}
 \item{lty}{Either an integer or a character string specifying the
 line type of the boundary segments; see \code{\link[graphics]{par}()}
 for possible values.}
+
+\item{flipOutline}{A Boolean variable that flips the outlined section 
+over the diagonal of the heatmap.}
+
+\item{crissCross}{A Boolean variable that controls whether a contiguous 
+selection of SNPs are outlined only on their polygonal boundary or at 
+individual SNP levels.}
 }
 \value{
 A data frame of the x and y coordinates of points defining the
@@ -64,7 +71,7 @@ before calling \code{LDheatmap.highlight()}.
 \examples{
 data(CEUData)
 tt <- LDheatmap(CEUSNP, genetic.distances=CEUDist)
-LDheatmap.highlight(tt, 3, 8, col="blue", fill="green", lwd=3)
+LDheatmap.highlight(tt, 3, 8, col="blue", fill="green", lwd=3, flipOutline=FALSE, crissCross=FALSE)
 }
 \author{
 Nicholas Lewin-Koh

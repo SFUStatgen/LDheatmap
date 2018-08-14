@@ -8,7 +8,7 @@ LDheatmap(gdat, genetic.distances=NULL, distances="physical",
 LDmeasure="r", title="Pairwise LD", add.map=TRUE, add.key=TRUE,
 geneMapLocation=0.15, geneMapLabelX=NULL, geneMapLabelY=NULL,
 SNP.name=NULL, color=NULL, newpage=TRUE,
-name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE))
+name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 }
 \arguments{
 \item{gdat}{SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
@@ -20,11 +20,11 @@ in the same order as SNPs listed in \code{gdat},
 in terms of genetic or physical distances.
 Physical distances should be in bases, genetic distances should be in
 centiMorgans (cM).
- When \code{gdat} is \emph{not} an object of class \code{LDheatmap}, the
- default is a vector that represents equi-spaced markers, 1kb (1000 bases)
- apart. When \code{gdat} \emph{is} an object of class \code{LDheatmap},
- the \code{genetic.distances} argument is taken to be the
- \code{genetic.distances} list item of \code{gdat}.}
+When \code{gdat} is \emph{not} an object of class \code{LDheatmap}, the
+default is a vector that represents equi-spaced markers, 1kb (1000 bases)
+apart. When \code{gdat} \emph{is} an object of class \code{LDheatmap},
+the \code{genetic.distances} argument is taken to be the
+\code{genetic.distances} list item of \code{gdat}.}
 
 \item{distances}{A character string to specify whether the provided map locations
 are in physical or genetic distances.
@@ -46,7 +46,12 @@ is a matrix of pairwise LD measurements or an object of class \code{"LDheatmap"}
 \item{title}{A character string for the main title of the plot.
 Default is \dQuote{Pairwise LD}.}
 
-\item{add.map}{If \code{TRUE} (default) the color legend is drawn.}
+\item{add.map}{If \code{TRUE} (default) a diagonal line indicating
+the physical or genetic map positions of the SNPs will be added to 
+the plot, along with text indicating the total length of the 
+genetic region.}
+
+\item{add.key}{If \code{TRUE} (default) the color legend is drawn.}
 
 \item{geneMapLocation}{A numeric value specifying the position of the line
 parallel to the diagonal of the matrix; the larger the value, the
@@ -173,12 +178,13 @@ MyHeatmap <- LDheatmap(CEUSNP, genetic.distances = CEUDist,
 # Same heatmap, flipped below a horizontal gene map -- for examples of
 # adding genomic annotation tracks to a flipped heatmap see
 # vignette("addTracks")
-flippedHeatmap<-LDheatmap(MyHeatmap,flip=TRUE)
+# flippedHeatmap<-LDheatmap(MyHeatmap,flip=TRUE)
 # Prompt the user before starting a new page of graphics output
 # and save the original prompt settings in old.prompt.
 old.prompt <- devAskNewPage(ask = TRUE)
 # Highlight a certain LD block of interest:
-LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", fill = "grey" )
+LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", 
+fill = "grey",flipOutline=FALSE, crissCross=FALSE)
 # Plot a symbol in the center of the pixel which represents LD between
 # the fourth and seventh SNPs:
 LDheatmap.marks(MyHeatmap,  4,  7,  gp=grid::gpar(cex=2),  pch = "*")

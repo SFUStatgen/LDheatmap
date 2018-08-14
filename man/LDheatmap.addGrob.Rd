@@ -22,7 +22,7 @@ Add a graphical object to an LDheatmap plot such that the x-axis corresponds
 to the physical map on the heatmap.
 }
 \examples{
-\% Add an empty rectangle frame
+# Add an empty rectangle frame
 data(GIMAP5.CEU) 
 ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 llplusgrob<-LDheatmap.addGrob(ll, grid::rectGrob())
