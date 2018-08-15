@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^docs$
+^_pkgdown\.yaml$
+^Rplots\.pdf$
+^README\.Rmd$
