@@ -4,7 +4,8 @@
 \alias{LDheatmap.highlight}
 \title{Highlight a genetic region in the linkage disequilibrium heat map}
 \usage{
-LDheatmap.highlight(LDheatmap, i, j, fill = "NA", col = "black", lwd = 1, lty = 1,flipOutline=FALSE, crissCross = FALSE)
+LDheatmap.highlight(LDheatmap, i, j, fill = "NA", col = "black", lwd = 1, 
+lty = 1,flipOutline=FALSE, crissCross = FALSE)
 }
 \arguments{
 \item{LDheatmap}{An object of class \code{"LDheatmap"} returned
