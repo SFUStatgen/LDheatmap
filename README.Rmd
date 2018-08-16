@@ -35,7 +35,7 @@ tracks may be added above the genetic map.
 install.packages("LDheatmap")
 
 # Install the latest development version from GitHub with
-devtools::install_github("mcneney/LDheatmap")
+devtools::install_github("SFUStatgen/LDheatmap")
 ```
 
 
