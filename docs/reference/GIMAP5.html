@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -31,7 +33,10 @@
 <meta property="og:title" content="Example data set for LDHeatmap — GIMAP5" />
 
 <meta property="og:description" content="SNP genotypes on HapMap founders for SNPs spanning the GIMAP5 gene." />
+
+<meta property="og:image" content="https://github.com/mcneney/LDheatmap/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -58,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">LDheatmap</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.5</span>
       </span>
     </div>
 
@@ -94,6 +99,9 @@
     </li>
     <li>
       <a href="https://cran.r-project.org/web/packages/LDheatmap/vignettes/addTracks.pdf">Example of Adding Tracks</a>
+    </li>
+    <li>
+      <a href="../articles/vcfOnLDheatmap.html">Drawing LDheatmap from data in VCF format</a>
     </li>
   </ul>
 </li>
@@ -141,9 +149,11 @@ snp.support is a data frame with the following columns:</p><table class='table'>
 <tr><td>[,3]</td><td>Chromosome</td><td>character</td><td>chromosome (chr7 for all)</td></tr>
 <tr><td>[,4]</td><td>Position</td><td>numeric</td><td>physical position</td></tr>
 <tr><td>[,5]</td><td>Strand</td><td>character</td><td>strand (all "+")</td></tr>
+<tr><td></td><td>[,1]</td><td>dbSNPalleles</td><td>character</td></tr>
 </table>
 <p>subject.support is a one-column data frame with:</p><table class='table'>
 <tr><td>[,1]</td><td>pop</td><td>character</td><td>HapMap population of each subject</td></tr>
+<tr><td></td><td>[,1]</td><td>pop</td><td>character</td></tr>
 </table>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -167,6 +177,7 @@ phase III populations:</p><table class='table'>
 <tr><td>MKK</td><td>Maasai in Kinyawa, Kenya</td></tr>
 <tr><td>TSI</td><td>Toscani in Italia</td></tr>
 <tr><td>YRI</td><td>Yoruba in Ibadan, Nigeria</td></tr>
+<tr><td></td><td>ASW</td></tr>
 </table>
 <p>Only those SNPs with minor allele frequency greater
 than 5% in all populations were retained.
