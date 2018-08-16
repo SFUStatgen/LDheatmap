@@ -41,5 +41,5 @@ devtools::install_github("mcneney/LDheatmap")
 
 ## Homepage
 
-https://mcneney.github.io/LDheatmap/index.html
+https://sfustatgen.github.io/LDheatmap/index.html
 
