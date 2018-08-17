@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## LDheatmap <img src="man/figures/Logo.png" align="right" />
+## LDheatmap <img src="man/figures/logo.png" align="right" />
 
 `LDheatmap()` is used to produce a graphical display,
 as a heat map, of pairwise linkage disequilibrium (LD) 
