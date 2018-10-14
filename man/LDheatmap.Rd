@@ -11,7 +11,8 @@ SNP.name=NULL, color=NULL, newpage=TRUE,
 name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 }
 \arguments{
-\item{gdat}{SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
+\item{gdat}{SNP data: a data frame of \code{genotype} objects (a data structure from the \code{genetics} package), a \code{SnpMatrix} object (a data structure
+from the \code{snpStats} BioConductor package), a square matrix of
 pairwise linkage disequilibrium measurements or an object of
 class \code{"LDheatmap"} (the returned object of this function).}
 
