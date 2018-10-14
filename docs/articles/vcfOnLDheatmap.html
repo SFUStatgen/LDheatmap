@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">LDheatmap</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.6</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@
       <h1>Drawing LDheatmap from data in VCF format</h1>
                         <h4 class="author">Gloria Yang</h4>
             
-            <h4 class="date">2018-08-17</h4>
+            <h4 class="date">2018-10-14</h4>
       
       
       <div class="hidden name"><code>vcfOnLDheatmap.Rmd</code></div>
@@ -187,6 +187,7 @@ snpNames &lt;-<span class="st"> </span>info<span class="op">$</span>id
 <span class="co">#&gt; Loading required package: Matrix</span>
 <span class="co">#&gt; Warning: package 'Matrix' was built under R version 3.4.4</span>
 <span class="kw">library</span>(LDheatmap)
+<span class="co">#&gt; Warning: package 'LDheatmap' was built under R version 3.4.4</span>
 gdat_eur&lt;-<span class="kw">as</span>(gdat_eur,<span class="st">"SnpMatrix"</span>)
 <span class="co">#&gt; Warning in asMethod(object): values other than 0, 1 or 2 set to NA</span>
 <span class="kw"><a href="../reference/LDheatmap.html">LDheatmap</a></span>(gdat_eur,info<span class="op">$</span>filt_snpDist,<span class="dt">title=</span><span class="st">'Europeans'</span>,<span class="dt">add.map=</span><span class="ot">FALSE</span>)</code></pre></div>

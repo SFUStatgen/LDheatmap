@@ -68,7 +68,7 @@ with text reporting the total length of the genomic region considered." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">LDheatmap</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.6</span>
       </span>
     </div>
 
@@ -156,7 +156,8 @@ with text reporting the total length of the genomic region considered.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>gdat</th>
-      <td><p>SNP data: a data frame of genotype objects, a <code>SnpMatrix</code> object, a square matrix of
+      <td><p>SNP data: a data frame of <code>genotype</code> objects (a data structure from the <code>genetics</code> package), a <code>SnpMatrix</code> object (a data structure
+from the <code>snpStats</code> BioConductor package), a square matrix of
 pairwise linkage disequilibrium measurements or an object of
 class <code>"LDheatmap"</code> (the returned object of this function).</p></td>
     </tr>
