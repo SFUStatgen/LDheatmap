@@ -19,7 +19,7 @@ Description: Produces a graphical display, as a heat map, of measures
         distances of each SNP on the plot. Users should note that the
         imported package snpStats and the suggested packages 
         rtracklayer, GenomicRanges, GenomInfoDb and IRanges are all
-        BioConductor packages (https://bioconductor.org).
+        BioConductor packages <https://bioconductor.org>.
 License: GPL-3
 URL: https://sfustatgen.github.io/LDheatmap/
 Repository: CRAN
