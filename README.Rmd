@@ -31,8 +31,11 @@ tracks may be added above the genetic map.
 ## Installation
 
 ```{r,eval=FALSE}
-# Install the latest release version from CRAN with
+# Install the latest release version from CRAN and the
+# imported/suggested BioConductor packages with
 install.packages("LDheatmap")
+source("https://bioconductor.org/biocLite.R")
+biocLite(c("snpStats","rtracklayer","GenomicRanges","GenomInfoDb","IRanges"))
 
 # Install the latest development version from GitHub with
 devtools::install_github("SFUStatgen/LDheatmap")

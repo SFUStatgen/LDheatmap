@@ -108,8 +108,11 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the latest release version from CRAN with</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the latest release version from CRAN and the</span>
+<span class="co"># imported/suggested BioConductor packages with</span>
 <span class="kw">install.packages</span>(<span class="st">"LDheatmap"</span>)
+<span class="kw">source</span>(<span class="st">"https://bioconductor.org/biocLite.R"</span>)
+<span class="kw">biocLite</span>(<span class="kw">c</span>(<span class="st">"snpStats"</span>,<span class="st">"rtracklayer"</span>,<span class="st">"GenomicRanges"</span>,<span class="st">"GenomInfoDb"</span>,<span class="st">"IRanges"</span>))
 
 <span class="co"># Install the latest development version from GitHub with</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"SFUStatgen/LDheatmap"</span>)</code></pre></div>
