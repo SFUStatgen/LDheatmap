@@ -248,7 +248,7 @@ plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_d
         r <- color_tbl[color_tbl[,"kgID"]== t[i,"name"],"r"]
         g <- color_tbl[color_tbl[,"kgID"]== t[i,"name"],"g"]
         b <- color_tbl[color_tbl[,"kgID"]== t[i,"name"],"b"]
-        gene_color <- rgb(r,g,b, maxColorValue = 225)
+        gene_color <- rgb(r,g,b, maxColorValue = 255)
      }
 
      # Wrap everything in a grob and draw it
