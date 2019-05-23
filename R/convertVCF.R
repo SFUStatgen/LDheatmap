@@ -20,7 +20,7 @@ convertVCF <- function(vcf, phased = TRUE, samples = NULL, verbose = FALSE) {
   
   # convert GT to snpMatrix if genotypes are unphased
   # else convert to raw type
-  mat <- numeric_to_raw_prep(mat)
+  mat <- numeric_to_raw_prep(mat, phased)
   mode(mat) <- "raw"
   
   if (phased != TRUE) mat <- new("SnpMatrix", mat)
