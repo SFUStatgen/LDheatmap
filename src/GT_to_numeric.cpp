@@ -18,7 +18,7 @@ NumericMatrix GT_to_numeric (CharacterMatrix vcf_GT, bool phased = true) {
   int ncol = vcf_GT.ncol();
   List dimnames = vcf_GT.attr("dimnames");
   
-  if (phased != true) {
+  if (!phased) {
     
     NumericMatrix mat(nrow, ncol);
     int mat_size = mat.nrow() * mat.ncol();
