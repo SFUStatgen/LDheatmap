@@ -1,8 +1,7 @@
 
 convertVCF <- function(vcf, phased = TRUE, samples = NULL, verbose = FALSE) {
-  requireNamespace("vcfR")
   
-  snp <- read.vcfR(vcf, verbose = verbose)
+  snp <- vcfR::read.vcfR(vcf, verbose = verbose)
   GT <- snp@gt[,!colnames(snp@gt)%in%"FORMAT"]
   
   if (!is.null(samples)) {
