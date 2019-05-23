@@ -7,8 +7,9 @@ using namespace std;
 
 
 
-
-// void createUnphasedNumeric (NumericMatrix &mat, CharacterMatrix vcf_GT){}
+// Genotypes are in the form of 'a\b' or 'a|b'
+// If genotypes are phased, make sum of a and b an entry of the returned matrix.
+// If genotypes are not phased, make a and b sperate entries of the returned matrix.
 
 // [[Rcpp::export]]
 NumericMatrix GT_to_numeric (CharacterMatrix vcf_GT, bool phased = true) {
