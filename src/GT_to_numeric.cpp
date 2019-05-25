@@ -16,7 +16,7 @@ NumericMatrix GT_to_numeric (CharacterMatrix vcf_GT, bool phased = true) {
   
   int nrow = vcf_GT.nrow();
   int ncol = vcf_GT.ncol();
-  List dimnames = vcf_GT.attr("dimnames");
+  List dimnames = (Rf_isNull(vcf_GT.attr("dimnames")))? List::create(R_NilValue, R_NilValue): vcf_GT.attr("dimnames");
   
   if (!phased) {
     
@@ -36,39 +36,31 @@ NumericMatrix GT_to_numeric (CharacterMatrix vcf_GT, bool phased = true) {
   } else {
     
 
-    NumericMatrix mat(nrow, 2*ncol);
+    NumericMatrix mat(2*nrow, ncol);
     List dimnamesNew = List::create(R_NilValue, R_NilValue);
     
-    if (!Rf_isNull(dimnames[1])) {
+    if (!Rf_isNull(dimnames[0])) {
       
-      CharacterVector colNames = dimnames[1];
-      CharacterVector colNamesNew(2*ncol);
+      CharacterVector rowNames = dimnames[0];
+      CharacterVector rowNamesNew(2*nrow);
       
-      for (int j = 0; j < ncol; j++) {
+      for (int i = 0; i < nrow; i++) {
         
-        string str1(colNames[j]);
-        string str2(colNames[j]);
-        colNamesNew[j*2] = (str1.append(".1")).c_str();
-        colNamesNew[j*2+1] = (str2.append(".2")).c_str();
+        string str1(rowNames[i]);
+        string str2(rowNames[i]);
+        rowNamesNew[i*2] = (str1.append(".1")).c_str();
+        rowNamesNew[i*2+1] = (str2.append(".2")).c_str();
         
-        for (int i = 0; i < nrow; i++) { 
+        for (int j = 0; j < ncol; j++) { 
           
-          mat(i, j*2) = vcf_GT(i, j)[0] - '0';
-          mat(i, j*2+1) =  vcf_GT(i, j)[2] - '0';
+          mat(i*2, j) = vcf_GT(i, j)[0] - '0';
+          mat(i*2+1, j) =  vcf_GT(i, j)[2] - '0';
           
         }
       }
       
-      if (!Rf_isNull(dimnames[0])) {
-        
-        dimnamesNew[0] = dimnames[0];
-        
-      }
-      
-      dimnamesNew[1] = colNamesNew;
-      mat.attr("dimnames") = dimnamesNew;
-      
-      return mat;
+      dimnamesNew[0] = rowNamesNew;
+
       
     } else {
     
@@ -80,16 +72,21 @@ NumericMatrix GT_to_numeric (CharacterMatrix vcf_GT, bool phased = true) {
         
         }
       }
-      
-      if (!Rf_isNull(dimnames[0])) {
-        
-        dimnamesNew[0] = dimnames[0];
-        
-      }
-      
-      mat.attr("dimnames") = dimnamesNew;
-      return mat;
+
     }
+    
+    
+    if (!Rf_isNull(dimnames[1])) {
+      
+      dimnamesNew[1] = dimnames[1];
+      
+    }
+    
+    mat.attr("dimnames") = dimnamesNew;
+    
+    return mat;
+    
+    
   }
   
   
