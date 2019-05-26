@@ -10,23 +10,26 @@ using namespace std;
 // Genotypes are in the form of 'a\b' or 'a|b'
 // If genotypes are phased, make sum of a and b an entry of the returned matrix.
 // If genotypes are not phased, make a and b sperate entries of the returned matrix.
+// The returned matrix has subjects in rows and mutations in columns (different from the input matrix) 
 
 // [[Rcpp::export]]
 NumericMatrix GT_to_numeric (CharacterMatrix vcf_GT, bool phased = true) {
   
-  int nrow = vcf_GT.nrow();
-  int ncol = vcf_GT.ncol();
-  List dimnames = (Rf_isNull(vcf_GT.attr("dimnames")))? List::create(R_NilValue, R_NilValue): vcf_GT.attr("dimnames");
+  int nrow = vcf_GT.ncol();
+  int ncol = vcf_GT.nrow();
+  List vcf_GT_dimnames = (Rf_isNull(vcf_GT.attr("dimnames")))? List::create(R_NilValue, R_NilValue): vcf_GT.attr("dimnames");
+  List dimnames = List::create(vcf_GT_dimnames[1], vcf_GT_dimnames[0]);
   
   if (!phased) {
     
     NumericMatrix mat(nrow, ncol);
-    int mat_size = mat.nrow() * mat.ncol();
     
-    for (int i = 0; i < mat_size; i++) {
-      
-      mat[i] = (vcf_GT[i][0] - '0') + (vcf_GT[i][2] - '0');
-      
+    for (int i = 0; i < nrow; i++) {
+      for (int j = 0; j < ncol; j++) { 
+        
+        mat(i, j) = (vcf_GT(j, i)[0] - '0') + (vcf_GT(j, i)[2] - '0');
+        
+      }
     }
     
     mat.attr("dimnames") = dimnames;
@@ -53,8 +56,8 @@ NumericMatrix GT_to_numeric (CharacterMatrix vcf_GT, bool phased = true) {
 
         for (int j = 0; j < ncol; j++) {
 
-          mat(i*2, j) = vcf_GT(i, j)[0] - '0';
-          mat(i*2+1, j) =  vcf_GT(i, j)[2] - '0';
+          mat(i*2, j) = vcf_GT(j, i)[0] - '0';
+          mat(i*2+1, j) =  vcf_GT(j, i)[2] - '0';
 
         }
       }
@@ -67,8 +70,8 @@ NumericMatrix GT_to_numeric (CharacterMatrix vcf_GT, bool phased = true) {
       for (int i = 0; i < nrow; i++) {
         for (int j = 0; j < ncol; j++) { 
         
-        mat(i*2, j) = vcf_GT(i, j)[0] - '0';
-        mat(i*2+1, j) =  vcf_GT(i, j)[2] - '0';
+        mat(i*2, j) = vcf_GT(j, i)[0] - '0';
+        mat(i*2+1, j) =  vcf_GT(j, i)[2] - '0';
         
         }
       }
