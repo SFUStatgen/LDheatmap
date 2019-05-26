@@ -40,46 +40,46 @@ NumericMatrix GT_to_numeric (CharacterMatrix vcf_GT, bool phased = true) {
     List dimnamesNew = List::create(R_NilValue, R_NilValue);
     
     if (!Rf_isNull(dimnames[0])) {
-      
+
       CharacterVector rowNames = dimnames[0];
       CharacterVector rowNamesNew(2*nrow);
-      
+
       for (int i = 0; i < nrow; i++) {
-        
+
         string str1(rowNames[i]);
         string str2(rowNames[i]);
         rowNamesNew[i*2] = (str1.append(".1")).c_str();
         rowNamesNew[i*2+1] = (str2.append(".2")).c_str();
-        
-        for (int j = 0; j < ncol; j++) { 
-          
+
+        for (int j = 0; j < ncol; j++) {
+
           mat(i*2, j) = vcf_GT(i, j)[0] - '0';
           mat(i*2+1, j) =  vcf_GT(i, j)[2] - '0';
-          
+
         }
       }
-      
+
       dimnamesNew[0] = rowNamesNew;
 
-      
+
     } else {
     
       for (int i = 0; i < nrow; i++) {
         for (int j = 0; j < ncol; j++) { 
         
-        mat(i, j*2) = vcf_GT(i, j)[0] - '0';
-        mat(i, j*2+1) =  vcf_GT(i, j)[2] - '0';
+        mat(i*2, j) = vcf_GT(i, j)[0] - '0';
+        mat(i*2+1, j) =  vcf_GT(i, j)[2] - '0';
         
         }
       }
 
     }
-    
-    
+
+
     if (!Rf_isNull(dimnames[1])) {
-      
+
       dimnamesNew[1] = dimnames[1];
-      
+
     }
     
     mat.attr("dimnames") = dimnamesNew;
