@@ -1,9 +1,17 @@
 
-convertVCF <- function(vcf, phased = TRUE, samples = NULL, verbose = FALSE) {
+convertVCF <- function(vcf, phased = TRUE, samples = NULL, verbose = TRUE) {
   
-  # read vcf file and extract genotype info
+  # read vcf file
   snp <- vcfR::read.vcfR(vcf, verbose = verbose)
+  
+  # extract genetic distances
+  if ("POS"%in%colnames(snp@fix)) genetic.distance = snp@fix[,"POS"]
+  
+  # extract genotype info
   GT <- snp@gt[,!colnames(snp@gt)%in%"FORMAT"]
+  
+  # extract subject IDs
+  subjectID = colnames(GT)
   
   # subset GT if sample names are provided
   if (!is.null(samples)) {
@@ -11,11 +19,11 @@ convertVCF <- function(vcf, phased = TRUE, samples = NULL, verbose = FALSE) {
     if (ncol(GT) == 0) stop ("could not find entries with the provided sample names") 
   }
   
-  GT <- t(GT)
   # extract and add snp identifiers if any
-  if ("ID"%in%colnames(snp@fix)) colnames(GT) <- snp@fix[,"ID"]
+  if ("ID"%in%colnames(snp@fix)) rownames(GT) <- snp@fix[,"ID"]
   
   # convert GT to numeric
+  # mat now has subjects in rows and mutations in columns
   mat <- GT_to_numeric(GT, phased)
   
   # convert GT to snpMatrix if genotypes are unphased
@@ -25,6 +33,6 @@ convertVCF <- function(vcf, phased = TRUE, samples = NULL, verbose = FALSE) {
   
   if (phased != TRUE) mat <- new("SnpMatrix", mat)
   
-  return(mat)
+  return(list(genetic.distance = genetic.distance, subjectID = subjectID, data = mat))
   
 }
