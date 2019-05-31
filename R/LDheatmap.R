@@ -458,7 +458,7 @@
   #   mode(gdat) <- "numeric" 
   # # --------------------------------
     
-    # ------ CONVERTvcf.sparse() -------
+    # ------ CONVERTvcf.sparse() ------
   else if(inherits(gdat,"dgCMatrix")){
     gdat <- as.matrix(gdat)
     # --------------------------------
