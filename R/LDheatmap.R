@@ -455,7 +455,7 @@
   
   # # -------- convertVCF() ----------
   # else if(inherits(gdat,"phasedRaw")){
-  #   mode(gdat) <- "numeric"
+  #   mode(gdat) <- "numeric" 
   # # --------------------------------
     
     # ------ CONVERTvcf.sparse() -------
