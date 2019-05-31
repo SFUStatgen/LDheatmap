@@ -1,0 +1,52 @@
+---
+title: "Drawing LDheatmap from data in VCF format"
+author: "Gloria Yang"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Drawing LDheatmap from data in VCF format}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+Sys.setlocale("LC_TIME", "English")
+library(devtools)
+load_all('D:/sfu/usra/LDheatmap')
+```
+
+#Introduction
+VCF (Variant Call Format) is a text file format. It contains meta-information lines, a header line, and then data lines each containing information about a position in the genome. There is an example how to do draw LDheatmap from data in VCF format
+
+#Getting started
+`1KG_sample_info.csv` is the data file which contain the information about the sample population and corresponding super population code. We extract the population code of European desent and Asian descent for later use.
+```{r}
+#super population for EUR & EAS
+#Get the corresponding population code for EUR & EAS
+sample_info <- read.csv("1KG_sample_info.csv")
+eur <- sample_info[sample_info$Population %in% c("CEU","TSI","FIN","GBR","IBS"),-c(2,4)]
+eas <- sample_info[sample_info$Population %in% c("CHB","JPT","CHS","CDX","KHV"),-c(2,4)]
+
+```
+
+`snp_in_vcf.vcf` is a vcf datafile contains common SNPs (SNPs with frequency 5% or more in the world-wide population) in the MLLT3 gene. We are going to draw 2 different LDheatmaps based on the genotype data contained in the file and the population code we just extracted. 
+
+```{r, warning=FALSE}
+library(LDheatmap)
+#extract genetic distances, subject IDs and genotypes for European desent from the VCF file
+list_eur <- convertVCF.sparse("snp_in_vcf.vcf", samples = eur[,1])
+
+#draw the heatmap
+LDheatmap(list_eur$data, list_eur$genetic.distance, title='Europeans', add.map=FALSE)
+
+#same procedure as above for Asian descent
+list_eas <- convertVCF.sparse("snp_in_vcf.vcf", samples = eas[,1], verbose = FALSE)
+LDheatmap(list_eas$data, list_eas$genetic.distance, title='Asians', add.map=FALSE)
+
+```
+
+
