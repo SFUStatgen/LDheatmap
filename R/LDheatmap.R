@@ -451,6 +451,36 @@
     LDmatrix <- gdat
     LDmatrix[lower.tri(LDmatrix, diag=TRUE)] <- NA
   }
+  # Same as above but with phasedRaw structure
+  
+  # # -------- convertVCF() ----------
+  # else if(inherits(gdat,"phasedRaw")){
+  #   mode(gdat) <- "numeric"
+  # # --------------------------------
+    
+    # ------ CONVERTvcf.sparse() -------
+  else if(inherits(gdat,"dgCMatrix")){
+    gdat <- as.matrix(gdat)
+    # --------------------------------
+    
+    ## Sort data in ascending order of SNPs map position:
+    if(!is.vector(genetic.distances))
+    {stop("Distance should be in the form of a vector")}
+    o<-order(genetic.distances)
+    genetic.distances<-genetic.distances[o]
+    gdat<-gdat[,o]
+    
+    ## convert gdat mode from raw to integer for ld calculation
+    if(LDmeasure=="r")
+      LDmatrix <- cor(gdat, method = "pearson")^2
+    ## 'D' is not implemented yet 
+    # else if (LDmeasure=="D'")
+    #   LDmatrix <- abs(myLD[[LDmeasure]])  
+    else 
+      stop("Invalid LD measurement, choose r or D'.")
+    
+    LDmatrix[lower.tri(LDmatrix,diag=TRUE)] <- NA
+  }
   else if(!missing(gdat))  
     stop(paste("No method for an object of class",class(gdat)))
   else
