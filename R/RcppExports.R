@@ -5,6 +5,10 @@ GT_to_numeric <- function(vcf_GT, phased = TRUE) {
     .Call(`_LDheatmap_GT_to_numeric`, vcf_GT, phased)
 }
 
+GT_to_S4 <- function(vcf_GT, phased = TRUE) {
+    .Call(`_LDheatmap_GT_to_S4`, vcf_GT, phased)
+}
+
 numeric_to_raw_prep <- function(mat, phased = TRUE) {
     .Call(`_LDheatmap_numeric_to_raw_prep`, mat, phased)
 }

@@ -8,8 +8,8 @@ using namespace std;
 NumericMatrix numeric_to_raw_prep(NumericMatrix mat, bool phased = true) {
   
   int mat_size = mat.nrow() * mat.ncol();
+  // int b = (phased)? 1: 2;
   int b;
-  
   if (phased) {
     b = 1;
   } else {
