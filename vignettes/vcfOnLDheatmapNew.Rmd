@@ -23,7 +23,7 @@ load_all('D:/sfu/usra/LDheatmap')
 VCF (Variant Call Format) is a text file format. It contains meta-information lines, a header line, and then data lines each containing information about a position in the genome. There is an example how to do draw LDheatmap from data in VCF format
 
 #Getting started
-`1KG_sample_info.csv` is the data file which contain the information about the sample population and corresponding super population code. We extract the population code of European desent and Asian descent for later use.
+`1KG_sample_info.csv` is the data file which contain the information about the sample population and corresponding super population code. We extract the population code of European descent and Asian descent for later use.
 ```{r}
 #super population for EUR & EAS
 #Get the corresponding population code for EUR & EAS
