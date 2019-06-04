@@ -13,3 +13,7 @@ numeric_to_raw_prep <- function(mat, phased = TRUE) {
     .Call(`_LDheatmap_numeric_to_raw_prep`, mat, phased)
 }
 
+raw_to_numeric <- function(mat) {
+    .Call(`_LDheatmap_raw_to_numeric`, mat)
+}
+

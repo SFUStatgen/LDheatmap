@@ -42,11 +42,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// raw_to_numeric
+NumericMatrix raw_to_numeric(RawMatrix mat);
+RcppExport SEXP _LDheatmap_raw_to_numeric(SEXP matSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< RawMatrix >::type mat(matSEXP);
+    rcpp_result_gen = Rcpp::wrap(raw_to_numeric(mat));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_LDheatmap_GT_to_numeric", (DL_FUNC) &_LDheatmap_GT_to_numeric, 2},
     {"_LDheatmap_GT_to_S4", (DL_FUNC) &_LDheatmap_GT_to_S4, 2},
     {"_LDheatmap_numeric_to_raw_prep", (DL_FUNC) &_LDheatmap_numeric_to_raw_prep, 2},
+    {"_LDheatmap_raw_to_numeric", (DL_FUNC) &_LDheatmap_raw_to_numeric, 1},
     {NULL, NULL, 0}
 };
 
