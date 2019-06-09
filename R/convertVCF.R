@@ -5,7 +5,7 @@ convertVCF <- function(vcf, phased = NULL, samples = NULL, ...) {
   snp <- vcfR::read.vcfR(vcf, ...)
   
   # extract genetic distances
-  if ("POS"%in%colnames(snp@fix)) genetic.distance = snp@fix[,"POS"]
+  if ("POS"%in%colnames(snp@fix)) genetic.distance = as.numeric(snp@fix[,"POS"])
   
   # extract genotype info
   GT <- snp@gt[,!colnames(snp@gt)%in%"FORMAT"]
@@ -32,20 +32,9 @@ convertVCF <- function(vcf, phased = NULL, samples = NULL, ...) {
   # extract and add snp identifiers if any
   if ("ID"%in%colnames(snp@fix)) rownames(GT) <- snp@fix[,"ID"]
   
-  # convert GT to numeric
-  # mat now has subjects in rows and mutations in columns
-  mat <- GT_to_numeric(GT, phased)
+  # convert GT to SnpMatrix if phased if FALSE, else convert to XSnpMatrix
+  mat <- GT_to_SnpMatrix(GT, phased)
   
-  # convert GT to snpMatrix if genotypes are unphased
-  # else convert to "phasedRaw" type
-  mat <- numeric_to_raw_prep(mat, phased)
-  mode(mat) <- "raw"
-  
-  if (phased == TRUE) {
-    class(mat) <- "phasedRaw"
-  } else {
-    mat <- new("SnpMatrix", mat)
-  }
   
   return(list(genetic.distance = genetic.distance, subjectID = subjectID, data = mat))
   

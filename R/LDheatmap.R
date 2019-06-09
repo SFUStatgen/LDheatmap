@@ -38,9 +38,7 @@
 #'SNP.name=NULL, color=NULL, newpage=TRUE,
 #'name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 #'
-#' @param gdat SNP data: a data frame of \code{genotype} objects (see \bold{Details} below), 
-#'a \code{SnpMatrix} object (see \bold{Details} below), 
-#'a square matrix of
+#' @param gdat SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
 #'pairwise linkage disequilibrium measurements or an object of
 #'class \code{"LDheatmap"} (the returned object of this function).
 #'
@@ -383,7 +381,7 @@
   #____________________________________________________________________________#
   ## Calculate or extract LDmatrix, then stored in LDMatrix as an upper triangular matrix
   
-  if(inherits(gdat,"SnpMatrix")){
+  if(inherits(gdat,"SnpMatrix")||inherits(gdat,"XSnpMatrix")){
     ## Exclude SNPs with less than 2 alleles:
     # NOT YET IMPLEMENTED for SnpMatrix, is implemented for data.frame, done in else structure below
     #gvars <- unlist(sapply(gdat, function(x) genetics::nallele(x) == 2))
@@ -450,36 +448,6 @@
       stop("The matrix of linkage disequilibrium measurements must be a square matrix")
     LDmatrix <- gdat
     LDmatrix[lower.tri(LDmatrix, diag=TRUE)] <- NA
-  }
-  # Same as above but with phasedRaw structure
-  
-  # # -------- convertVCF() ----------
-  # else if(inherits(gdat,"phasedRaw")){
-  #   gdat <- raw_to_numeric(gdat)
-  # # --------------------------------
-    
-    # ------ CONVERTvcf.sparse() ------
-  else if(inherits(gdat,"dgCMatrix")){
-    gdat <- as.matrix(gdat)
-    # --------------------------------
-    
-    ## Sort data in ascending order of SNPs map position:
-    if(!is.vector(genetic.distances))
-    {stop("Distance should be in the form of a vector")}
-    o<-order(genetic.distances)
-    genetic.distances<-genetic.distances[o]
-    gdat<-gdat[,o]
-    
-    ## convert gdat mode from raw to integer for ld calculation
-    if(LDmeasure=="r")
-      LDmatrix <- cor(gdat, method = "pearson")^2
-    ## 'D' is not implemented yet 
-    # else if (LDmeasure=="D'")
-    #   LDmatrix <- abs(myLD[[LDmeasure]])  
-    else 
-      stop("Invalid LD measurement, choose r or D'.")
-    
-    LDmatrix[lower.tri(LDmatrix,diag=TRUE)] <- NA
   }
   else if(!missing(gdat))  
     stop(paste("No method for an object of class",class(gdat)))

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 Sys.setlocale("LC_TIME", "English")
 library(devtools)
-load_all('D:/sfu/usra/LDheatmap')
+load_all('D:/sfu/usra/LDheatmap', export_all = FALSE)
 ```
 
 #Introduction
@@ -38,13 +38,13 @@ eas <- sample_info[sample_info$Population %in% c("CHB","JPT","CHS","CDX","KHV"),
 ```{r, warning=FALSE}
 library(LDheatmap)
 #extract genetic distances, subject IDs and genotypes for European desent from the VCF file
-list_eur <- convertVCF.sparse("snp_in_vcf.vcf", samples = eur[,1])
+list_eur <- convertVCF("snp_in_vcf.vcf", samples = eur[,1])
 
 #draw the heatmap
 LDheatmap(list_eur$data, list_eur$genetic.distance, title='Europeans', add.map=FALSE)
 
 #same procedure as above for Asian descent
-list_eas <- convertVCF.sparse("snp_in_vcf.vcf", samples = eas[,1], verbose = FALSE)
+list_eas <- convertVCF("snp_in_vcf.vcf", samples = eas[,1], verbose = FALSE)
 LDheatmap(list_eas$data, list_eas$genetic.distance, title='Asians', add.map=FALSE)
 
 ```
