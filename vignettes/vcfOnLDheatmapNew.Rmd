@@ -15,8 +15,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 Sys.setlocale("LC_TIME", "English")
-library(devtools)
-load_all('D:/sfu/usra/LDheatmap', export_all = FALSE)
 ```
 
 #Introduction
