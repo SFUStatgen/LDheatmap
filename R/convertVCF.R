@@ -2,18 +2,26 @@
 #' @aliases convertVCF
 #' @title Convert a VCF file into genotype data
 #' @description Convert a VCF file into a list composed of genetic distances, subject IDs, and a SnpMatrix/XSnpMatrix object.
+#' 
 #' @usage convertVCF(file, phased = NULL, subjects = NULL, ...)
+#' 
 #' @param file A filename for a variant call format (vcf) file.
+#' 
 #' @param phased If \code{TRUE} the output genotype data are in the form of a XSnpMatrix object. Otherwise, they are in the form of a SnpMatrix object. 
-#'If it is unspecified, the phasing status will be determined by checking the first entry in the GT section of the VCF file. 
+#'If it is unspecified, the phasing status will be determined by checking the first entry in the GT section of the VCF file.
+#'
 #' @param subjects A character or factor containing subject IDs. If supplied, genotype info of only those subjects will be returned. 
 #'This should be a subset of the sample IDs in the VCF file.
+#'
 #' @param ... Additional arguments to be passed to vcfR::read.vcfR().
+#' 
 #' @return A list which contains the following components:
 #' \item{genetic.distances}{ A numeric vector of the reference positions of SNPs. }
 #' \item{subjectID}{ A character vector of IDs of the subjects which the returned genotype data belong to. }
 #' \item{data}{An object of SnpMatrix/XSnpMatrix class from the 'snpStats' package containing genotype data. }
+#' 
 #'@seealso  \code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
+#'
 #' @keywords hplot
 #' @export
 
@@ -41,10 +49,10 @@
 
 ###########################################################################
 
-convertVCF <- function(vcf, phased = NULL, subjects = NULL, ...) {
+convertVCF <- function(file, phased = NULL, subjects = NULL, ...) {
   
   # read vcf file
-  snp <- vcfR::read.vcfR(vcf, ...)
+  snp <- vcfR::read.vcfR(file, ...)
   
   # check validity of phased
   if (!is.null(phased) & !is.logical(phased)) stop("Invalid input for parameter phased, must be a logical constant or NULL.")

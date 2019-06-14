@@ -7,6 +7,8 @@
 convertVCF(file, phased = NULL, subjects = NULL, ...)
 }
 \arguments{
+\item{file}{A filename for a variant call format (vcf) file.}
+
 \item{phased}{If \code{TRUE} the output genotype data are in the form of a XSnpMatrix object. Otherwise, they are in the form of a SnpMatrix object. 
 If it is unspecified, the phasing status will be determined by checking the first entry in the GT section of the VCF file.}
 
@@ -14,8 +16,6 @@ If it is unspecified, the phasing status will be determined by checking the firs
 This should be a subset of the sample IDs in the VCF file.}
 
 \item{...}{Additional arguments to be passed to vcfR::read.vcfR().}
-
-\item{file}{A filename for a variant call format (vcf) file.}
 }
 \value{
 A list which contains the following components:
