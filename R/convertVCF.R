@@ -13,7 +13,8 @@
 #' \item{genetic.distances}{ A numeric vector of the reference positions of SNPs. }
 #' \item{subjectID}{ A character vector of IDs of the subjects which the returned genotype data belong to. }
 #' \item{data}{An object of SnpMatrix/XSnpMatrix class from the 'snpStats' package containing genotype data. }
-#'@seealso  \code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix}}, \code{\link[snpStats]{XSnpMatrix}}
+#'@seealso  \code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
+#'@examples \url{https://sfustatgen.github.io/LDheatmap/articles/vcfOnLDheatmap.html}
 #' @keywords hplot
 #' @export
 

@@ -26,7 +26,10 @@ A list which contains the following components:
 \description{
 Convert a VCF file into a list composed of genetic distances, subject IDs, and a SnpMatrix/XSnpMatrix object.
 }
+\examples{
+\\url{https://sfustatgen.github.io/LDheatmap/articles/vcfOnLDheatmap.html}
+}
 \seealso{
-\code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix}}, \code{\link[snpStats]{XSnpMatrix}}
+\code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
 }
 \keyword{hplot}
