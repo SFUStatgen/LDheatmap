@@ -11,8 +11,8 @@ Authors@R: c(person("Ji-Hyung","Shin",email="shin@sfu.ca", role="aut"),
              person("Jinko","Graham",email="jgraham@sfu.ca",role="aut"))
 Maintainer: Brad McNeney <mcneney@sfu.ca>
 Depends: R (>= 2.14.0)
-Imports: grid, genetics, snpStats, Rcpp (>= 1.0.1), vcfR
-Suggests: rtracklayer, GenomicRanges, GenomeInfoDb,  IRanges, lattice, ggplot2
+Imports: grid, genetics, snpStats, Rcpp (>= 1.0.1)
+Suggests: rtracklayer, GenomicRanges, GenomeInfoDb,  IRanges, lattice, ggplot2, vcfR
 Description: Produces a graphical display, as a heat map, of measures
         of pairwise linkage disequilibria between SNPs. Users may
         optionally include the physical locations or genetic map
@@ -24,5 +24,5 @@ License: GPL-3
 URL: https://sfustatgen.github.io/LDheatmap/
 Repository: CRAN
 Date/Publication: 2010-01-11 19:57:39
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 LinkingTo: Rcpp
