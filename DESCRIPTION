@@ -11,7 +11,7 @@ Authors@R: c(person("Ji-Hyung","Shin",email="shin@sfu.ca", role="aut"),
              person("Jinko","Graham",email="jgraham@sfu.ca",role="aut"))
 Maintainer: Brad McNeney <mcneney@sfu.ca>
 Depends: R (>= 2.14.0)
-Imports: grid, genetics, snpStats, Rcpp (>= 1.0.1)
+Imports: grid, genetics, snpStats, Rcpp
 Suggests: rtracklayer, GenomicRanges, GenomeInfoDb,  IRanges, lattice, ggplot2, vcfR
 Description: Produces a graphical display, as a heat map, of measures
         of pairwise linkage disequilibria between SNPs. Users may
