@@ -10,9 +10,4 @@
 #' @description Internal LDheatmap functions.
 #' @details These are not to be called by the user or are undocumented.
 #' @keywords internal
-#' 
-#' 
-## usethis namespace: start
-#' @importFrom Rcpp sourceCpp
-## usethis namespace: end
 NULL
