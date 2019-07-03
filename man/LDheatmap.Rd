@@ -11,9 +11,7 @@ SNP.name=NULL, color=NULL, newpage=TRUE,
 name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 }
 \arguments{
-\item{gdat}{SNP data: a data frame of \code{genotype} objects (see \bold{Details} below), 
-a \code{SnpMatrix} object (see \bold{Details} below), 
-a square matrix of
+\item{gdat}{SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
 pairwise linkage disequilibrium measurements or an object of
 class \code{"LDheatmap"} (the returned object of this function).}
 
@@ -71,7 +69,8 @@ being considered. Ignored when \code{add.map=FALSE}.}
 be labelled. Should match the names of SNPs in the provided object
 \code{gdat}, otherwise nothing is done.}
 
-\item{color}{A range of colors to be used for drawing the heat map. Default}
+\item{color}{A range of colors to be used for drawing the heat map. Default
+is \code{grey.colors(20)}.}
 
 \item{newpage}{If \code{TRUE} (default), the heat map will be drawn on a new page.}
 
