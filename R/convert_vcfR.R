@@ -1,26 +1,38 @@
-#' @name convertVCF
-#' @aliases convertVCF
-#' @title Convert a VCF file into genotype data
-#' @description Convert a VCF file into a list composed of genetic distances, subject IDs, and a SnpMatrix/XSnpMatrix object.
+#' @name convert_vcfR
+#' @aliases convert_vcfR
+#' @title Extract genotype information from a vcfR object
+#' @description Convert a \code{\link[vcfR]{vcfR-class}} object into a list composed of genetic distances, subject IDs, and a \code{\link[snpStats]{SnpMatrix-class}}/\code{\link[snpStats]{XSnpMatrix-class}} object.
 #' 
-#' @usage convertVCF(file, phased = NULL, subjects = NULL, ...)
+#' @usage convert_vcfR(file, phased = NULL, subjects = NULL)
 #' 
-#' @param file A filename for a variant call format (vcf) file.
+#' @param file An instance or path of the \code{\link[vcfR]{vcfR-class}} object to be processed.
 #' 
-#' @param phased If \code{TRUE} the output genotype data are in the form of a XSnpMatrix object. Otherwise, they are in the form of a SnpMatrix object. 
-#'If it is unspecified, the phasing status will be determined by checking the first entry in the GT section of the VCF file.
+#' @param phased If \code{TRUE} the output genotype data are in the form of a \code{\link[snpStats]{XSnpMatrix-class}} object. Otherwise, they are in the form of a \code{\link[snpStats]{SnpMatrix-class}} object. 
+#'If it is unspecified, the phasing status will be determined by checking the first entry in the GT section of the VCF file. If the first entry is also missing, the value will be set to \code{FALSE}.
 #'
 #' @param subjects A character or factor containing subject IDs. If supplied, genotype info of only those subjects will be returned. 
 #'This should be a subset of the sample IDs in the VCF file.
-#'
-#' @param ... Additional arguments to be passed to vcfR::read.vcfR().
+#' 
+#' @details
+#' In order to let \code{convert_vcfR} function properly, the input \code{\link[vcfR]{vcfR-class}} object is expected to be generated from a valid VCF file which contains only biallelic SNPs and includes a GT section.
 #' 
 #' @return A list which contains the following components:
 #' \item{genetic.distances}{ A numeric vector of the reference positions of SNPs. }
 #' \item{subjectID}{ A character vector of IDs of the subjects which the returned genotype data belong to. }
-#' \item{data}{An object of SnpMatrix/XSnpMatrix class from the 'snpStats' package containing genotype data. }
+#' \item{data}{An object of \code{\link[snpStats]{SnpMatrix-class}}/\code{\link[snpStats]{XSnpMatrix-class}} containing genotype data. }
 #' 
 #'@seealso  \code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
+#'
+#' @examples # Load the vcfR object
+#' require(vcfR)
+#' data(vcfR_example)
+#' 
+#' # Extract needed genotype information
+#' alist <- convert_vcfR(vcf)
+#' 
+#' # Draw a heatmap using the extracted data
+#' LDheatmap(alist$data, alist$genetic.distance, add.map=FALSE)
+#' 
 #'
 #' @keywords hplot
 #' @export
@@ -49,19 +61,16 @@
 
 ###########################################################################
 
-convertVCF <- function(file, phased = NULL, subjects = NULL, ...) {
-  
-  # read vcf file
-  snp <- vcfR::read.vcfR(file, ...)
+convert_vcfR <- function(file, phased = NULL, subjects = NULL) {
   
   # check validity of phased
   if (!is.null(phased) & !is.logical(phased)) stop("Invalid input for parameter phased, must be a logical constant or NULL.")
   
   # extract genetic distances
-  if ("POS"%in%colnames(snp@fix)) genetic.distance = as.numeric(snp@fix[,"POS"])
+  if ("POS"%in%colnames(file@fix)) genetic.distance = as.numeric(file@fix[,"POS"])
   
   # extract genotype info
-  GT <- snp@gt[,!colnames(snp@gt)%in%"FORMAT"]
+  GT <- file@gt[,!colnames(file@gt)%in%"FORMAT"]
   
   # extract subject IDs
   subjectID = colnames(GT)
@@ -79,11 +88,13 @@ convertVCF <- function(file, phased = NULL, subjects = NULL, ...) {
       phased <- TRUE
     } else if (sep == "/") {
       phased <- FALSE
+    } else {
+      phased <- FALSE
     }
   }
   
   # extract and add snp identifiers if any
-  if ("ID"%in%colnames(snp@fix)) rownames(GT) <- snp@fix[,"ID"]
+  if ("ID"%in%colnames(file@fix)) rownames(GT) <- file@fix[,"ID"]
   
   # convert GT to SnpMatrix if phased if FALSE, else convert to XSnpMatrix
   mat <- GT_to_SnpMatrix(GT, phased)

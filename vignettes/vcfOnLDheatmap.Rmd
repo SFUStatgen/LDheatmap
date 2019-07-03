@@ -33,15 +33,19 @@ eas <- sample_info[sample_info$Population %in% c("CHB","JPT","CHS","CDX","KHV"),
 `snp_in_vcf.vcf` is a vcf datafile contains common SNPs (SNPs with frequency 5% or more in the world-wide population) in the MLLT3 gene. We are going to draw 2 different LDheatmaps based on the genotype data contained in the file and the population code we just extracted. 
 
 ```{r, warning=FALSE}
+library(vcfR)
+#read the VCF file and store the vcfR object
+vcf <- read.vcfR("snp_in_vcf.vcf")
+
 library(LDheatmap)
-#extract genetic distances, subject IDs and genotypes for European desent from the VCF file
-list_eur <- convertVCF("snp_in_vcf.vcf", subjects = eur[,1])
+#extract genetic distances, subject IDs and genotypes for European desent from the vcfR object
+list_eur <- convert_vcfR(vcf, subjects = eur[,1])
 
 #draw the heatmap
 LDheatmap(list_eur$data, list_eur$genetic.distance, title='Europeans', add.map=FALSE)
 
 #same procedure as above for Asian descent
-list_eas <- convertVCF("snp_in_vcf.vcf", subjects = eas[,1], verbose = FALSE)
+list_eas <- convert_vcfR(vcf, subjects = eas[,1])
 LDheatmap(list_eas$data, list_eas$genetic.distance, title='Asians', add.map=FALSE)
 
 ```
