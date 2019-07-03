@@ -1,20 +1,20 @@
-#' @name convert_vcfR
-#' @aliases convert_vcfR
+#' @name  vcfR2SnpMatrix
+#' @aliases  vcfR2SnpMatrix
 #' @title Extract genotype information from a vcfR object
 #' @description Convert a \code{\link[vcfR]{vcfR-class}} object into a list composed of genetic distances, subject IDs, and a \code{\link[snpStats]{SnpMatrix-class}}/\code{\link[snpStats]{XSnpMatrix-class}} object.
 #' 
-#' @usage convert_vcfR(file, phased = NULL, subjects = NULL)
+#' @usage  vcfR2SnpMatrix(obj, phased = NULL, subjects = NULL)
 #' 
-#' @param file An instance or path of the \code{\link[vcfR]{vcfR-class}} object to be processed.
+#' @param obj An instance or path of the \code{\link[vcfR]{vcfR-class}} object to be processed.
 #' 
 #' @param phased If \code{TRUE} the output genotype data are in the form of a \code{\link[snpStats]{XSnpMatrix-class}} object. Otherwise, they are in the form of a \code{\link[snpStats]{SnpMatrix-class}} object. 
-#'If it is unspecified, the phasing status will be determined by checking the first entry in the GT section of the VCF file. If the first entry is also missing, the value will be set to \code{FALSE}.
+#'If it is unspecified, the phasing status will be determined by checking the first entry in the gt slot of the vcfR object. If the first entry is also missing, the value will be set to \code{FALSE}.
 #'
 #' @param subjects A character or factor containing subject IDs. If supplied, genotype info of only those subjects will be returned. 
-#'This should be a subset of the sample IDs in the VCF file.
+#'This should be a subset of the sample IDs in the vcfR object.
 #' 
 #' @details
-#' In order to let \code{convert_vcfR} function properly, the input \code{\link[vcfR]{vcfR-class}} object is expected to be generated from a valid VCF file which contains only biallelic SNPs and includes a GT section.
+#' In order to let \code{ vcfR2SnpMatrix} function properly, the input \code{\link[vcfR]{vcfR-class}} object is expected to be generated from a valid VCF file which contains only biallelic SNPs and includes a GT section.
 #' 
 #' @return A list which contains the following components:
 #' \item{genetic.distances}{ A numeric vector of the reference positions of SNPs. }
@@ -28,7 +28,7 @@
 #' data(vcfR_example)
 #' 
 #' # Extract needed genotype information
-#' alist <- convert_vcfR(vcf)
+#' alist <-  vcfR2SnpMatrix(vcf)
 #' 
 #' # Draw a heatmap using the extracted data
 #' LDheatmap(alist$data, alist$genetic.distance, add.map=FALSE)
@@ -61,16 +61,16 @@
 
 ###########################################################################
 
-convert_vcfR <- function(file, phased = NULL, subjects = NULL) {
+ vcfR2SnpMatrix <- function(obj, phased = NULL, subjects = NULL) {
   
   # check validity of phased
   if (!is.null(phased) & !is.logical(phased)) stop("Invalid input for parameter phased, must be a logical constant or NULL.")
   
   # extract genetic distances
-  if ("POS"%in%colnames(file@fix)) genetic.distance = as.numeric(file@fix[,"POS"])
+  if ("POS"%in%colnames(obj@fix)) genetic.distance = as.numeric(obj@fix[,"POS"])
   
   # extract genotype info
-  GT <- file@gt[,!colnames(file@gt)%in%"FORMAT"]
+  GT <- obj@gt[,!colnames(obj@gt)%in%"FORMAT"]
   
   # extract subject IDs
   subjectID = colnames(GT)
@@ -94,7 +94,7 @@ convert_vcfR <- function(file, phased = NULL, subjects = NULL) {
   }
   
   # extract and add snp identifiers if any
-  if ("ID"%in%colnames(file@fix)) rownames(GT) <- file@fix[,"ID"]
+  if ("ID"%in%colnames(obj@fix)) rownames(GT) <- obj@fix[,"ID"]
   
   # convert GT to SnpMatrix if phased if FALSE, else convert to XSnpMatrix
   mat <- GT_to_SnpMatrix(GT, phased)

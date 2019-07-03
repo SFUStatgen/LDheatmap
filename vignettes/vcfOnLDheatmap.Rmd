@@ -39,7 +39,7 @@ vcf <- read.vcfR("snp_in_vcf.vcf")
 
 library(LDheatmap)
 #extract genetic distances, subject IDs and genotypes for European desent from the vcfR object
-list_eur <- convert_vcfR(vcf, subjects = eur[,1])
+list_eur <- vcfR2SnpMatrix(vcf, subjects = eur[,1])
 
 #draw the heatmap
 LDheatmap(list_eur$data, list_eur$genetic.distance, title='Europeans', add.map=FALSE)
