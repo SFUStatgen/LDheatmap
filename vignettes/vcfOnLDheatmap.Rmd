@@ -45,7 +45,7 @@ list_eur <- vcfR2SnpMatrix(vcf, subjects = eur[,1])
 LDheatmap(list_eur$data, list_eur$genetic.distance, title='Europeans', add.map=FALSE)
 
 #same procedure as above for Asian descent
-list_eas <- convert_vcfR(vcf, subjects = eas[,1])
+list_eas <- vcfR2SnpMatrix(vcf, subjects = eas[,1])
 LDheatmap(list_eas$data, list_eas$genetic.distance, title='Asians', add.map=FALSE)
 
 ```
