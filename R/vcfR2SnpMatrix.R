@@ -62,7 +62,9 @@
 ###########################################################################
 
  vcfR2SnpMatrix <- function(obj, phased = NULL, subjects = NULL) {
-  
+   
+  requireNamespace("snpStats")
+   
   # check validity of phased
   if (!is.null(phased) & !is.logical(phased)) stop("Invalid input for parameter phased, must be a logical constant or NULL.")
   
