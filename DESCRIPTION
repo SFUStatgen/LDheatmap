@@ -1,6 +1,6 @@
 Package: LDheatmap
 Version: 0.99-7
-Date: 2018-10-14
+Date: 2019-07-01
 Title: Graphical Display of Pairwise Linkage Disequilibria Between SNPs
 Authors@R: c(person("Ji-Hyung","Shin",email="shin@sfu.ca", role="aut"),
              person("Sigal","Blay", email="sblay@sfu.ca",role="aut"),
