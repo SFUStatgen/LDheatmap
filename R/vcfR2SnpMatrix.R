@@ -26,12 +26,13 @@
 #' @examples # Load the vcfR object
 #' require(vcfR)
 #' data(vcfR_example)
+#' vcf <- vcf[8:12,]
 #' 
 #' # Extract needed genotype information
-#' alist <-  vcfR2SnpMatrix(vcf)
+#' alist <- vcfR2SnpMatrix(vcf)
 #' 
-#' # Draw a heatmap using the extracted data
-#' LDheatmap(alist$data, alist$genetic.distance, add.map=FALSE)
+#' # Draw a pairwise LD plot using the extracted data
+#' LDheatmap(alist$data, alist$genetic.distance)
 #' 
 #'
 #' @keywords hplot
@@ -95,10 +96,10 @@
     }
   }
   
-  # extract and add snp identifiers if any
+  # extract and add snp identifiers
   if ("ID"%in%colnames(obj@fix)) rownames(GT) <- obj@fix[,"ID"]
   
-  # convert GT to SnpMatrix if phased if FALSE, else convert to XSnpMatrix
+  # convert GT to SnpMatrix if phased is FALSE, else convert to XSnpMatrix
   mat <- GT_to_SnpMatrix(GT, phased)
   
   

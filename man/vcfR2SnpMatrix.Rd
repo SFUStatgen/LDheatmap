@@ -31,12 +31,13 @@ In order to let \code{ vcfR2SnpMatrix} function properly, the input \code{\link[
 # Load the vcfR object
 require(vcfR)
 data(vcfR_example)
+vcf <- vcf[8:12,]
 
 # Extract needed genotype information
-alist <-  vcfR2SnpMatrix(vcf)
+alist <- vcfR2SnpMatrix(vcf)
 
-# Draw a heatmap using the extracted data
-LDheatmap(alist$data, alist$genetic.distance, add.map=FALSE)
+# Draw a pairwise LD plot using the extracted data
+LDheatmap(alist$data, alist$genetic.distance)
 
 
 }
