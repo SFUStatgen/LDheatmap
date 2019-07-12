@@ -18,8 +18,8 @@ Description: Produces a graphical display, as a heat map, of measures
         of pairwise linkage disequilibria between SNPs. Users may
         optionally include the physical locations or genetic map
         distances of each SNP on the plot. Users should note that the
-        imported package snpStats and the suggested packages 
-        rtracklayer, GenomicRanges, GenomInfoDb and IRanges are all
+        imported package 'snpStats' and the suggested packages 
+        'rtracklayer', 'GenomicRanges', 'GenomInfoDb' and 'IRanges' are all
         BioConductor packages <https://bioconductor.org>.
 License: GPL-3
 URL: https://sfustatgen.github.io/LDheatmap/
