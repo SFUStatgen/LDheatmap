@@ -21,7 +21,7 @@ subject.support is a one-column data frame with:
  [,1] \tab pop   \tab character \tab HapMap population of each subject \cr
 }}
 \source{
-International HapMap Project \url{www.hapmap.org}
+International HapMap Project \url{http://www.hapmap.org}
 }
 \usage{
 data(GIMAP5)

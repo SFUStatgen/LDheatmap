@@ -15,7 +15,7 @@
  CHBJPTDist: a vector of integers, representing SNP physical map
  locations on the chromosome.}
 \source{
-International HapMap Project \url{www.hapmap.org}
+International HapMap Project \url{http://www.hapmap.org}
 }
 \usage{
 data(CHBJPTData)
