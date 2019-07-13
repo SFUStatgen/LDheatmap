@@ -13,7 +13,7 @@ Each column represents a SNP.
 
 CEUDist: A vector of integers, representing SNP physical map locations on the chromosome.}
 \source{
-International HapMap Project \url{http://www.hapmap.org}
+International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 }
 \usage{
 data(CEUData)

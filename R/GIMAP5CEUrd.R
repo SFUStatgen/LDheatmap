@@ -26,7 +26,7 @@
 #'than 5\% in all populations were retained.
 #'The base positions are from NCBI build 36
 #'(UCSC genome hg18).
-#' @source International HapMap Project \url{www.hapmap.org}
+#' @source International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 #' @references The International HapMap Consortium. A haplotype map of
 #'the human genome. Nature 437, 1299-1320. 2005.
 #' @seealso \code{\link{GIMAP5}}

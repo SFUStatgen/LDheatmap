@@ -23,7 +23,7 @@
 #'The 30 trios are taken from the so-called CEPH families, a set of
 #'multi-generational families from Utah with ancestry from northern and
 #'western Europe. From this set of 90 people, 60 parents were extracted.
-#' @source International HapMap Project \url{www.hapmap.org}
+#' @source International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 #' @references The International HapMap Consortium. A haplotype map of
 #'the human genome. Nature 437, 1299-1320. 2005.
 #'@examples data(CEUData)

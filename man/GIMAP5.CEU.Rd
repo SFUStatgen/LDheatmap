@@ -17,7 +17,7 @@ snp.support is a data frame with the following columns:
 [,5] \tab Strand   \tab character \tab strand (all "+")\cr
 }}
 \source{
-International HapMap Project \url{http://www.hapmap.org}
+International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 }
 \usage{
 data(GIMAP5.CEU)

@@ -54,7 +54,7 @@
 #'         LDheatmap(GIMAP5$snp.data[subscripts,],GIMAP5$snp.support$Position, 
 #'                   newpage=FALSE)})
 #'rm(pop,n)
-#' @source International HapMap Project \url{www.hapmap.org}
+#' @source International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 #' @references The International HapMap Consortium. A haplotype map of
 #'the human genome. Nature 437, 1299-1320. 2005.
 #' @keywords datasets

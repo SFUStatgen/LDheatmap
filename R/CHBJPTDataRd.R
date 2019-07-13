@@ -22,7 +22,7 @@
 #'  The Japanese individuals were unrelated residents of the Tokyo metropolitan
 #'  area with all grandparents from Japan. The data are from release 21 of the
 #'  International HapMap project (The International HapMap Consortium 2005).
-#' @source International HapMap Project \url{www.hapmap.org}
+#' @source International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 #' @references The International HapMap Consortium. A haplotype map of
 #' the human genome. Nature 437, 1299-1320. 2005.
 #' @examples  data(CHBJPTData)
