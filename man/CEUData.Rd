@@ -7,11 +7,13 @@
 \alias{CEUDist}
 \alias{hapmapCEU}
 \title{Example data set for LDheatmap}
-\format{CEUSNP: A dataframe of SNP genotypes.
+\format{
+CEUSNP: A dataframe of SNP genotypes.
 Each row represents an individual.
 Each column represents a SNP.
 
-CEUDist: A vector of integers, representing SNP physical map locations on the chromosome.}
+CEUDist: A vector of integers, representing SNP physical map locations on the chromosome.
+}
 \source{
 International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 }

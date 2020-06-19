@@ -4,7 +4,8 @@
 \name{GIMAP5.CEU}
 \alias{GIMAP5.CEU}
 \title{Example data set for LDheatmap}
-\format{GIMAP5.CEU is a list with two elements: snp.data and snp.support.
+\format{
+GIMAP5.CEU is a list with two elements: snp.data and snp.support.
 snp.data is a \code{SnpMatrix}
 object containing the SNP genotypes. Rows correspond to
 subjects and columns correspond to  SNPs.
@@ -15,7 +16,8 @@ snp.support is a data frame with the following columns:
 [,3] \tab Chromosome   \tab character \tab chromosome (chr7 for all)\cr
 [,4] \tab Position    \tab numeric \tab physical position\cr
 [,5] \tab Strand   \tab character \tab strand (all "+")\cr
-}}
+}
+}
 \source{
 International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 }

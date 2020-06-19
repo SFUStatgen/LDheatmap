@@ -4,7 +4,8 @@
 \name{GIMAP5}
 \alias{GIMAP5}
 \title{Example data set for LDHeatmap}
-\format{GIMAP5 is a list with three elements: snp.data, snp.support and
+\format{
+GIMAP5 is a list with three elements: snp.data, snp.support and
 subject.support. snp.data is a \code{SnpMatrix}
 object containing the SNP genotypes. Rows correspond to
 subjects and columns correspond to  SNPs.
@@ -19,7 +20,8 @@ snp.support is a data frame with the following columns:
 subject.support is a one-column data frame with:
 \tabular{rlll}{
  [,1] \tab pop   \tab character \tab HapMap population of each subject \cr
-}}
+}
+}
 \source{
 International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 }

@@ -8,12 +8,14 @@
 \alias{hapmapJPT}
 \alias{hapmapCHB}
 \title{Example of data set for LDHeatmap}
-\format{CHBJPTSNP: A dataframe of SNP genotypes.
+\format{
+CHBJPTSNP: A dataframe of SNP genotypes.
  Each row represents an individual.
  Each column represents a SNP.
 
  CHBJPTDist: a vector of integers, representing SNP physical map
- locations on the chromosome.}
+ locations on the chromosome.
+}
 \source{
 International HapMap Project \url{ftp://ftp.ncbi.nlm.nih.gov/hapmap/}
 }
