@@ -9,7 +9,7 @@ LDheatmap.addGrob(LDheatmap, grob, height = 0.2)
 \arguments{
 \item{LDheatmap}{An object of class LDheatmap.}
 
-\item{grob}{A graphical object of class\code{\link[grid]{grob}}.}
+\item{grob}{A graphical object of class\code{\link{grob}}.}
 
 \item{height}{The height of the viewport in which the grob will be placed.}
 }

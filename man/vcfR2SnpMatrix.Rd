@@ -42,6 +42,6 @@ In order to let \code{ vcfR2SnpMatrix} function properly, the input \code{\link[
 
 }
 \seealso{
-\code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
+\code{\link[vcfR]{io_vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
 }
 \keyword{hplot}

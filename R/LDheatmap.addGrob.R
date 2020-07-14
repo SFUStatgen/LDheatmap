@@ -5,7 +5,7 @@
 #'to the physical map on the heatmap.
 #' @usage LDheatmap.addGrob(LDheatmap, grob, height = 0.2)
 #' @param LDheatmap An object of class LDheatmap.
-#' @param grob A graphical object of class\code{\link[grid]{grob}}.
+#' @param grob A graphical object of class\code{\link{grob}}.
 #' @param height The height of the viewport in which the grob will be placed.
 #' @return An object of class LDheatmap given as an argument, with the \code{grob}
 #'\code{LDheatmapGrob} modified to inclue the new child grob.

@@ -21,7 +21,7 @@
 #' \item{subjectID}{ A character vector of IDs of the subjects which the returned genotype data belong to. }
 #' \item{data}{An object of \code{\link[snpStats]{SnpMatrix-class}}/\code{\link[snpStats]{XSnpMatrix-class}} containing genotype data. }
 #' 
-#'@seealso  \code{\link[vcfR]{read.vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
+#'@seealso  \code{\link[vcfR]{io_vcfR}}, \code{\link[snpStats]{SnpMatrix-class}}, \code{\link[snpStats]{XSnpMatrix-class}}
 #'
 #' @examples # Load the vcfR object -- requires vcfR
 #'  if (requireNamespace("vcfR", quietly = TRUE)) {

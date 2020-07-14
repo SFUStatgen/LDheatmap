@@ -2,3 +2,6 @@ CEUData: CEUSNP CEUDist
 CHBJPTData: CHBJPTSNP CHBJPTDist
 GIMAP5: GIMAP5
 GIMAP5.CEU: GIMAP5.CEU
+hapmapCEU: hapmapCEU
+hapmapCHB: hapmapCHB
+hapmapJPT: hapmapJPT
