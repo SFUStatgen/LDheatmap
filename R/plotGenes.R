@@ -122,9 +122,11 @@ plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_d
   # Get gene colors
   if ("kgColor" %in% rtracklayer::tableNames(query1)) {
     query3<-rtracklayer::ucscTableQuery(session, "knownGene", 
-	rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table="kgColor", 
-	names=t[,"name"])
+	rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), 
+	# table="kgColor", names=t[,"name"])
+	table = "kgColor")
     color_tbl<-rtracklayer::getTable(query3)
+    color_tbl <- color_tbl[color_tbl$kgID %in% t[,"name"],]
   }
 
   # Determine the plot line number for each row in t and save it in column t$plot_line
