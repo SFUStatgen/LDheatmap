@@ -104,9 +104,12 @@ plotGenes<- function(minRange, maxRange, chromosome, genome="hg19", plot_lines_d
   # Get gene names
   t[, "gene_name"] <- ""
   tbl <- "kgXref"
+  # ucscTableQuery names argument is not working as of Aug. 2020. User Zhenhua Zhang supplied the following patch
   query2<-rtracklayer::ucscTableQuery(session, "knownGene", 
-	rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table=tbl, names=t[,"name"])
+                                      rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table=tbl)
+	# rtracklayer::GRangesForUCSCGenome(genome,chromosome,IRanges::IRanges(minRange, maxRange)), table=tbl, names=t[,"name"])
   t1<-rtracklayer::getTable(query2)
+  t1<-t1[(t1[,"kgID"] %in% t[,"name"]),]
   t1[,"kgID"]       <- as.character(t1[,"kgID"])       # convert factors to character strings
   t1[,"geneSymbol"] <- as.character(t1[,"geneSymbol"]) 
   
