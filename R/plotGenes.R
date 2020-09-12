@@ -24,7 +24,7 @@
 #' @return A \code{grob} of gene plots.
 #' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=knownGene}
 #' @author Sigal Blay <sblay@sfu.ca> and more
-#' @examples \dontrun{
+#' @examples \donttest{
 #'grid.newpage()
 #'plotGenes(149500000, 150000000, "chr7")
 #'}

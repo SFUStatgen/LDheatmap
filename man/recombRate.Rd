@@ -29,7 +29,7 @@ A \code{grob} representing recombination rates.
 Plot average rates of recombination from the deCODE genetic map for a specified genetic sequence.
 }
 \examples{
-\dontrun{
+\donttest{
 grid.newpage()
 recombRate(129000000, 140000000, "chr7", "hg18")
 grid.newpage()

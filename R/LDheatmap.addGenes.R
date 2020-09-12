@@ -25,7 +25,7 @@
 #' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=knownGene}
 #' @author Sigal Blay <sblay@sfu.ca>
 #' @seealso \code{\link{LDheatmap}}, \code{\link{plotGenes}}
-#' @examples \dontrun{
+#' @examples \donttest{
 #'data(GIMAP5.CEU)
 #'ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 #'# Add gene plot

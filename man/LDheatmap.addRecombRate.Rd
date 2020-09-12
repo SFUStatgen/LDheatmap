@@ -28,7 +28,7 @@ Retrieve average rates of recombination from the deCODE genetic map from the UCS
 Genome Browser and add them to an LDheatmap object.
 }
 \examples{
-\dontrun{
+\donttest{
 data(GIMAP5.CEU) 
 ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 # Add recombination rate plot

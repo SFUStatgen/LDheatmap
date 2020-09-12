@@ -40,7 +40,7 @@ light blue -- non-RefSeq transcripts.
 For assemblies older than hg18, all genes are plotted in grey.
 }
 \examples{
-\dontrun{
+\donttest{
 data(GIMAP5.CEU)
 ll<-LDheatmap(GIMAP5.CEU$snp.data,GIMAP5.CEU$snp.support$Position,flip=TRUE)
 # Add gene plot

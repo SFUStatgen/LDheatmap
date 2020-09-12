@@ -42,7 +42,7 @@ Light blue -- non-RefSeq transcripts
 For assemblies older than hg18, all genes are plotted in grey.
 }
 \examples{
-\dontrun{
+\donttest{
 grid.newpage()
 plotGenes(149500000, 150000000, "chr7")
 }

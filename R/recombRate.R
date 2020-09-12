@@ -15,7 +15,7 @@
 #' @return A \code{grob} representing recombination rates.
 #' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=recombRate}
 #' @author Sigal Blay <sblay@sfu.ca> and more
-#' @examples \dontrun{
+#' @examples \donttest{
 #'grid.newpage()
 #'recombRate(129000000, 140000000, "chr7", "hg18")
 #'grid.newpage()
