@@ -25,7 +25,7 @@
 #' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=knownGene}
 #' @author Sigal Blay <sblay@sfu.ca> and more
 #' @examples \donttest{
-#'grid.newpage()
+#'grid::grid.newpage()
 #'plotGenes(149500000, 150000000, "chr7")
 #'}
 #' @keywords hplot

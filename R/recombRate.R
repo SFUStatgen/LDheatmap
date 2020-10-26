@@ -16,12 +16,12 @@
 #' @references \url{http://genome.ucsc.edu/cgi-bin/hgTrackUi?g=recombRate}
 #' @author Sigal Blay <sblay@sfu.ca> and more
 #' @examples \donttest{
-#'grid.newpage()
+#'grid::grid.newpage()
 #'recombRate(129000000, 140000000, "chr7", "hg18")
-#'grid.newpage()
-#'pushViewport(viewport(width=0.8, x=0.2, just="left"))
+#'grid::grid.newpage()
+#'grid::pushViewport(grid::viewport(width=0.8, x=0.2, just="left"))
 #'recombRate(129000000, 140000000, "chr7", "hg18", view="full")
-#'popViewport()
+#'grid::popViewport()
 #'}
 #' @keywords hplot
 #' @export

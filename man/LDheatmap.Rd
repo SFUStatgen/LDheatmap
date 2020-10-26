@@ -226,34 +226,34 @@ MyHeatmap <- LDheatmap(MyHeatmap, color = grey.colors(20))
 new.grob <- editGrob(MyHeatmap$LDheatmapGrob, gPath("geneMap", "segments"),
                     gp=gpar(col="orange"))
 ##Clear the old graphics object from the display before drawing the modified heat map:
-grid.newpage()
-grid.draw(new.grob)
+grid::grid.newpage()
+grid::grid.draw(new.grob)
 # now the colour of line segments connecting the SNP
 # positions to the LD heat map has been changed from black to orange.
 #### Draw a resized heat map (in a 'blue-to-red' color scale ####
-grid.newpage()
-pushViewport(viewport(width=0.5, height=0.5))
+grid::grid.newpage()
+grid::pushViewport(viewport(width=0.5, height=0.5))
 LDheatmap(MyHeatmap, SNP.name = c("rs2283092", "rs6979287"), newpage=FALSE,
          color="blueToRed")
-popViewport()
+grid::popViewport()
 #### Draw and modify two heat maps on one plot ####
-grid.newpage()
+grid::grid.newpage()
 ##Draw and the first heat map on the left half of the graphics device
-pushViewport(viewport(x=0, width=0.5, just="left"))
+grid::pushViewport(viewport(x=0, width=0.5, just="left"))
 LD1<-LDheatmap(MyHeatmap, color=grey.colors(20), newpage=FALSE,
               title="Pairwise LD in grey.colors(20)",
               SNP.name="rs6979572", geneMapLabelX=0.6,
               geneMapLabelY=0.4, name="ld1")
-upViewport()
+grid::upViewport()
 ##Draw the second heat map on the right half of the graphics device
-pushViewport(viewport(x=1,width=0.5,just="right"))
+grid::pushViewport(viewport(x=1,width=0.5,just="right"))
 LD2<-LDheatmap(MyHeatmap, newpage=FALSE, title="Pairwise LD in heat.colors(20)",
               SNP.name="rs6979572", geneMapLabelX=0.6, geneMapLabelY=0.4, name="ld2")
-upViewport()
+grid::upViewport()
 ##Modify the text size of main title of the first heat map.
-grid.edit(gPath("ld1", "heatMap","title"), gp=gpar(cex=1.5))
+grid::grid.edit(gPath("ld1", "heatMap","title"), gp=gpar(cex=1.5))
 ##Modify the text size and color of the SNP label of the second heat map.
-grid.edit(gPath("ld2", "geneMap","SNPnames"), gp=gpar(cex=1.5, col="DarkRed"))
+grid::grid.edit(gPath("ld2", "geneMap","SNPnames"), gp=gpar(cex=1.5, col="DarkRed"))
 #### Draw a lattice-like plot with heat maps in panels ####
 # Load CHBJPTSNP and CHBJPTDist
 data(CHBJPTData)
@@ -265,9 +265,8 @@ xyplot(1:nrow(CHBJPTSNP) ~ 1:nrow(CHBJPTSNP) | pop,
       panel=function(x, y, subscripts,...) {
         LDheatmap(CHBJPTSNP[subscripts,], CHBJPTDist, newpage=FALSE) })
 data(GIMAP5)
-require(lattice)
 n<-nrow(GIMAP5$snp.data)
-xyplot(1:n ~ 1:n | GIMAP5$subject.support$pop,
+lattice::xyplot(1:n ~ 1:n | GIMAP5$subject.support$pop,
       type="n", scales=list(draw=FALSE), xlab="", ylab="",
       panel=function(x, y, subscripts,...) {
         LDheatmap(GIMAP5$snp.data[subscripts,],

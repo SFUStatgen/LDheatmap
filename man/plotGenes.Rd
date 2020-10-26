@@ -43,7 +43,7 @@ For assemblies older than hg18, all genes are plotted in grey.
 }
 \examples{
 \donttest{
-grid.newpage()
+grid::grid.newpage()
 plotGenes(149500000, 150000000, "chr7")
 }
 }

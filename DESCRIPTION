@@ -1,6 +1,6 @@
 Package: LDheatmap
-Version: 1.0-3
-Date: 2020-08-14
+Version: 1.0-4
+Date: 2020-10-03
 Title: Graphical Display of Pairwise Linkage Disequilibria Between SNPs
 Authors@R: c(person("Ji-Hyung","Shin",email="shin@sfu.ca", role="aut"),
              person("Sigal","Blay", email="sblay@sfu.ca",role="aut"),
@@ -17,12 +17,11 @@ Suggests: rtracklayer, GenomicRanges, GenomeInfoDb,  IRanges, lattice, ggplot2, 
 Description: Produces a graphical display, as a heat map, of measures
         of pairwise linkage disequilibria between single nucleotide polymorphisms (SNPs). Users may
         optionally include the physical locations or genetic map
-        distances of each SNP on the plot. Users should note that the
+        distances of each SNP on the plot. The methods are described in 
+        Shin et al. (2006) <doi:10.18637/jss.v016.c03>. Users should note that the
         imported package 'snpStats' and the suggested packages 
         'rtracklayer', 'GenomicRanges', 'GenomInfoDb' and 'IRanges' are all
-        BioConductor packages <https://bioconductor.org>. The suggested 
-        package 'vcfR' is currently archived on 
-        CRAN at <https://cran.r-project.org/src/contrib/Archive/vcfR/>.
+        BioConductor packages <https://bioconductor.org>.
 License: GPL-3
 URL: https://sfustatgen.github.io/LDheatmap/
 Repository: CRAN

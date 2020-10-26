@@ -143,7 +143,7 @@ The \code{hapmapCEU} data set from the \pkg{LDheatmap} package will
 be used in the next examples.
 
 <<echo=FALSE, results=hide>>=
-options(width=60) #controls the number of characters on a line (to protect the margin area)
+oldop <- options(width=60) #controls the number of characters on a line (to protect the margin area)
 @
 <<results=hide>>=
 library(LDheatmap)
@@ -424,6 +424,9 @@ xyplot(1:nrow(CHBJPTSNP)~1:nrow(CHBJPTSNP) | pop, type="n",
 scales=list(draw=FALSE), xlab="", ylab="", 
 panel=function(x,y,subscripts,...){
  LDheatmap(CHBJPTSNP[subscripts,], CHBJPTDist, newpage=FALSE)})
+@
+<<echo=FALSE, results=hide>>=
+options(oldop) # reset options to user's original
 @
 The resulting heat maps are shown in Figure \ref{lattice.plot}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
