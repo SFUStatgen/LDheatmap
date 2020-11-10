@@ -1,7 +1,6 @@
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney
-# Add to local repo
-# Some non-conflicting changes to repo
+# Change in remote repo
 
 # To cite LDheatmap in publications use:
 # Shin J-H, Blay S, McNeney B and Graham J (2006). LDheatmap: An R
@@ -551,3 +550,4 @@ postDrawDetails.symbols <- function(x) {
 }
 
 
+# ----------------------More changes in remote repo --------------------#
