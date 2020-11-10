@@ -212,8 +212,6 @@
 #'# and save the original prompt settings in old.prompt.
 #'old.prompt <- devAskNewPage(ask = TRUE)
 
-# *** MOre changes to local
-
 #'# Highlight a certain LD block of interest:
 #'LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", 
 #'fill = "grey",flipOutline=FALSE, crissCross=FALSE)
@@ -551,5 +549,3 @@ postDrawDetails.symbols <- function(x) {
   popViewport()
 }
 
-
-# ----------------------More changes in remote repo --------------------#
