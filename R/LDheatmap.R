@@ -1,7 +1,6 @@
 # ldheatmap - Plots measures of pairwise linkage disequilibria for SNPs
 # Copyright (C) 2004  J.Shin, S. Blay, N. Lewin-Koh, J.Graham, B.McNeney
-# Add to local repo
-# Some non-conflicting changes to repo
+# --- changes to local
 
 # To cite LDheatmap in publications use:
 # Shin J-H, Blay S, McNeney B and Graham J (2006). LDheatmap: An R
@@ -214,6 +213,8 @@
 #'# and save the original prompt settings in old.prompt.
 #'old.prompt <- devAskNewPage(ask = TRUE)
 
+# *** MOre changes to local
+
 #'# Highlight a certain LD block of interest:
 #'LDheatmap.highlight(MyHeatmap, i = 3, j = 8, col = "black", 
 #'fill = "grey",flipOutline=FALSE, crissCross=FALSE)
@@ -225,6 +226,7 @@
 #'#### Use an RGB pallete for the color scheme ####
 #'rgb.palette <- colorRampPalette(rev(c("blue", "orange", "red")), space = "rgb")
 #'LDheatmap(MyHeatmap, color=rgb.palette(18))
+# Create MORE CONFLICTS with test. ANOTHER
 
 #'#### Modify the plot by using 'grid.edit' function ####
 #'#Draw a heat map where the SNPs "rs2283092" and "rs6979287" are labelled.
