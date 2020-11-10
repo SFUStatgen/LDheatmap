@@ -223,7 +223,7 @@
 #'#### Use an RGB pallete for the color scheme ####
 #'rgb.palette <- colorRampPalette(rev(c("blue", "orange", "red")), space = "rgb")
 #'LDheatmap(MyHeatmap, color=rgb.palette(18))
-# Create MORE CONFLICTS with test. ANOTHER
+# Create MORE CONFLICTS with test. ANOTHER ANOTHER
 
 #'#### Modify the plot by using 'grid.edit' function ####
 #'#Draw a heat map where the SNPs "rs2283092" and "rs6979287" are labelled.
