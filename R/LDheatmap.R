@@ -107,8 +107,8 @@
 #'@param text If \code{TRUE}, the LD measurements are printed on each cell.
 #'
 #'@details
-#'The input object \code{gdat} can be a data frame of \code{genotype} objects (a 
-#'                                                                             data structure from the \pkg{genetics} package), a \code{SnpMatrix} object 
+#'The input object \code{gdat} can be a data frame of \code{genotype} objects
+#'(a data structure from the \pkg{genetics} package), a \code{SnpMatrix} object 
 #'(a data structure from the \pkg{snpStats} package), or
 #'any square matrix with values between 0 and 1 inclusive.
 #'LD computation is much faster for \code{SnpMatrix} objects than for
