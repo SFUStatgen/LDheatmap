@@ -104,7 +104,8 @@
 #'\code{pop}ped (i.e. removed) from the viewport tree after drawing. 
 #'Default=\code{FALSE}.
 #'
-#'@param flip If \code{TRUE}, the LDheatmap plot is flipped below a horizontal line, in the style of Haploview. Default is \code{FALSE}.
+#'@param flip If \code{TRUE}, the LDheatmap plot is flipped below a horizontal 
+#'line, in the style of Haploview. Default is \code{FALSE}.
 #'@param text If \code{TRUE}, the LD measurements are printed on each cell.
 #'
 #'@details
