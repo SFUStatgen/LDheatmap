@@ -103,15 +103,15 @@
 #'@param pop If \code{TRUE}, the viewport where the heat map is drawn is
 #'\code{pop}ped (i.e. removed) from the viewport tree after drawing. Default=\code{FALSE}.
 #'
-#'@param flip If \code{TRUE}, the LDheatmap plot is flipped below a horizontal line, in the style of Haploview. Default is \code{FALSE}.
+#'@param flip If \code{TRUE}, the LDheatmap plot is flipped below a horizontal 
+#'line, in the style of Haploview. Default is \code{FALSE}.
 #'@param text If \code{TRUE}, the LD measurements are printed on each cell.
 #'
 #'@details
 #'The input object \code{gdat} can be a data frame of \code{genotype} objects
-#'(a data structure from the \pkg{genetics} package), a \code{SnpMatrix} object (a
-#'                                                                               data structure from the \pkg{snpStats} package), or
-#'any square matrix with values between 0 and 1
-#'inclusive.
+#'(a data structure from the \pkg{genetics} package), a \code{SnpMatrix} object 
+#'(a data structure from the \pkg{snpStats} package), or
+#'any square matrix with values between 0 and 1 inclusive.
 #'LD computation is much faster for \code{SnpMatrix} objects than for
 #'\code{genotype} objects.
 #'In the case of a matrix of LD values between 0 and 1,
