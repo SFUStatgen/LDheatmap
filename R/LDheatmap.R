@@ -38,8 +38,8 @@
 #'SNP.name=NULL, color=NULL, newpage=TRUE,
 #'name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 #'
-#' @param gdat SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
-#'pairwise linkage disequilibrium measurements or an object of
+#' @param gdat SNP data: a data frame of genotype objects, a \code{SnpMatrix} 
+#'object, a square matrix of pairwise linkage disequilibrium measurements or an object of
 #'class \code{"LDheatmap"} (the returned object of this function).
 #'
 #' @param genetic.distances A numeric vector of map locations of the SNPs,
