@@ -11,8 +11,8 @@ SNP.name=NULL, color=NULL, newpage=TRUE,
 name="ldheatmap", vp.name=NULL, pop=FALSE, flip=NULL, text=FALSE)
 }
 \arguments{
-\item{gdat}{SNP data: a data frame of genotype objects, a \code{SnpMatrix} object, a square matrix of
-pairwise linkage disequilibrium measurements or an object of
+\item{gdat}{SNP data: a data frame of genotype objects, a \code{SnpMatrix} 
+object, a square matrix of pairwise linkage disequilibrium measurements or an object of
 class \code{"LDheatmap"} (the returned object of this function).}
 
 \item{genetic.distances}{A numeric vector of map locations of the SNPs,
@@ -81,9 +81,11 @@ graphical object (\code{grob}) to be produced.}
 where the heat map is going to be drawn.}
 
 \item{pop}{If \code{TRUE}, the viewport where the heat map is drawn is
-\code{pop}ped (i.e. removed) from the viewport tree after drawing. Default=\code{FALSE}.}
+\code{pop}ped (i.e. removed) from the viewport tree after drawing. 
+Default=\code{FALSE}.}
 
-\item{flip}{If \code{TRUE}, the LDheatmap plot is flipped below a horizontal line, in the style of Haploview. Default is \code{FALSE}.}
+\item{flip}{If \code{TRUE}, the LDheatmap plot is flipped below a horizontal 
+line, in the style of Haploview. Default is \code{FALSE}.}
 
 \item{text}{If \code{TRUE}, the LD measurements are printed on each cell.}
 }
@@ -116,11 +118,10 @@ the physical or genetic map positions of the SNPs may be added, along
 with text reporting the total length of the genomic region considered.
 }
 \details{
-The input object \code{gdat} can be a data frame of \code{genotype} objects
-(a data structure from the \pkg{genetics} package), a \code{SnpMatrix} object (a
-                                                                              data structure from the \pkg{snpStats} package), or
-any square matrix with values between 0 and 1
-inclusive.
+The input object \code{gdat} can be a data frame of \code{genotype} objects 
+(a data structure from the \pkg{genetics} package), a \code{SnpMatrix} object 
+(a data structure from the \pkg{snpStats} package), or
+any square matrix with values between 0 and 1 inclusive.
 LD computation is much faster for \code{SnpMatrix} objects than for
 \code{genotype} objects.
 In the case of a matrix of LD values between 0 and 1,

@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // GT_to_SnpMatrix
 S4 GT_to_SnpMatrix(CharacterMatrix GT, bool phased);
 RcppExport SEXP _LDheatmap_GT_to_SnpMatrix(SEXP GTSEXP, SEXP phasedSEXP) {

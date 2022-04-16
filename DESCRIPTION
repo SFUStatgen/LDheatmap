@@ -26,5 +26,5 @@ License: GPL-3
 URL: https://sfustatgen.github.io/LDheatmap/
 Repository: CRAN
 Date/Publication: 2010-01-11 19:57:39
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
 LinkingTo: Rcpp
