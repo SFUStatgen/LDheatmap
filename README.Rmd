@@ -14,8 +14,7 @@ knitr::opts_chunk$set(
 
 ## LDheatmap <img src="man/figures/logo.png" align="right" />
 
-`LDheatmap()` is used to produce a graphical display,
-as a heat map, of pairwise linkage disequilibrium (LD) 
+`LDheatmap()` is used to produce a graphical display, as a heat map, of pairwise linkage disequilibrium (LD) 
 measurements for SNPs.
 The heat map is a false color image in the upper-left 
 diagonal of a square plot. A line parallel to 
