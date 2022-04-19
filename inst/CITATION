@@ -12,7 +12,7 @@ citEntry(entry="Article",
          volume	= 16,
          year	= 2006,
          pages	="{Code Snippet 3}",
-         url	="http://stat.sfu.ca/statgen/research/ldheatmap.html",
+         url	="https://www.jstatsoft.org/article/view/v016c03",
          textVersion =
        paste("Shin J-H, Blay S, McNeney B and Graham J (2006).",
         "LDheatmap: An R Function for Graphical Display of Pairwise Linkage 
