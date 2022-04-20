@@ -1,5 +1,5 @@
-#' @name CHBJPTData
-#' @aliases CHBJPTData
+#' @name CHBJPTSNP
+#' @aliases CHBJPTDist
 #' CHBJPTSNP
 #' CHBJPTDist
 #' hapmapJPT
@@ -8,7 +8,7 @@
 #' @title Example of data set for LDHeatmap
 #' @description CHBJPTSNP:  Genotypes on 13 SNPs for 45 Chinese and 45 Japanese people
 #' CHBJPTDist: Physical map positions of the 13 SNPs
-#' @usage data(CHBJPTData)
+#' @usage data(CHBJPTSNP); data(CHBJPTDist)
 #' @format CHBJPTSNP: A dataframe of SNP genotypes.
 #'  Each row represents an individual.
 #'  Each column represents a SNP.

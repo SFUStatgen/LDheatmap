@@ -195,7 +195,7 @@
 #'gdat<-as(gdat,"SnpMatrix")
 #'LDheatmap(gdat,genetic.distances=c(0,1000,3000,4000,10000))
 #'#Load the package's data set
-#'data(CEUData)
+#'data(CEUSNP); data(CEUDist)
 #'#Creates a data frame "CEUSNP" of genotype data and a vector "CEUDist"
 #'#of physical locations of the SNPs
 #'# Produce a heat map in a grey color scheme
@@ -314,7 +314,7 @@
 
 #'#### Draw a lattice-like plot with heat maps in panels ####
 #'# Load CHBJPTSNP and CHBJPTDist
-#'data(CHBJPTData)
+#'data(CHBJPTSNP); data(CHBJPTDist)
 #'# Make a variable which indicates Chinese vs. Japanese
 #'pop <- factor(c(rep("chinese",45), rep("japanese",45)))
 #'require(lattice)

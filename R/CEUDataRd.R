@@ -1,5 +1,5 @@
-#' @name CEUData
-#' @aliases CEUData
+#' @name CEUSNP
+#' @aliases CEUDist
 #' CEUSNP
 #' CEUDist
 #' hapmapCEU
@@ -9,7 +9,7 @@
 #'
 #'CEUDist: Physical map positions of the 15 SNPs in CEUSNP
 #'
-#' @usage data(CEUData)
+#' @usage data(CEUSNP); data(CEUDist)
 #' @format CEUSNP: A dataframe of SNP genotypes.
 #' Each row represents an individual.
 #' Each column represents a SNP.
