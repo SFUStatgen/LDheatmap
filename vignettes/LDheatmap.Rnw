@@ -147,7 +147,7 @@ oldop <- options(width=60) #controls the number of characters on a line (to prot
 @
 <<results=hide>>=
 library(LDheatmap)
-data("CEUData")
+data("CEUSNP"); data("CEUDist")
 @
 This will load the genetic data \code{CEUSNP} and associated
 distance vector \code{CEUDist} included in the package.  
@@ -378,7 +378,7 @@ to blue in the heat map on the right.}
    \label{multiple.plot}
 \end{figure}
 <<results=hide>>=
-data("CHBJPTData")
+data("CHBJPTSNP"); data("CHBJPTDist")
 pop<-factor(c(rep("chinese", 45), rep("japanese", 45)))
 @
 <<label=lattice, fig=TRUE, echo=FALSE, eps=FALSE, width=11, height=7.33, include=FALSE>>=
