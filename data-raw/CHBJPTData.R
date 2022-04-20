@@ -44,3 +44,5 @@ CHBJPTDist<-ch.dat[,"pos"]
 CHBJPTDist<-CHBJPTDist[ind]
 
 rm(ch.dat,ch.snps,i,ind,jp.dat,jp.snps,snpnames.ch,snpnames.jp,tem)
+
+usethis::use_data(CHBJPTSNP,CHBJPTDist, overwrite = TRUE)
